@@ -1,0 +1,22 @@
+json({
+		'items':[
+		{
+			'id':'1',
+			'usuario':'Rafael Damasio',
+			'username':'damasiorafael',
+			'email':'damasio_damasio@hotmail.com'
+		},
+		{
+			'id':'2',
+			'usuario':'Fernando Damasio',
+			'username':'damasiofernando',
+			'email':'kakaminhao_super@hotmail.com'
+		},
+		{
+			'id':'3',
+			'usuario':'Leonam Rodrigues',
+			'username':'rodriguesleonam',
+			'email':'leonan_aquariano@hotmail.com'
+		}
+	]
+})

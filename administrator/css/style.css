@@ -1,0 +1,22 @@
+/* RESET BOOTSTRAP */
+.navbar-fixed-top, .side-nav { background: #BDE4EB;}
+
+.table-users {}
+.table-users .al-center { text-align: center;}
+.table-users td a.btn { margin-right: 6px;}
+
+/* ELEMENTOS GERAIS */
+.col-add-edit { position: relative; display: none;}
+.el-overlay { position: absolute; top: 0; left: 0; width: 100%; background: #FFF; opacity: .90; display: none;}
+.overlay-load {}
+.progress-bar-form { margin: auto; width: 50%; top: 50%; left: 50%; margin-top: -10px; position: absolute;}
+.progress-bar-form .progress-bar { position: absolute; height: 20px; top: 50%; left: 50%; margin-top: -10px; border-radius: 4px; width: 100%;}
+
+.table-users-relative { position: relative;}
+.cont-button-add-user { position: absolute; top: 0; right: 15px;}
+
+.icon-lojista-green { color: #5CB85C;}
+.icon-lojista-red { color: #D9534F;}
+
+/* VALIDACAO DE FORMULARIO */
+span.error { color: #F00;}
