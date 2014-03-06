@@ -2,7 +2,7 @@
 <html lang="en">
   <?php include('inc/head.php'); ?>
 
-  <body class="table-sorter">
+  <body class="table-sorter imagens">
 
     <div id="wrapper">
 
@@ -25,11 +25,11 @@
                 <table class="table table-bordered table-hover table-striped tablesorter table-users">
                   <thead>
                     <tr>
-                      <th class="al-center">ID <i class="fa"></i></th>
-                      <th>Usuário <i class="fa"></i></th>
-                      <th>Username <i class="fa"></i></th>
-                      <th>E-mail <i class="fa"></i></th>
-                      <th>Ações <i class="fa"></i></th>
+                      <th class="al-center">ID <i class="fa fa-sorter"></i></th>
+                      <th>Título <i class="fa fa-sorter"></i></th>
+                      <th>Arquivo <i class="fa fa-sorter"></i></th>
+                      <th>Destaque <i class="fa"></i></th>
+                      <th>Ativo <i class="fa"></i></th>
                     </tr>
                   </thead>
                   <!-- <tbody>
