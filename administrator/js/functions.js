@@ -75,10 +75,64 @@ montaUsers = function(url, type){
 	});
 }
 
+//AJAX PARA MONTAR TABELA DE IMAGENS
+montaImagens = function(url, type){
+	$.ajax({
+		url: url,//?product_id='+$this.attr('rel'),
+		data: { key : type},
+		dataType: 'jsonp',
+		crossDomain: false,
+		jsonp: false,
+		jsonpCallback: 'json',
+		cache: true,
+		success: function(json){
+			var divItens = [],
+			i,
+			l = json.items.length;
+			if(l < 1){
+				divItens.push('<tbody><tr><td colspan="6">Nenhum imagem cadastrada!</td></tr></tbody>');
+			} else {
+				divItens.push('<tbody>');
+				for(i = 0; i < l; i++){
+					divItens.push('<tr class="'+json.items[i].id+'"><td class="al-center">'+json.items[i].id+'</td>');
+					divItens.push('<td>'+json.items[i].nome+'</td>');
+	                divItens.push('<td class="al-center"><img src="uploads/images/thumb_'+json.items[i].arquivo+'" /></td>');
+	                var destaque;
+	                if(json.items[i].destaque == "1"){
+	                	destaque = '<i class="fa fa-check fa-1x icon-lojista-green"></i>'
+	                } else {
+	                	destaque = '<i class="fa fa-times fa-1x icon-lojista-red"></i>'
+	                }
+	                var ativo;
+	                if(json.items[i].ativo == "1"){
+	                	ativo = '<i class="fa fa-check fa-1x icon-lojista-green"></i>'
+	                } else {
+	                	ativo = '<i class="fa fa-times fa-1x icon-lojista-red"></i>'
+	                }
+	                divItens.push('<td class="al-center">'+destaque+'</td>');
+	                divItens.push('<td class="al-center">'+ativo+'</td>');
+	                divItens.push('<td class="al-center">');
+	                divItens.push('<a href="#" class="btn btn-default btn-success btn-ajax-edit-imagem ajax-edit-'+json.items[i].id+'"><span class="fa fa-edit"></span> Editar</a>');
+	                divItens.push('<a href="#" class="btn btn-default btn-danger btn-ajax-trash-imagem ajax-trash-'+json.items[i].id+'"><span class="fa fa-trash-o"></span> Excluir</a>');
+	                divItens.push('</td></tr>');
+				}
+				divItens.push('</tbody>');
+			}
+			$('.table-users thead').after(divItens.join(''));
+		},
+		error: function(jqXHR, textStatus, ex) {
+        	//console.log(textStatus + "," + ex + "," + jqXHR.responseText);
+        	var divItens = [];
+        	divItens.push('<tbody><tr><td colspan="6" class="al-center fa-2x">Nenhuma imagem cadastrada!</td></tr></tbody>');
+        	$('.table-users thead').after(divItens.join(''));
+    	}
+	});
+}
+
 //AJAX DE ENVIO DE FORMULARIO
 enviaForm = function(el, url, acao){
 	var queryString = $(el).serialize(),
-	dados = queryString;
+	dados 			= queryString;
 	$.ajax({
 		url: url,
 		type: 'post',
@@ -86,6 +140,7 @@ enviaForm = function(el, url, acao){
 		success: function(txt){
 			if(txt == 'success'){
 				alert('Dados salvos com sucesso!');
+				//console.log(txt);
 				window.location=window.location;
 			} else if(txt == 'error'){
 				alert('Ocorreu um erro, por favor tente novamente!');
@@ -93,6 +148,7 @@ enviaForm = function(el, url, acao){
 				alert(txt);
 			}
 			$(el).parent().parent().fadeOut();
+			return false;
 		},
 		error: function(jqXHR, textStatus, ex){
         	console.log(textStatus + "," + ex + "," + jqXHR.responseText);
@@ -108,6 +164,9 @@ chamaAjax = function(url, type){
 	switch(t){
 		case "users":
 		montaUsers(u, t);
+		break;
+		case "imagens":
+		montaImagens(u, t);
 		break;
 	}
 }

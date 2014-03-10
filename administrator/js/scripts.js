@@ -5,6 +5,10 @@ if(checkClass('body', 'users')){
 	chamaAjax(thisUrl.origin+'/getm/administrator/json/json.php', 'users');
 }
 
+if(checkClass('body', 'imagens')){
+	chamaAjax(thisUrl.origin+'/getm/administrator/json/json.php', 'imagens');
+}
+
 if(checkClass('body', 'table-sorter')){
 	incScript('head', 'js/tablesorter/jquery.tablesorter.js');
 	incScript('head', 'js/tablesorter/tables.js');
@@ -47,11 +51,43 @@ $('.btn-ajax-add').on('click', function(e){
 	$('.col-add-edit > h2').text('Adicionar Usuário')
 	$('#formEditUser input#acao').val('addUser');
 	$('#formEditUser input#id').val('');
-	$('#formEditUser input#usuario').val('');
+	$('#formEditUser input#nome').val('');
 	$('#formEditUser input#username').val('');
 	$('#formEditUser input#email').val('');
 	$('.form-group-lojista').fadeIn();
 	$('.col-add-edit').fadeIn();
+});
+
+$('.btn-ajax-edit-imagem').on('click', function(e){
+	e.preventDefault();
+	e.stopPropagation();
+	var $this = $(this);
+	idSeleciona 		= $this.attr('class').split(' ')[4].split('-')[2];
+	editaUserId 		= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(1)').text();
+	editaUserUsuario 	= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(2)').text();
+	editaUserUsername 	= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(3)').text();
+	editaUserEmail	 	= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(4)').text();
+	$('.col-add-edit > h2').text('Editar Usuário')
+	$('#formEditImagem input#acao').val('editaUser');
+	$('#formEditImagem input#id').val(editaUserId);
+	$('#formEditImagem input#nome').val(editaUserUsuario);
+	$('#formEditImagem input#username').val(editaUserUsername);
+	$('#formEditImagem input#email').val(editaUserEmail);
+	$('.form-group-lojista').fadeOut();
+	$('.col-add-edit').fadeIn();
+});
+
+$('.btn-ajax-add-imagem').on('click', function(e){
+	e.preventDefault();
+	e.stopPropagation();
+	$('.col-add-edit > h2').text('Adicionar Imagem')
+	$('#formEditImagem input#acao').val('addImagem');
+	$('#formEditImagem input#id').val('');
+	$('#formEditImagem input#nome').val('');
+	$('#formEditImagem input#destaque').removeAttr('checked');
+	$('#formEditImagem input#ativo').attr('checked', 'checked');
+	$('.col-add-edit').fadeIn();
+	$('.form-group-edit-imagem').fadeOut();
 });
 
 $('.btn-ajax-trash').on('click', function(e){
@@ -92,6 +128,39 @@ $('.btn-cancela-user').on('click', function(e){
 	$('.col-add-edit').fadeOut();
 });
 
+//function to check file size before uploading.
+function beforeSubmit(){
+    //check whether browser fully supports all File API
+	if(window.File && window.FileReader && window.FileList && window.Blob){
+   		if(!$('#arquivo').val()){//check empty input filed
+            //$("#output").html("Are you kidding me?");
+            return false;
+        }
+
+        var fsize = $('#arquivo')[0].files[0].size;//get file size
+        var ftype = $('#arquivo')[0].files[0].type;//get file type
+
+        //allow only valid image file types 
+        switch(ftype){
+            case 'image/png': case 'image/gif': case 'image/jpeg': case 'image/pjpeg':
+                break;
+            default:
+                alert("Arquivo inválido, tente novamente!");
+            	return false;
+        }
+        
+        //Allowed file size is less than 1 MB (1048576)
+        if(fsize>1048576){
+            alert("Tamanho máximo do arquivo não deve ultrapassar 1MB");
+            return false;
+        }
+    } else {
+        //Output error to older unsupported browsers that doesn't support HTML5 File API
+        alert("Navegador deve ser atualizado!")
+        return false;
+    }
+}
+
 $('.form-validate').validate({
 	errorElement: "span",
 	rules: {
@@ -106,7 +175,10 @@ $('.form-validate').validate({
 			email: true
 		},
 		confirmaSenha: {
-			equalTo: senha
+			equalTo: '#senha'
+		},
+		nome: {
+			required: true
 		}
 	},
 	messages: {
@@ -122,21 +194,41 @@ $('.form-validate').validate({
 		},
 		confirmaSenha: {
 			equalTo: "Senhas não conferem"
+		},
+		nome: {
+			required: "Campo não pode ser vazio"
 		}
 	},
 	submitHandler: function(form){
-		acao = $('#acao').val();
-		if(acao == 'addUser'){
-			if($('#senha').val() == ''){
+		var acao = $('#acao').val();
+		if(acao == 'addUser' || acao == 'editaUser'){
+			if($('#senha').val() == '' && acao != 'editaUser'){
 				alert('Preencha o campo senha!');
 				return false;
 			}
+			urlForm = $(form).find('#url').val();
+			acaoForm = $(form).find('#acao').val();
+			$(form).parent().parent().find('.el-overlay').fadeIn();
+			overlayLoad();
+			enviaForm(form, urlForm, acaoForm);
+			return false;
 		}
-		urlForm = $(form).find('#url').val();
-		acaoForm = $(form).find('#acao').val();
-		$(form).parent().parent().find('.el-overlay').fadeIn();
-		overlayLoad();
-		enviaForm(form, urlForm, acaoForm);
-		return true;
+		if(acao == 'addImagem'){
+			if($('#arquivo').val() == ''){
+				alert('Você deve inserir um arquivo nos formatos JPG ou PNG!');
+				return false;
+			}
+
+			var options = { 
+	            target: '#output',//target element(s) to be updated with server response 
+	            beforeSubmit: beforeSubmit()//,//pre-submit callback 
+	            //resetForm: true //reset the form after successful submit 
+	        };
+
+            $(form).ajaxSubmit(options);//Ajax Submit form
+            //return false to prevent standard browser submit and page navigation
+            return false;
+		}
+		return false;
 	}
 });

@@ -11,7 +11,9 @@
 	$email 		= anti_injection($_REQUEST['email']);
 	$senha 		= anti_injection($_REQUEST['senha']);
 	$lojista	= anti_injection($_REQUEST['lojista']);
-
+	$arquivo	= $_REQUEST['arquivo'];
+	$destaque 	= anti_injection($_REQUEST['destaque']) == '' ? 0 : 1;
+	$ativo 		= anti_injection($_REQUEST['ativo']) == '' ? 0 : 1;
 	switch($acao){
 		case 'addUser':
 			array_push($arrayCampos, 'nome');
