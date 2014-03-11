@@ -69,7 +69,7 @@
                     <input type="file" class="form-control" id="arquivo" name="arquivo" />
                     <div id="envImg"></div>
                     <div class="form-group form-group-edit-imagem">
-                      <label for="editaArquivo">Editar Arquivo</label>
+                      <label for="editarArquivo">Editar Arquivo</label>
                       <label>
                         <input type="checkbox" id="editarArquivo" name="editarArquivo" value="1" />
                       </label>
@@ -78,7 +78,7 @@
                   <div class="form-group">
                     <label for="destaque">Destaque</label>
                     <label>
-                      <input type="checkbox" id="destaque" name="destaque" value="1" />
+                      <input type="checkbox" id="destaque" name="destaque" value="1" checked="" />
                     </label>
                   </div>
                   <div class="form-group">

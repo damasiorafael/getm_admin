@@ -8,9 +8,11 @@
         $DestinationDirectory   = 'uploads/images/'; //specify upload directory ends with / (slash)
         $Quality                = 90; //jpeg quality
         ##########################################
-        $nome       = anti_injection($_POST['nome']);
-        $destaque   = (anti_injection($_POST['destaque']) == "") ? 0 : 1;
-        $ativo      = (anti_injection($_POST['ativo']) == "") ? 0 : 1;
+        $nome           = anti_injection($_POST['nome']);
+        $destaque       = (anti_injection($_POST['destaque']) == "") ? 0 : 1;
+        $ativo          = (anti_injection($_POST['ativo']) == "") ? 0 : 1;
+        $editarArquivo  = (anti_injection($_POST['editarArquivo']) == "") ? 0 : 1;
+        $acao           = anti_injection($_POST['acao'];
 
         $arrayRequest   = array();
         $arrayCampos    = array();
@@ -22,7 +24,9 @@
         
         // check $_FILES['ImageFile'] not empty
         if(!isset($_FILES['arquivo']) /*|| !is_uploaded_file($_FILES['arquivo']['tmp_name'])*/){
-            die('Something wrong with uploaded file, something missing!'); // output error when above checks fail.
+            if($acao != "editaImagem"){
+                die('Something wrong with uploaded file, something missing!'); // output error when above checks fail.
+            }
         }
         
         // Random number will be added after image name
@@ -80,17 +84,9 @@
             if(!cropImage($CurWidth,$CurHeight,$ThumbSquareSize,$thumb_DestRandImageName,$CreatedImage,$Quality,$ImageType)){
                 echo 'Error Creating thumbnail';
             }
-            /*
-            We have succesfully resized and created thumbnail image
-            We can now output image to user's browser or store information in the database
-            */
-            // echo '<table width="100%" border="0" cellpadding="4" cellspacing="0">';
-            // echo '<tr>';
-            // echo '<td align="center"><img src="uploads/images/'.$ThumbPrefix.$NewImageName.'" alt="Thumbnail"></td>';
-            // echo '</tr><tr>';
-            // echo '<td align="center"><img src="uploads/images/'.$NewImageName.'" alt="Resized Image"></td>';
-            // echo '</tr>';
-            // echo '</table>';
+            if($editarArquivo == 1){
+
+            }
             $arquivo = $NewImageName;
             array_push($arrayCampos, 'nome');
             array_push($arrayCampos, 'arquivo');

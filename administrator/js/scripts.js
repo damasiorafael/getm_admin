@@ -63,17 +63,29 @@ $('.btn-ajax-edit-imagem').on('click', function(e){
 	e.stopPropagation();
 	var $this = $(this);
 	idSeleciona 		= $this.attr('class').split(' ')[4].split('-')[2];
-	editaUserId 		= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(1)').text();
-	editaUserUsuario 	= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(2)').text();
-	editaUserUsername 	= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(3)').text();
-	editaUserEmail	 	= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(4)').text();
-	$('.col-add-edit > h2').text('Editar Usuário')
-	$('#formEditImagem input#acao').val('editaUser');
-	$('#formEditImagem input#id').val(editaUserId);
-	$('#formEditImagem input#nome').val(editaUserUsuario);
-	$('#formEditImagem input#username').val(editaUserUsername);
-	$('#formEditImagem input#email').val(editaUserEmail);
-	$('.form-group-lojista').fadeOut();
+	editaImagemId 		= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(1)').text();
+	editaNomeImagem 	= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(2)').text();
+	editaArquivoImagem 	= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(3)').html();
+	editaImagemDestaque	= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(4)');
+	editaImagemAtivo	= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(5)').html();
+	
+	$('.col-add-edit > h2').text('Editar Imagem')
+	$('#formEditImagem input#acao').val('editaImagem');
+
+	$('#formEditImagem input#id').val(editaImagemId);
+	$('#formEditImagem input#nome').val(editaNomeImagem);
+	//$('#formEditImagem input#arquivo').val(editaUserUsuario);
+	$('#formEditImagem input#editarArquivo').attr('checked', 'checked');
+	if($(editaImagemDestaque).find('i').attr('class').match('icon-lojista-green')){
+		$('#formEditImagem input#destaque').attr('checked', 'checked');
+	} else {
+		$('#formEditImagem input#destaque').removeAttr('checked');
+	}
+	if($(editaImagemAtivo).hasClass('icon-lojista-green')){
+		$('#formEditImagem input#ativo').attr('checked', 'checked');
+	} else {
+		$('#formEditImagem input#ativo').removeAttr('checked');
+	}
 	$('.col-add-edit').fadeIn();
 });
 
@@ -129,7 +141,9 @@ $('.btn-cancela-user').on('click', function(e){
 });
 
 //function to check file size before uploading.
-function beforeSubmit(){
+function beforeSubmit(form){
+	$(form).parent().parent().find('.el-overlay').fadeIn();
+	overlayLoad();
     //check whether browser fully supports all File API
 	if(window.File && window.FileReader && window.FileList && window.Blob){
    		if(!$('#arquivo').val()){//check empty input filed
@@ -159,6 +173,14 @@ function beforeSubmit(){
         alert("Navegador deve ser atualizado!")
         return false;
     }
+}
+
+function showResponse(responseText, statusText, xhr, $form){
+	if(responseText == "success"){
+		alert("Dados salvos com sucesso!");
+		window.location = window.location;
+	}
+	//alert('status: ' + statusText + '\n\nresponseText: \n' + responseText + '\n\nThe output div should have already been updated with the responseText.');
 }
 
 $('.form-validate').validate({
@@ -221,7 +243,8 @@ $('.form-validate').validate({
 
 			var options = { 
 	            target: '#output',//target element(s) to be updated with server response 
-	            beforeSubmit: beforeSubmit()//,//pre-submit callback 
+	            beforeSubmit: beforeSubmit(form),//,//pre-submit callback 
+	            success: showResponse
 	            //resetForm: true //reset the form after successful submit 
 	        };
 

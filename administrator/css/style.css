@@ -20,3 +20,6 @@
 
 /* VALIDACAO DE FORMULARIO */
 span.error { color: #F00;}
+
+/* MENSAGEM DE SAIDA OCULTADA EM PRODUCAO */
+/*#output { display: none;}*/
