@@ -32,6 +32,25 @@
 			$json = substr_replace($json, '', -4, 1);
 			echo $json;
 		break;
+		case 'empresas':
+			$json = "json({'items':[";
+			$sql = mysql_query("SELECT * FROM empresas") or die(mysql_error());
+			while($dados = mysql_fetch_array($sql)){
+				$json .= "{'id':'".$dados["id"]."',";
+				$json .= "'nome':'".$dados["nome"]."',";
+				$json .= "'endereco':'".$dados["endereco"]."',";
+				$json .= "'fone':'".$dados["fone"]."',";
+				$json .= "'site':'".$dados["site"]."',";
+				$json .= "'ramo_atividade':'".$dados["ramo_atividade"]."',";
+				$json .= "'imagem':'".$dados["imagem"]."',";
+				$json .= "'latitude':'".$dados["latitude"]."',";
+				$json .= "'longitude':'".$dados["longitude"]."',";
+				$json .= "'ativo':'".$dados["ativo"]."'},";
+			}
+			$json .= "]})";
+			$json = substr_replace($json, '', -4, 1);
+			echo $json;
+		break;
 		default:
 			# code...
 			break;

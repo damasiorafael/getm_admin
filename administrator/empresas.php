@@ -2,7 +2,7 @@
 <html lang="en">
   <?php include('inc/head.php'); ?>
 
-  <body class="table-sorter">
+  <body class="table-sorter empresas">
 
     <div id="wrapper">
 
@@ -26,9 +26,15 @@
                   <thead>
                     <tr>
                       <th class="al-center">ID <i class="fa"></i></th>
-                      <th>Usuário <i class="fa"></i></th>
-                      <th>Username <i class="fa"></i></th>
-                      <th>E-mail <i class="fa"></i></th>
+                      <th>Nome <i class="fa"></i></th>
+                      <th>Endereço <i class="fa"></i></th>
+                      <th>Fone <i class="fa"></i></th>
+                      <th>Site <i class="fa"></i></th>
+                      <th>Ramo de Atividade <i class="fa"></i></th>
+                      <th>Imagem <i class="fa"></i></th>
+                      <th>Latitude <i class="fa"></i></th>
+                      <th>Longitude <i class="fa"></i></th>
+                      <th>Ativo <i class="fa"></i></th>
                       <th>Ações <i class="fa"></i></th>
                     </tr>
                   </thead>

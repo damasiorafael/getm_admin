@@ -9,6 +9,10 @@ if(checkClass('body', 'imagens')){
 	chamaAjax(thisUrl.origin+'/getm/administrator/json/json.php', 'imagens');
 }
 
+if(checkClass('body', 'empresas')){
+	chamaAjax(thisUrl.origin+'/getm/administrator/json/json.php', 'empresas');
+}
+
 if(checkClass('body', 'table-sorter')){
 	incScript('head', 'js/tablesorter/jquery.tablesorter.js');
 	incScript('head', 'js/tablesorter/tables.js');
