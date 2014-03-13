@@ -27,3 +27,4 @@ span.error { color: #F00;}
 
 /* MENSAGEM DE SAIDA OCULTADA EM PRODUCAO */
 /*#output { display: none;}*/
+#output { color: red;}

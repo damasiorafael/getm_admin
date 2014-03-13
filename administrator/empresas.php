@@ -87,7 +87,7 @@
                   </div>
                   <div class="form-group pull-right">
                     <button type="submit" class="btn btn-default btn-success btn-salva-user"><span class="fa fa-check"></span> Salvar</button>
-                    <button type="reset" class="btn btn-default btn-danger btn-cancela-user"><span class="fa fa-times"></span> Cancelar</button>
+                    <button type="reset" class="btn btn-default btn-danger btn-cancela"><span class="fa fa-times"></span> Cancelar</button>
                   </div>
                 </form>
               </div>

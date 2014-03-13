@@ -8,8 +8,8 @@
 	if($_SERVER['SERVER_NAME'] == "localhost"){
 		$host 	= "localhost";
 		$user 	= "root";
-		$pass 	= "damasio";
-		$dbname	= "getm";
+		$pass 	= "komeia";
+		$dbname	= "getm_admin";
 	} else {
 		//admin
 		//Mkt#2014
@@ -106,7 +106,6 @@
         }
 
         $grava .= " WHERE id=$id";
-  		
       	//GRAVA NO BANCO DE DADOS
 		if($gravar = mysql_query($grava)){
 			return true;
@@ -116,8 +115,8 @@
 	}
 
 	// FUNÇÃO PARA APAGAR NO BD
-	function deletadb($id){
-		$deleta = "DELETE FROM users WHERE id = $id";
+	function deletadb($table, $id){
+		$deleta = "DELETE FROM $table WHERE id = $id";
 		//DELETA NO BANCO DE DADOS
 		if($deleta = mysql_query($deleta)){
 			return true;

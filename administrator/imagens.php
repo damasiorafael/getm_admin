@@ -65,7 +65,7 @@
                     <input class="form-control" id="nome" name="nome" value="" />
                   </div>
                   <div class="form-group">
-                    <label for="arquivo">Arquivo</label>
+                    <label for="arquivo">Arquivo (Tamanho máximo 1MB)</label>
                     <input type="file" class="form-control" id="arquivo" name="arquivo" />
                     <div id="envImg"></div>
                     <div class="form-group form-group-edit-imagem">
@@ -76,9 +76,9 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="destaque">Destaque</label>
+                    <label for="destaque">Destaque (Aparecerá na Home)</label>
                     <label>
-                      <input type="checkbox" id="destaque" name="destaque" value="1" checked="" />
+                      <input type="checkbox" id="destaque" name="destaque" value="1" checked="" />&nbsp (Se a imagem for destaque deve ter as dimensões de 702 x 319 pixels)
                     </label>
                   </div>
                   <div class="form-group">
@@ -89,7 +89,7 @@
                   </div>
                   <div class="form-group pull-right">
                     <button type="submit" class="btn btn-default btn-success btn-salva-img"><span class="fa fa-check"></span> Salvar</button>
-                    <button type="reset" class="btn btn-default btn-danger btn-cancela-img"><span class="fa fa-times"></span> Cancelar</button>
+                    <button type="reset" class="btn btn-default btn-danger btn-cancela"><span class="fa fa-times"></span> Cancelar</button>
                   </div>
                 </form>
                 <div id="output"></div>

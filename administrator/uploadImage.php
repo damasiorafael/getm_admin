@@ -8,11 +8,12 @@
         $DestinationDirectory   = 'uploads/images/'; //specify upload directory ends with / (slash)
         $Quality                = 90; //jpeg quality
         ##########################################
+		$id	           	= anti_injection($_POST['id']);
         $nome           = anti_injection($_POST['nome']);
         $destaque       = (anti_injection($_POST['destaque']) == "") ? 0 : 1;
         $ativo          = (anti_injection($_POST['ativo']) == "") ? 0 : 1;
         $editarArquivo  = (anti_injection($_POST['editarArquivo']) == "") ? 0 : 1;
-        $acao           = anti_injection($_POST['acao'];
+        $acao           = anti_injection($_POST['acao']);
 
         $arrayRequest   = array();
         $arrayCampos    = array();
@@ -60,7 +61,7 @@
         //list assign svalues to $CurWidth,$CurHeight
         list($CurWidth,$CurHeight)=getimagesize($TempSrc);
         
-        if($CurWidth != "702" && $CurHeight != "319"){
+        if($destaque == 1 && $CurWidth != "702" && $CurHeight != "319"){
             die("Dimensões da imagem não permitida! Insira uma imagem com 702 x 319 pixels!");
         }
 
@@ -84,28 +85,42 @@
             if(!cropImage($CurWidth,$CurHeight,$ThumbSquareSize,$thumb_DestRandImageName,$CreatedImage,$Quality,$ImageType)){
                 echo 'Error Creating thumbnail';
             }
-            if($editarArquivo == 1){
-
-            }
-            $arquivo = $NewImageName;
-            array_push($arrayCampos, 'nome');
-            array_push($arrayCampos, 'arquivo');
-            array_push($arrayCampos, 'destaque');
-            array_push($arrayCampos, 'ativo');
-
-            array_push($arrayRequest, $nome);
-            array_push($arrayRequest, $arquivo);
-            array_push($arrayRequest, $destaque);
-            array_push($arrayRequest, $ativo);
+			$arquivo = $NewImageName;
+			
+			array_push($arrayCampos, 'nome');
+			
+			if($acao == "addImagem" || $acao == "editaImagem" && $editarArquivo == 1){
+				array_push($arrayCampos, 'arquivo');
+			}
+			
+			array_push($arrayCampos, 'destaque');
+			array_push($arrayCampos, 'ativo');
+			
+			array_push($arrayRequest, $nome);
+			
+			if($acao == "addImagem" || $acao == "editaImagem" && $editarArquivo == 1){
+				array_push($arrayRequest, $arquivo);
+			}
+			
+			array_push($arrayRequest, $destaque);
+			array_push($arrayRequest, $ativo);
 
             $campos = join($arrayCampos, '|');
             $dados  = join($arrayRequest, '|');
-
-            if(gravanobd('imagens',$campos,$dados)){
-                echo "success";
-            } else {
-                echo "error";
-            }
+			
+			if($acao == "addImagem"){
+				if(gravanobd('imagens',$campos,$dados)){
+					echo "success";
+				} else {
+					echo "error";
+				}
+			} else if($acao == "editaImagem"){
+				if(editanobd('imagens',$campos,$dados,$id)){
+					echo "success";
+				} else {
+					echo "error";
+				}
+			}
             $arrayRequest   = array();
             $arrayCampos    = array();
         } else {
@@ -120,7 +135,6 @@
         if($CurWidth <= 0 || $CurHeight <= 0){
             return false;
         }
-        
         //Construct a proportional size of new image
         $ImageScale         = min($MaxSize/$CurWidth, $MaxSize/$CurHeight); 
         $NewWidth           = ceil($ImageScale*$CurWidth);
@@ -148,7 +162,9 @@
                 imagedestroy($NewCanves);
             } 
             return true;
-        }
+        } else {
+			die("erro nessa porra");
+		}
     }
 
     //This function corps image to create exact square images, no matter what its original size!

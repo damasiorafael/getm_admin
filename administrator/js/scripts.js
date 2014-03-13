@@ -2,15 +2,15 @@
 var thisUrl = window.location;
 
 if(checkClass('body', 'users')){
-	chamaAjax(thisUrl.origin+'/getm/administrator/json/json.php', 'users');
+	chamaAjax(thisUrl.origin+'/getm_admin/administrator/json/json.php', 'users');
 }
 
 if(checkClass('body', 'imagens')){
-	chamaAjax(thisUrl.origin+'/getm/administrator/json/json.php', 'imagens');
+	chamaAjax(thisUrl.origin+'/getm_admin/administrator/json/json.php', 'imagens');
 }
 
 if(checkClass('body', 'empresas')){
-	chamaAjax(thisUrl.origin+'/getm/administrator/json/json.php', 'empresas');
+	chamaAjax(thisUrl.origin+'/getm_admin/administrator/json/json.php', 'empresas');
 }
 
 if(checkClass('body', 'table-sorter')){
@@ -109,11 +109,11 @@ $('.btn-ajax-add-imagem').on('click', function(e){
 $('.btn-ajax-trash').on('click', function(e){
 	e.preventDefault();
 	e.stopPropagation();
-	var r = confirm("Tem certeza que deseja excluir esse usuário?");
+	var r = confirm("Tem certeza que deseja excluir esse registro?");
 	if (r == true) {
   		var $this = $(this),
 		idExclui = $this.parent().parent().attr('class'),
-		acao = 'excluirUser',
+		acao = $this.attr('rel'),
 		dados = 'id='+idExclui+'&acao='+acao;
 		$.ajax({
 			url: "form-envia.php",
@@ -121,7 +121,7 @@ $('.btn-ajax-trash').on('click', function(e){
 			data: dados,
 			success: function(txt){
 				if(txt == 'success'){
-					alert('Usuário excluído com sucesso!');
+					alert('Registro excluído com sucesso!');
 					window.location=window.location;
 				} else if(txt == 'error'){
 					alert('Ocorreu um erro, por favor tente novamente!');
@@ -130,7 +130,7 @@ $('.btn-ajax-trash').on('click', function(e){
 				}
 			},
 			error: function(jqXHR, textStatus, ex){
-	        	console.log(textStatus + "," + ex + "," + jqXHR.responseText);
+	        	//console.log(textStatus + "," + ex + "," + jqXHR.responseText);
 	    	}
 		});
   	} else {
@@ -138,7 +138,7 @@ $('.btn-ajax-trash').on('click', function(e){
   	}
 });
 
-$('.btn-cancela-user').on('click', function(e){
+$('.btn-cancela').on('click', function(e){
 	e.preventDefault();
 	e.stopPropagation();
 	$('.col-add-edit').fadeOut();
@@ -183,6 +183,9 @@ function showResponse(responseText, statusText, xhr, $form){
 	if(responseText == "success"){
 		alert("Dados salvos com sucesso!");
 		window.location = window.location;
+	} else {
+		alert(responseText);
+		$($form).parent().parent().find('.el-overlay').fadeOut();
 	}
 	//alert('status: ' + statusText + '\n\nresponseText: \n' + responseText + '\n\nThe output div should have already been updated with the responseText.');
 }
@@ -239,10 +242,12 @@ $('.form-validate').validate({
 			enviaForm(form, urlForm, acaoForm);
 			return false;
 		}
-		if(acao == 'addImagem'){
-			if($('#arquivo').val() == ''){
-				alert('Você deve inserir um arquivo nos formatos JPG ou PNG!');
-				return false;
+		if(acao == 'addImagem' || acao == 'editaImagem'){
+			if(acao == 'addImagem' || acao == 'editaImagem' && $('#editarArquivo').is(':checked')){
+				if($('#arquivo').val() == ''){
+					alert('Você deve inserir um arquivo nos formatos JPG ou PNG!');
+					return false;
+				}
 			}
 
 			var options = { 

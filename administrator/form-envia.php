@@ -71,7 +71,14 @@
 			}
 			break;
 		case 'excluirUser':
-			if(deletadb($id)){
+			if(deletadb('users', $id)){
+				echo "success";
+			} else {
+				echo "error";
+			}
+			break;
+		case 'excluirImagem':
+			if(deletadb('imagens', $id)){
 				echo "success";
 			} else {
 				echo "error";
