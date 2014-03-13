@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>GETM</title>
+
+	<link rel="stylesheet" href="css/estilo1.css">
+	<script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/html5shiv.js"></script>
+	<!-- <script src="js/jCarousel.js"></script> -->
+</head> 
+<body>
+	<div class="container">
+		<header> 
+			<h1 class="logo left">
+				<a href="#" title="Págna Inicial GETM">
+					<img src="images/logo2.png" alt="Logo GETM">
+				</a>
+			</h1>
+			<p class="user-logado">Site de: <a href="#" class="user ">getm</a ></p>
+			<div class="painel-login">
+				<div class="siga">
+					<span class="color-azul">Siga-nos</span>
+					<p>
+						<a href="http://facebook.com" title="Curta GETM no Facebook" class="siga-face"></a>
+						<a href="http://youtube.com" title="Acompanhe GETM no Youtube" class="siga-youtube"></a>
+					</p>
+				</div>
+				<form action="" id="form-login" method="post">
+					<span class="color-azul">Acesse sua conta</span>
+					<p>
+						<input type="radio" name="tipo-user" value="cliente">Cliente
+						<input type="radio" name="tipo-user" value="lojista">Lojista
+					</p>
+					<p>
+						<input type="text" id="txtId" name="txtId" placeholder="ID">
+						<input type="password" id="txtSenha" name="txtSenha" placeholder="Sua Senha">
+						<input type="submit" id="btnEntrar" name="btnEntrar" value="Entrar">
+					</p>
+					<a href="#" class="color-azul">Esqueci minha senha</a>
+				</form>
+			</div> 
+			<nav class="menu">
+				<ul>
+					<li><a href="#" title="Página Inicial GETM">INÍCIO</a></li>
+					<li><a href="" title="Cadastre-se">CADASTRO</a></li> <!--Redireciona para o GMR-->
+					<li><a href="" title="Compre crédito">COMPRAR CRÉDITO</a></li> <!--Redireciona para o GMR - item fora layout-->
+					<li><a href="" title="Software">SOFTWARE</a></li><!--Redireciona para download - item fora layout -->
+					<li><a href="" title="Loja GETM">LOJA</a></li> <!--Redireciona para o GMR-->
+					<li><a href="" title="Encontre empresas credenciadas">BUSCA DE EMPRESA</a></li>
+					<li><a href="" title="Mídias">MÍDIA</a></li>
+				</ul>
+			</nav>
+		</header>
+		<section class="conteudo">
+			<div class="banner" >
+				<div class="wrapper-thumb">
+					<span id="#controlTop"></span>
+					<ul>
+						<li>
+							<a href="#foto1">
+								<img src="images/thumb1.png" alt="">
+							</a>
+						</li>
+						<li>
+							<a href="#foto2">
+								<img src="images/thumb2.png" alt="">
+							</a>
+						</li>
+						<li> 
+							<a href="#foto3">
+								<img src="images/thumb3.png" alt="">
+							</a>
+						</li>
+					</ul>
+					<span id="#controlBottom"></span>
+				</div>
+				<div class="wrapper-banner">
+					<ul>
+						<li id="foto1" class="">
+							<img src="images/slide1.png"  width="700" alt="" >
+						</li>
+						<li id="foto2">
+							<img src="images/slide2.png" width="700" alt="" class="">
+						</li>
+						<li id="foto3">
+							<img src="images/slide3.png"  width="700" alt="" class="">
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="localiza-empresas">
+				<a href="#">LOCALIZE EMPRESAS CREDENCIADAS</a>
+				<a href="" class="btn-localiza"></a>
+			</div>
+		</section>
+	</div>
+	<footer>
+		<div class="borda"> 
+			<div class="container">
+				<div class="links">
+					<div class="getm ">
+						<h3 class=" ">GETM</h3>
+						<ul>
+							<li><a href="" title="Seja um Consumidor">Seja um Consumidor</a></li>
+							<li><a href="" title="Seja um Credenciado">Seja um Credenciado</a></li>
+							<li><a href="" title="Faça seu cadastro">Faça seu Cadastro</a></li>
+						</ul>
+					</div>
+					<div class="apresentacao ">
+						<h3 class=" ">APRESENTAÇÃO</h3>
+						<a href="" title="Primeiros passos">Vídeo Primeiros Passos</a>
+					</div>
+					<div class="suporte ">
+						<h3 class=" ">SUPORTE</h3>
+						<ul>
+							<li><a href="" title="FAQ">FAQ - Perguntas Frequentes</a></li>
+							<li><a href="" title="Entre em contato conosco">Entre em Contato</a></li>
+							<li><a href="" title="Política de privacidade">Política de Privacidade</a></li>
+							<li><a href="" title="Termos e Condições do Produto">Termos e Condições</a></li>
+						</ul>
+					</div>
+					<div class="redes-sociais ">
+						<h3 class=" ">COMPARTILHE</h3>
+						<a href="" class="google " title="Siga-nos no Google+"></a>
+						<ul>
+							<li class=""><a href="" class="twitter " title="Siga-nos no Twitter"></a></li>
+							<li class=""><a href="" class="youtube " title="Siga-nos no Youtube"></a></li>
+							<li class=""><a href="" class="facebook " title="Siga-nos no Facebook"></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="copyright">
+					<h2 class="logo-rodape">
+						<a href="#">
+							<img src="images/logo-rodape.png" height="57" width="162" alt="">
+						</a>
+					</h2>
+					<p class="">GETM LTDA 2014. Todos os direitos reservados.</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script>
+		$(document).ready(function(){
+			function mudaImg(index){
+				imgAtiva = $('.wrapper-banner li.ativo').index();
+				$('.wrapper-banner li').removeClass('ativo'); 
+				$('.wrapper-banner li').fadeOut(500);
+
+				if(index != null && index != ''){
+					$('.wrapper-banner li').eq(index).addClass('ativo');
+					$('.wrapper-banner li').eq(index).fadeIn(1000);
+				} else {
+					if(imgAtiva+1 >= $('.wrapper-banner li').size()){
+						$('.wrapper-banner li').eq(0).addClass('ativo');
+						$('.wrapper-banner li').eq(0).fadeIn(1000);
+					} else {
+						$('.wrapper-banner li').eq(imgAtiva+1).addClass('ativo'); 
+						$('.wrapper-banner li').eq(imgAtiva+1).fadeIn(1000);
+					}
+				}
+			}
+
+			function mudaBanner(index){
+				thumbAtivo = $('.wrapper-thumb a.thbAtivo').index();
+				if(index != null && index != ''){
+					$('.wrapper-thumb a').removeClass('thbAtivo');
+					$('.wrapper-thumb a').eq(index).addClass('thbAtivo');
+					mudaImg(index);
+				} else {
+					if($('.wrapper-thumb a').hasClass('thbAtivo')){
+						$('.wrapper-thumb a').removeClass('thbAtivo');
+						if(thumbAtivo+1 >= $('.wrapper-thumb a').size()){
+							$('.wrapper-thumb a').eq(0).addClass('thbAtivo');
+						} else {
+							$('.wrapper-thumb a').eq(thumbAtivo+1).addClass('thbAtivo');
+						}
+					}
+					mudaImg();
+				}
+				clearInterval(slideAuto);
+				slideAuto = setInterval(function(){
+					mudaBanner();
+				}, 3000);
+			} 
+
+			$('.wrapper-thumb li').click(function(event){
+				event.preventDefault();
+				var x = $(this),
+				indice = x.index();
+				mudaBanner(indice);
+			});
+			//$('.wrapper-banner li').fadeOut(1000);
+			$('.wrapper-thumb a').eq(0).addClass('thbAtivo');
+			$(".wrapper-banner > ul > li:gt(0)").hide();
+			 $('.wrapper-banner li').eq(0).addClass('ativo').fadeIn(1000, function(){
+				slideAuto = setInterval(function(){
+					mudaBanner();
+				}, 3000); 
+			});
+		});
+	</script>
+</body>
+</html>

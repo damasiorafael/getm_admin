@@ -1,5 +1,5 @@
 /* RESET BOOTSTRAP */
-.navbar-fixed-top, .side-nav { background: #BDE4EB;}
+.navbar-fixed-top, .side-nav { background: #00B2C4;}
 
 .table-users {}
 .table-users .al-center { text-align: center;}
@@ -17,6 +17,10 @@
 
 .icon-lojista-green { color: #5CB85C;}
 .icon-lojista-red { color: #D9534F;}
+
+a { color: #FFF;}
+
+#page-wrapper ul li a { color: #428BCA;}
 
 /* VALIDACAO DE FORMULARIO */
 span.error { color: #F00;}
