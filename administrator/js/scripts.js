@@ -106,6 +106,24 @@ $('.btn-ajax-add-imagem').on('click', function(e){
 	$('.form-group-edit-imagem').fadeOut();
 });
 
+$('.btn-ajax-add-empresa').on('click', function(e){
+	e.preventDefault();
+	e.stopPropagation();
+	$('.col-add-edit > h2').text('Adicionar Empresa')
+	$('#formEditEmpresa input#acao').val('addEmpresa');
+	$('#formEditEmpresa input#id').val('');
+	$('#formEditEmpresa input#nome').val('');
+	$('#formEditEmpresa input#endereco').val('');
+	$('#formEditEmpresa input#fone').val('');
+	$('#formEditEmpresa input#site').val('');
+	$('#formEditEmpresa input#ramo_atividade').val('');
+	$('#formEditEmpresa input#latitude').val('');
+	$('#formEditEmpresa input#longitude').val('');
+	$('#formEditEmpresa input#ativo').attr('checked', 'checked');
+	$('.col-add-edit').fadeIn();
+	$('.form-group-edit-imagem').fadeOut();
+});
+
 $('.btn-ajax-trash').on('click', function(e){
 	e.preventDefault();
 	e.stopPropagation();
@@ -208,6 +226,15 @@ $('.form-validate').validate({
 		},
 		nome: {
 			required: true
+		},
+		endereco: {
+			required: true
+		},
+		fone: {
+			required: true
+		},
+		ramo_atividade: {
+			required: true
 		}
 	},
 	messages: {
@@ -226,6 +253,15 @@ $('.form-validate').validate({
 		},
 		nome: {
 			required: "Campo não pode ser vazio"
+		},
+		endereco: {
+			required: "Campo não pode ser vazio"
+		},
+		fone: {
+			required: "Campo não pode ser vazio"
+		},
+		ramo_atividade: {
+			required: "Campo não pode ser vazio"
 		}
 	},
 	submitHandler: function(form){
@@ -242,9 +278,16 @@ $('.form-validate').validate({
 			enviaForm(form, urlForm, acaoForm);
 			return false;
 		}
-		if(acao == 'addImagem' || acao == 'editaImagem'){
+		if(acao == 'addImagem' || acao == 'editaImagem' || acao == 'addEmpresa'){
 			if(acao == 'addImagem' || acao == 'editaImagem' && $('#editarArquivo').is(':checked')){
 				if($('#arquivo').val() == ''){
+					alert('Você deve inserir um arquivo nos formatos JPG ou PNG!');
+					return false;
+				}
+			}
+			
+			if(acao == 'addEmpresa'){
+				if($('#imagem').val() == ''){
 					alert('Você deve inserir um arquivo nos formatos JPG ou PNG!');
 					return false;
 				}

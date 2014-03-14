@@ -2,7 +2,7 @@
     include("inc/config.php");
     if(isset($_POST)){
         ############ Edit settings ##############
-        $ThumbSquareSize        = 50; //Thumbnail will be 200x200
+        $ThumbSquareSize        = 50; //Thumbnail will be 50x50
         $BigImageMaxSize        = 702; //Image Maximum height or width
         $ThumbPrefix            = "thumb_"; //Normal thumb Prefix
         $DestinationDirectory   = 'uploads/images/'; //specify upload directory ends with / (slash)
