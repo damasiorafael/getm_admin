@@ -28,14 +28,14 @@
                       <th class="al-center">ID <i class="fa"></i></th>
                       <th>Nome <i class="fa"></i></th>
                       <th>Endereço <i class="fa"></i></th>
-                      <th>Fone <i class="fa"></i></th>
+                      <th>Telefone <i class="fa"></i></th>
                       <th>Site <i class="fa"></i></th>
                       <th>Ramo de Atividade <i class="fa"></i></th>
                       <th>Imagem <i class="fa"></i></th>
                       <th>Latitude <i class="fa"></i></th>
                       <th>Longitude <i class="fa"></i></th>
                       <th>Ativo <i class="fa"></i></th>
-                      <th>Ações <i class="fa"></i></th>
+                      <th class="al-center">Ações <i class="fa"></i></th>
                     </tr>
                   </thead>
                   <!-- <tbody>
@@ -61,7 +61,7 @@
               </div>
               <h2>Editar Empresa</h2>
               <div class="form-responsivo">
-                <form role="form" id="formEditEmpresa" class="form form-validate" enctype="multipart/form-data" action="uploadImage.php">
+                <form role="form" id="formEditEmpresa" class="form form-validate" enctype="multipart/form-data" action="uploadImage.php" method="post">
                   <div class="form-group">
                     <label for="nome">Nome</label>
                     <input type="hidden" class="form-control" id="url" name="url" value="form-envia.php" />
@@ -74,7 +74,7 @@
                     <input class="form-control" id="endereco" name="endereco" value="" />
                   </div>
                   <div class="form-group">
-                    <label for="fone">Fone</label>
+                    <label for="fone">Telefone</label>
                     <input class="form-control" id="fone" name="fone" value="" />
                   </div>
                   <div class="form-group">
@@ -86,8 +86,8 @@
                     <input class="form-control" id="ramo_atividade" name="ramo_atividade" value="" />
                   </div>
                   <div class="form-group">
-                    <label for="imagem">Imagem (Tamanho máximo 1MB)</label>
-                    <input class="form-control" type="file" id="imagem" name="imagem" value="" />
+                    <label for="arquivo">Imagem (Tamanho máximo 1MB)</label>
+                    <input class="form-control" type="file" id="arquivo" name="arquivo" value="" />
                     <div id="envImg"></div>
                     <div class="form-group form-group-edit-imagem">
                       <label for="editarArquivo">Editar Arquivo</label>
@@ -115,6 +115,7 @@
                     <button type="reset" class="btn btn-default btn-danger btn-cancela"><span class="fa fa-times"></span> Cancelar</button>
                   </div>
                 </form>
+                <div id="output"></div>
               </div>
             </div>
           </div><!-- /.row -->

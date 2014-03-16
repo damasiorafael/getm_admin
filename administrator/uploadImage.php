@@ -5,7 +5,7 @@
         $ThumbSquareSize        = 50; //Thumbnail will be 50x50
         $BigImageMaxSize        = 702; //Image Maximum height or width
         $ThumbPrefix            = "thumb_"; //Normal thumb Prefix
-        $DestinationDirectory   = 'uploads/images/'; //specify upload directory ends with / (slash)
+        $DestinationDirectory   = "uploads/images/"; //specify upload directory ends with / (slash)
         $Quality                = 90; //jpeg quality
         ##########################################
 		$id	           	= anti_injection($_POST['id']);
@@ -15,18 +15,27 @@
         $editarArquivo  = (anti_injection($_POST['editarArquivo']) == "") ? 0 : 1;
         $acao           = anti_injection($_POST['acao']);
 
+        $endereco       = anti_injection($_POST['endereco']);
+        $fone           = anti_injection($_POST['fone']);
+        $site           = anti_injection($_POST['site']);
+        $ramo_atividade = anti_injection($_POST['ramo_atividade']);
+        $latitude       = anti_injection($_POST['latitude']);
+        $longitude      = anti_injection($_POST['longitude']);
+
         $arrayRequest   = array();
         $arrayCampos    = array();
 
         //check if this is an ajax request
         if (!isset($_SERVER['HTTP_X_REQUESTED_WITH'])){
-            die();
+            die("fasdfasdfsd");
         }
         
         // check $_FILES['ImageFile'] not empty
         if(!isset($_FILES['arquivo']) /*|| !is_uploaded_file($_FILES['arquivo']['tmp_name'])*/){
-            if($acao != "editaImagem"){
-                die('Something wrong with uploaded file, something missing!'); // output error when above checks fail.
+            if($acao != "editaImagem" || $acao != "editaEmpresa"){
+                if($editarArquivo == 1){
+                    die('Something wrong with uploaded file, something missing!'); // output error when above checks fail.
+                }
             }
         }
         
@@ -52,6 +61,9 @@
             case 'image/pjpeg':
                 $CreatedImage = imagecreatefromjpeg($_FILES['arquivo']['tmp_name']);
                 break;
+            case '':
+                //
+                break;
             default:
                 die('Unsupported File!'); //output error and exit
         }
@@ -61,7 +73,7 @@
         //list assign svalues to $CurWidth,$CurHeight
         list($CurWidth,$CurHeight)=getimagesize($TempSrc);
         
-        if($destaque == 1 && $CurWidth != "702" && $CurHeight != "319"){
+        if($destaque == 1 && $CurWidth != "702" && $CurHeight != "319" && $editarArquivo == 1){
             die("Dimensões da imagem não permitida! Insira uma imagem com 702 x 319 pixels!");
         }
 
@@ -79,53 +91,109 @@
         $thumb_DestRandImageName    = $DestinationDirectory.$ThumbPrefix.$NewImageName; //Thumbnail name with destination directory
         $DestRandImageName          = $DestinationDirectory.$NewImageName; // Image with destination directory
         
-        //Resize image to Specified Size by calling resizeImage function.
-        if(resizeImage($CurWidth,$CurHeight,$BigImageMaxSize,$DestRandImageName,$CreatedImage,$Quality,$ImageType)){
+        if($acao == "addImagem" || $acao == "addEmpresa"){
+            //Resize image to Specified Size by calling resizeImage function.
+            if(resizeImage($CurWidth,$CurHeight,$BigImageMaxSize,$DestRandImageName,$CreatedImage,$Quality,$ImageType)){
+                //return true;
+            } else {
+                die('Resize Error'); //output error
+            }
+        } else if($acao == "editaEmpresa" || $acao == "editaImagem"){
+            if($editarArquivo == 1){
+                if(resizeImage($CurWidth,$CurHeight,$BigImageMaxSize,$DestRandImageName,$CreatedImage,$Quality,$ImageType)){
+                    //return true;
+                } else {
+                    die('Resize Error'); //output error
+                }
+            }
+        }
+
+        if($acao == "addImagem" || $acao == "addEmpresa"){
             //Create a square Thumbnail right after, this time we are using cropImage() function
             if(!cropImage($CurWidth,$CurHeight,$ThumbSquareSize,$thumb_DestRandImageName,$CreatedImage,$Quality,$ImageType)){
                 echo 'Error Creating thumbnail';
             }
-			$arquivo = $NewImageName;
-			
-			array_push($arrayCampos, 'nome');
-			
-			if($acao == "addImagem" || $acao == "editaImagem" && $editarArquivo == 1){
-				array_push($arrayCampos, 'arquivo');
-			}
-			
-			array_push($arrayCampos, 'destaque');
-			array_push($arrayCampos, 'ativo');
-			
-			array_push($arrayRequest, $nome);
-			
-			if($acao == "addImagem" || $acao == "editaImagem" && $editarArquivo == 1){
-				array_push($arrayRequest, $arquivo);
-			}
-			
-			array_push($arrayRequest, $destaque);
-			array_push($arrayRequest, $ativo);
-
-            $campos = join($arrayCampos, '|');
-            $dados  = join($arrayRequest, '|');
-			
-			if($acao == "addImagem"){
-				if(gravanobd('imagens',$campos,$dados)){
-					echo "success";
-				} else {
-					echo "error";
-				}
-			} else if($acao == "editaImagem"){
-				if(editanobd('imagens',$campos,$dados,$id)){
-					echo "success";
-				} else {
-					echo "error";
-				}
-			}
-            $arrayRequest   = array();
-            $arrayCampos    = array();
-        } else {
-            die('Resize Error'); //output error
+        } else if($acao == "editaEmpresa" || $acao == "editaImagem"){
+            if($editarArquivo == 1){
+                if(!cropImage($CurWidth,$CurHeight,$ThumbSquareSize,$thumb_DestRandImageName,$CreatedImage,$Quality,$ImageType)){
+                    echo 'Error Creating thumbnail';
+                }
+            }
         }
+
+		$arquivo = $NewImageName;
+        //NOMES DOS CAMPOS
+		array_push($arrayCampos, 'nome');
+		if($acao == "addImagem" || $acao == "addEmpresa"){
+			array_push($arrayCampos, 'arquivo');
+		} else if($acao == "editaImagem" || $acao == "editaEmpresa" && $editarArquivo == 1){
+            array_push($arrayCampos, 'arquivo');
+        }
+        if($acao == "addEmpresa" || $acao == "editaEmpresa"){
+            array_push($arrayCampos, 'endereco');
+            array_push($arrayCampos, 'fone');
+            array_push($arrayCampos, 'site');
+            array_push($arrayCampos, 'ramo_atividade');
+            array_push($arrayCampos, 'latitude');
+            array_push($arrayCampos, 'longitude');
+        }
+        if($acao == "addImagem"){
+		    array_push($arrayCampos, 'destaque');
+        }
+		array_push($arrayCampos, 'ativo');
+        //NOMES DOS CAMPOS
+		
+        //VALORES DOS CAMPOS
+		array_push($arrayRequest, $nome);			
+		if($acao == "addImagem" || $acao == "addEmpresa"){
+			array_push($arrayRequest, $arquivo);
+		} else if($acao == "editaImagem" || $acao == "editaEmpresa" && $editarArquivo == 1){
+            array_push($arrayRequest, $arquivo);
+        }
+        if($acao == "addEmpresa" || $acao == "editaEmpresa"){
+            array_push($arrayRequest, $endereco);
+            array_push($arrayRequest, $fone);
+            array_push($arrayRequest, $site);
+            array_push($arrayRequest, $ramo_atividade);
+            array_push($arrayRequest, $latitude);
+            array_push($arrayRequest, $longitude);
+        }			
+        if($acao == "addImagem"){
+		    array_push($arrayRequest, $destaque);
+        }
+		array_push($arrayRequest, $ativo);
+        //VALORES DOS CAMPOS
+
+        $campos = join($arrayCampos, '|');
+        $dados  = join($arrayRequest, '|');
+		if($acao == "addImagem"){
+			if(gravanobd('imagens',$campos,$dados)){
+				echo "success";
+			} else {
+				echo "error";
+			}
+		} else if($acao == "editaImagem"){
+			if(editanobd('imagens',$campos,$dados,$id)){
+				echo "success";
+			} else {
+				echo "error";
+			}
+		} else if($acao == "addEmpresa"){
+            if(gravanobd('empresas',$campos,$dados)){
+                echo "success";
+            } else {
+                echo "error";
+            }
+        } else if($acao == "editaEmpresa"){
+            if(editanobd('empresas',$campos,$dados,$id)){
+                echo "success";
+            } else {
+                echo "error";
+            }
+        }
+
+        $arrayRequest   = array();
+        $arrayCampos    = array();
     }
 
 

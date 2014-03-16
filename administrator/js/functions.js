@@ -154,7 +154,7 @@ montaEmpresas = function(url, type){
 					divItens.push('<td>'+json.items[i].fone+'</td>');
 					divItens.push('<td>'+json.items[i].site+'</td>');
 					divItens.push('<td>'+json.items[i].ramo_atividade+'</td>');
-					divItens.push('<td class="al-center"><img src="uploads/images/thumb_'+json.items[i].imagem+'" /></td>');
+					divItens.push('<td class="al-center"><img src="uploads/images/thumb_'+json.items[i].arquivo+'" /></td>');
 					divItens.push('<td>'+json.items[i].latitude+'</td>');
 					divItens.push('<td>'+json.items[i].longitude+'</td>');
 	                var ativo;
@@ -163,9 +163,10 @@ montaEmpresas = function(url, type){
 	                } else {
 	                	ativo = '<i class="fa fa-times fa-1x icon-lojista-red"></i>'
 	                }
+	                divItens.push('<td class="al-center">'+ativo+'</td>');
 	                divItens.push('<td class="al-center">');
-	                divItens.push('<a href="#" class="btn btn-default btn-success btn-ajax-edit-imagem ajax-edit-'+json.items[i].id+'"><span class="fa fa-edit"></span> Editar</a>');
-	                divItens.push('<a href="#" class="btn btn-default btn-danger btn-ajax-trash-imagem ajax-trash-'+json.items[i].id+'"><span class="fa fa-trash-o"></span> Excluir</a>');
+	                divItens.push('<a href="#" class="btn btn-default btn-success btn-ajax-edit-empresa ajax-edit-'+json.items[i].id+'"><span class="fa fa-edit"></span> Editar</a>');
+	                divItens.push('<a href="#" class="btn btn-default btn-danger btn-ajax-trash ajax-trash-'+json.items[i].id+'" rel="excluirEmpresa"><span class="fa fa-trash-o"></span> Excluir</a>');
 	                divItens.push('</td></tr>');
 				}
 				divItens.push('</tbody>');

@@ -24,6 +24,22 @@ if(checkClass('form', 'form-validate')){
 	incScript('head', 'js/jquery.form.js');
 }
 
+if($('#fone')[0]){
+	//$('#fone').mask('(99) 9999-9999');
+	$('#fone').mask("(99) 9999-9999?9").ready(function(event){
+        var target, phone, element;
+        target = (event.currentTarget) ? event.currentTarget : event.srcElement;	
+        phone = target.value;
+        element = $(target);
+        element.unmask();
+        if(phone.length > 10) {
+            element.mask("(99) 9999-9999?9");
+        } else {
+            element.mask("(99) 9999-9999");
+        }
+    });
+}
+
 overlayLoad = function(){
 	heightParent('.el-overlay');
 	marginLeftAbsolute('.progress-bar-form');
@@ -89,6 +105,43 @@ $('.btn-ajax-edit-imagem').on('click', function(e){
 		$('#formEditImagem input#ativo').attr('checked', 'checked');
 	} else {
 		$('#formEditImagem input#ativo').removeAttr('checked');
+	}
+	$('.col-add-edit').fadeIn();
+});
+
+$('.btn-ajax-edit-empresa').on('click', function(e){
+	e.preventDefault();
+	e.stopPropagation();
+	var $this = $(this);
+	idSeleciona 			= $this.attr('class').split(' ')[4].split('-')[2];
+	editaEmpresaId 			= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(1)').text();
+	editaNomeEmpresa 		= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(2)').text();
+	editaEnderecoEmpresa 	= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(3)').text();
+	editaFoneEmpresa 		= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(4)').text();
+	editaSiteEmpresa 		= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(5)').text();
+	editaRamoEmpresa 		= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(6)').text();
+	editaLatitudeEmpresa 	= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(8)').text();
+	editaLongitudeEmpresa	= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(9)').text();
+	editaEmpresaAtivo		= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(10)').html();
+	
+	$('.col-add-edit > h2').text('Editar Empresa')
+	$('#formEditEmpresa input#acao').val('editaEmpresa');
+
+	$('#formEditEmpresa input#id').val(editaEmpresaId);
+	$('#formEditEmpresa input#nome').val(editaNomeEmpresa);
+	$('#formEditEmpresa input#endereco').val(editaEnderecoEmpresa);
+	$('#formEditEmpresa input#fone').val(editaFoneEmpresa);
+	$('#formEditEmpresa input#site').val(editaSiteEmpresa);
+	$('#formEditEmpresa input#ramo_atividade').val(editaRamoEmpresa);
+	$('#formEditEmpresa input#latitude').val(editaLatitudeEmpresa);
+	$('#formEditEmpresa input#longitude').val(editaLongitudeEmpresa);
+	//$('#formEditEmpresa input#arquivo').val(editaUserUsuario);
+	$('#formEditEmpresa input#editarArquivo').attr('checked', 'checked');
+	
+	if($(editaEmpresaAtivo).hasClass('icon-lojista-green')){
+		$('#formEditEmpresa input#ativo').attr('checked', 'checked');
+	} else {
+		$('#formEditEmpresa input#ativo').removeAttr('checked');
 	}
 	$('.col-add-edit').fadeIn();
 });
@@ -203,6 +256,7 @@ function showResponse(responseText, statusText, xhr, $form){
 		window.location = window.location;
 	} else {
 		alert(responseText);
+		console.log(responseText);
 		$($form).parent().parent().find('.el-overlay').fadeOut();
 	}
 	//alert('status: ' + statusText + '\n\nresponseText: \n' + responseText + '\n\nThe output div should have already been updated with the responseText.');
@@ -278,21 +332,20 @@ $('.form-validate').validate({
 			enviaForm(form, urlForm, acaoForm);
 			return false;
 		}
-		if(acao == 'addImagem' || acao == 'editaImagem' || acao == 'addEmpresa'){
+		if(acao == 'addImagem' || acao == 'editaImagem' || acao == 'addEmpresa' || acao == 'editaEmpresa'){
 			if(acao == 'addImagem' || acao == 'editaImagem' && $('#editarArquivo').is(':checked')){
 				if($('#arquivo').val() == ''){
 					alert('Você deve inserir um arquivo nos formatos JPG ou PNG!');
 					return false;
 				}
 			}
-			
-			if(acao == 'addEmpresa'){
-				if($('#imagem').val() == ''){
+			if(acao == 'addEmpresa' || acao == 'editaEmpresa' && $('#editarArquivo').is(':checked')){
+				if($('#arquivo').val() == ''){
 					alert('Você deve inserir um arquivo nos formatos JPG ou PNG!');
 					return false;
 				}
 			}
-
+			
 			var options = { 
 	            target: '#output',//target element(s) to be updated with server response 
 	            beforeSubmit: beforeSubmit(form),//,//pre-submit callback 

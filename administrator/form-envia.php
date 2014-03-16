@@ -84,6 +84,13 @@
 				echo "error";
 			}
 			break;
+		case 'excluirEmpresa':
+			if(deletadb('empresas', $id)){
+				echo "success";
+			} else {
+				echo "error";
+			}
+			break;
 		default:
 			# code...
 			break;

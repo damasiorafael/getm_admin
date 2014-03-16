@@ -42,7 +42,7 @@
 				$json .= "'fone':'".$dados["fone"]."',";
 				$json .= "'site':'".$dados["site"]."',";
 				$json .= "'ramo_atividade':'".$dados["ramo_atividade"]."',";
-				$json .= "'imagem':'".$dados["imagem"]."',";
+				$json .= "'arquivo':'".$dados["arquivo"]."',";
 				$json .= "'latitude':'".$dados["latitude"]."',";
 				$json .= "'longitude':'".$dados["longitude"]."',";
 				$json .= "'ativo':'".$dados["ativo"]."'},";
