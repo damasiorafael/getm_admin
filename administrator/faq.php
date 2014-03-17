@@ -2,7 +2,7 @@
 <html lang="en">
   <?php include('inc/head.php'); ?>
 
-  <body class="table-sorter">
+  <body class="table-sorter faq">
 
     <div id="wrapper">
 
@@ -18,7 +18,7 @@
             </ol>
             <div class="col-lg-8">
               <div class="cont-button-add-user">
-                <a href="#" class="btn btn-default btn-success btn-ajax-add"><span class="fa fa-check"></span> Adicionar</a>
+                <a href="#" class="btn btn-default btn-success btn-ajax-add-faq"><span class="fa fa-check"></span> Adicionar</a>
               </div>
               <h2>FAQ</h2>
               <div class="table-responsive table-users-relative">
@@ -26,10 +26,10 @@
                   <thead>
                     <tr>
                       <th class="al-center">ID <i class="fa"></i></th>
-                      <th>Usuário <i class="fa"></i></th>
-                      <th>Username <i class="fa"></i></th>
-                      <th>E-mail <i class="fa"></i></th>
-                      <th>Ações <i class="fa"></i></th>
+                      <th>Pergunta <i class="fa"></i></th>
+                      <th>Resposta <i class="fa"></i></th>
+                      <th>Ativo <i class="fa"></i></th>
+                      <th class="al-center">Ações <i class="fa"></i></th>
                     </tr>
                   </thead>
                   <!-- <tbody>
@@ -53,35 +53,29 @@
                   <div class="progress-bar"></div>
                 </div>
               </div>
-              <h2>Editar Usuário</h2>
+              <h2>Editar FAQ</h2>
               <div class="form-responsivo">
-                <form role="form" id="formEditUser" class="form form-validate">
+                <form role="form" id="formEditFaq" class="form form-validate">
                   <div class="form-group">
-                    <label for="usuario">Usuário</label>
+                    <label for="pergunta">Pergunta</label>
                     <input type="hidden" class="form-control" id="url" name="url" value="form-envia.php" />
                     <input type="hidden" class="form-control" id="acao" name="acao" value="" />
                     <input type="hidden" class="form-control" id="id" name="id" value="" />
-                    <input class="form-control" id="usuario" name="usuario" value="" />
+                    <input class="form-control" id="pergunta" name="pergunta" value="" />
                   </div>
                   <div class="form-group">
-                    <label for="username">Username</label>
-                    <input class="form-control" id="username" name="username" value="" />
+                    <label for="resposta">Resposta</label>
+                    <textarea class="form-control" id="resposta" name="resposta" rows="4"></textarea>
                   </div>
                   <div class="form-group">
-                    <label for="email">E-mail</label>
-                    <input class="form-control" id="email" name="email" value="" />
-                  </div>
-                  <div class="form-group">
-                    <label for="senha">Senha</label>
-                    <input class="form-control" id="senha" type="password" name="senha" value="" />
-                  </div>
-                  <div class="form-group">
-                    <label for="confirmaSenha">Confirmar senha</label>
-                    <input class="form-control" id="confirmaSenha" type="password" name="confirmaSenha" value="" />
+                    <label for="ativo">Ativo</label>
+                    <label>
+                      <input type="checkbox" id="ativo" name="ativo" value="1" checked="checked" />
+                    </label>
                   </div>
                   <div class="form-group pull-right">
-                    <button type="submit" class="btn btn-default btn-success btn-salva-user"><span class="fa fa-check"></span> Salvar</button>
-                    <button type="reset" class="btn btn-default btn-danger btn-cancela-user"><span class="fa fa-times"></span> Cancelar</button>
+                    <button type="submit" class="btn btn-default btn-success btn-salva-faq"><span class="fa fa-check"></span> Salvar</button>
+                    <button type="reset" class="btn btn-default btn-danger btn-cancela"><span class="fa fa-times"></span> Cancelar</button>
                   </div>
                 </form>
               </div>

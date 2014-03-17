@@ -182,6 +182,100 @@ montaEmpresas = function(url, type){
 	});
 }
 
+//AJAX PARA MONTAR TABELA DE FAQ
+montaFaq = function(url, type){
+	$.ajax({
+		url: url,//?product_id='+$this.attr('rel'),
+		data: { key : type},
+		dataType: 'jsonp',
+		crossDomain: false,
+		jsonp: false,
+		jsonpCallback: 'json',
+		cache: true,
+		success: function(json){
+			var divItens = [],
+			i,
+			l = json.items.length;
+			if(l < 1){
+				divItens.push('<tbody><tr><td colspan="11">Nenhuma pergunta cadastrada!</td></tr></tbody>');
+			} else {
+				divItens.push('<tbody>');
+				for(i = 0; i < l; i++){
+					divItens.push('<tr class="'+json.items[i].id+'"><td class="al-center">'+json.items[i].id+'</td>');
+					divItens.push('<td>'+json.items[i].pergunta+'</td>');
+					divItens.push('<td>'+json.items[i].resposta+'</td>');
+	                var ativo;
+	                if(json.items[i].ativo == "1"){
+	                	ativo = '<i class="fa fa-check fa-1x icon-lojista-green"></i>'
+	                } else {
+	                	ativo = '<i class="fa fa-times fa-1x icon-lojista-red"></i>'
+	                }
+	                divItens.push('<td class="al-center">'+ativo+'</td>');
+	                divItens.push('<td class="al-center">');
+	                divItens.push('<a href="#" class="btn btn-default btn-success btn-ajax-edit-faq ajax-edit-'+json.items[i].id+'"><span class="fa fa-edit"></span> Editar</a>');
+	                divItens.push('<a href="#" class="btn btn-default btn-danger btn-ajax-trash ajax-trash-'+json.items[i].id+'" rel="excluirFaq"><span class="fa fa-trash-o"></span> Excluir</a>');
+	                divItens.push('</td></tr>');
+				}
+				divItens.push('</tbody>');
+			}
+			$('.table-users thead').after(divItens.join(''));
+		},
+		error: function(jqXHR, textStatus, ex) {
+        	console.log(textStatus + "," + ex + "," + jqXHR.responseText);
+        	var divItens = [];
+        	divItens.push('<tbody><tr><td colspan="11" class="al-center fa-2x">Nenhuma pergunta cadastrada!</td></tr></tbody>');
+        	$('.table-users thead').after(divItens.join(''));
+    	}
+	});
+}
+
+//AJAX PARA MONTAR TABELA DE FAQ
+montaSocials = function(url, type){
+	$.ajax({
+		url: url,//?product_id='+$this.attr('rel'),
+		data: { key : type},
+		dataType: 'jsonp',
+		crossDomain: false,
+		jsonp: false,
+		jsonpCallback: 'json',
+		cache: true,
+		success: function(json){
+			var divItens = [],
+			i,
+			l = json.items.length;
+			if(l < 1){
+				divItens.push('<tbody><tr><td colspan="11">Nenhuma rede cadastrada!</td></tr></tbody>');
+			} else {
+				divItens.push('<tbody>');
+				for(i = 0; i < l; i++){
+					divItens.push('<tr class="'+json.items[i].id+'"><td class="al-center">'+json.items[i].id+'</td>');
+					divItens.push('<td>'+json.items[i].nome+'</td>');
+					divItens.push('<td><a style="color: #428BCA;" target="_blank" href="'+json.items[i].link+'" title="'+json.items[i].nome+'">'+json.items[i].link+'</a></td>');
+	                var ativo;
+	                if(json.items[i].ativo == "1"){
+	                	ativo = '<i class="fa fa-check fa-1x icon-lojista-green"></i>'
+	                } else {
+	                	ativo = '<i class="fa fa-times fa-1x icon-lojista-red"></i>'
+	                }
+	                divItens.push('<td class="al-center">'+ativo+'</td>');
+	                divItens.push('<td class="al-center">');
+	                divItens.push('<a href="#" class="btn btn-default btn-success btn-ajax-edit-socials ajax-edit-'+json.items[i].id+'"><span class="fa fa-edit"></span> Editar</a>');
+	                divItens.push('<a href="#" class="btn btn-default btn-danger btn-ajax-trash ajax-trash-'+json.items[i].id+'" rel="excluirSocials"><span class="fa fa-trash-o"></span> Excluir</a>');
+	                divItens.push('</td></tr>');
+				}
+				divItens.push('</tbody>');
+			}
+			$('.table-users thead').after(divItens.join(''));
+		},
+		error: function(jqXHR, textStatus, ex) {
+        	console.log(textStatus + "," + ex + "," + jqXHR.responseText);
+        	var divItens = [];
+        	divItens.push('<tbody><tr><td colspan="11" class="al-center fa-2x">Nenhuma pergunta cadastrada!</td></tr></tbody>');
+        	$('.table-users thead').after(divItens.join(''));
+    	}
+	});
+}
+
 //AJAX DE ENVIO DE FORMULARIO
 enviaForm = function(el, url, acao){
 	var queryString = $(el).serialize(),
@@ -216,14 +310,20 @@ chamaAjax = function(url, type){
 	u 		= url;
 	switch(t){
 		case "users":
-		montaUsers(u, t);
-		break;
+			montaUsers(u, t);
+			break;
 		case "imagens":
-		montaImagens(u, t);
-		break;
+			montaImagens(u, t);
+			break;
 		case "empresas":
-		montaEmpresas(u, t);
-		break;
+			montaEmpresas(u, t);
+			break;
+		case "faq":
+			montaFaq(u, t);
+			break;
+		case "socials":
+			montaSocials(u, t);
+			break;
 	}
 }
 

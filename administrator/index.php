@@ -22,7 +22,7 @@
               <li><a href="faq.php"><i class="fa fa-question-circle"></i> FAQ</a></li>
               <li><a href="socials.php"><i class="fa fa-share-square"></i> Redes Sociais</a></li>
               <li><a href="contatos.php"><i class="fa fa-envelope"></i> Contatos</a></li>
-              <li><a href="users.php"><i class="fa fa-user"></i> Users</a></li>
+              <?php /*<li><a href="users.php"><i class="fa fa-user"></i> Users</a></li>*/ ?>
               <!-- <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> Região <b class="caret"></b></a>
                 <ul class="dropdown-menu">

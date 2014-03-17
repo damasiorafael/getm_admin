@@ -13,6 +13,14 @@ if(checkClass('body', 'empresas')){
 	chamaAjax(thisUrl.origin+'/getm_admin/administrator/json/json.php', 'empresas');
 }
 
+if(checkClass('body', 'faq')){
+	chamaAjax(thisUrl.origin+'/getm_admin/administrator/json/json.php', 'faq');
+}
+
+if(checkClass('body', 'socials')){
+	chamaAjax(thisUrl.origin+'/getm_admin/administrator/json/json.php', 'socials');
+}
+
 if(checkClass('body', 'table-sorter')){
 	incScript('head', 'js/tablesorter/jquery.tablesorter.js');
 	incScript('head', 'js/tablesorter/tables.js');
@@ -146,6 +154,56 @@ $('.btn-ajax-edit-empresa').on('click', function(e){
 	$('.col-add-edit').fadeIn();
 });
 
+$('.btn-ajax-edit-faq').on('click', function(e){
+	e.preventDefault();
+	e.stopPropagation();
+	var $this = $(this);
+	idSeleciona 	= $this.attr('class').split(' ')[4].split('-')[2];
+	editaFaqId 		= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(1)').text();
+	editaPergunta 	= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(2)').text();
+	editaResposta 	= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(3)').text();
+	editaFaqAtivo	= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(4)').html();
+	
+	$('.col-add-edit > h2').text('Editar FAQ')
+	$('#formEditFaq input#acao').val('editaFaq');
+
+	$('#formEditFaq input#id').val(editaFaqId);
+	$('#formEditFaq input#pergunta').val(editaPergunta);
+	$('#formEditFaq textarea#resposta').val(editaResposta);
+	
+	if($(editaFaqAtivo).hasClass('icon-lojista-green')){
+		$('#formEditFaq input#ativo').attr('checked', 'checked');
+	} else {
+		$('#formEditFaq input#ativo').removeAttr('checked');
+	}
+	$('.col-add-edit').fadeIn();
+});
+
+$('.btn-ajax-edit-socials').on('click', function(e){
+	e.preventDefault();
+	e.stopPropagation();
+	var $this = $(this);
+	idSeleciona 		= $this.attr('class').split(' ')[4].split('-')[2];
+	editaSocialId		= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(1)').text();
+	editaNome 			= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(2)').text();
+	editaLink 			= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(3)').text();
+	editaSocialAtivo	= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(4)').html();
+	
+	$('.col-add-edit > h2').text('Editar Rede Social')
+	$('#formEditSocials input#acao').val('editaSocials');
+
+	$('#formEditSocials input#id').val(idSeleciona);
+	$('#formEditSocials input#nome').val(editaNome);
+	$('#formEditSocials input#link').val(editaLink);
+	
+	if($(editaSocialAtivo).hasClass('icon-lojista-green')){
+		$('#formEditSocials input#ativo').attr('checked', 'checked');
+	} else {
+		$('#formEditSocials input#ativo').removeAttr('checked');
+	}
+	$('.col-add-edit').fadeIn();
+});
+
 $('.btn-ajax-add-imagem').on('click', function(e){
 	e.preventDefault();
 	e.stopPropagation();
@@ -175,6 +233,30 @@ $('.btn-ajax-add-empresa').on('click', function(e){
 	$('#formEditEmpresa input#ativo').attr('checked', 'checked');
 	$('.col-add-edit').fadeIn();
 	$('.form-group-edit-imagem').fadeOut();
+});
+
+$('.btn-ajax-add-faq').on('click', function(e){
+	e.preventDefault();
+	e.stopPropagation();
+	$('.col-add-edit > h2').text('Adicionar FAQ')
+	$('#formEditFaq input#acao').val('addFaq');
+	$('#formEditFaq input#id').val('');
+	$('#formEditFaq input#pergunta').val('');
+	$('#formEditFaq textarea#reposta').val('');
+	$('#formEditFaq input#ativo').attr('checked', 'checked');
+	$('.col-add-edit').fadeIn();
+});
+
+$('.btn-ajax-add-socials').on('click', function(e){
+	e.preventDefault();
+	e.stopPropagation();
+	$('.col-add-edit > h2').text('Adicionar Rede Social')
+	$('#formEditSocials input#acao').val('addSocials');
+	$('#formEditSocials input#id').val('');
+	$('#formEditSocials input#nome').val('');
+	$('#formEditSocials textarea#link').val('');
+	$('#formEditSocials input#ativo').attr('checked', 'checked');
+	$('.col-add-edit').fadeIn();
 });
 
 $('.btn-ajax-trash').on('click', function(e){
@@ -289,6 +371,15 @@ $('.form-validate').validate({
 		},
 		ramo_atividade: {
 			required: true
+		},
+		pergunta: {
+			required: true
+		},
+		resposta: {
+			required: true
+		},
+		link: {
+			required: true
 		}
 	},
 	messages: {
@@ -316,19 +407,29 @@ $('.form-validate').validate({
 		},
 		ramo_atividade: {
 			required: "Campo não pode ser vazio"
+		},
+		pergunta: {
+			required: "Campo não pode ser vazio"
+		},
+		resposta: {
+			required: "Campo não pode ser vazio"
+		},
+		link: {
+			required: "Campo não pode ser vazio"
 		}
 	},
 	submitHandler: function(form){
 		var acao = $('#acao').val();
-		if(acao == 'addUser' || acao == 'editaUser'){
+		if(acao == 'addUser' || acao == 'editaUser' || acao == 'addFaq' || acao == 'editaFaq' || acao == 'addSocials' || acao == 'editaSocials'){
 			if($('#senha').val() == '' && acao != 'editaUser'){
 				alert('Preencha o campo senha!');
 				return false;
 			}
+			console.log(acao);
 			urlForm = $(form).find('#url').val();
 			acaoForm = $(form).find('#acao').val();
-			$(form).parent().parent().find('.el-overlay').fadeIn();
-			overlayLoad();
+			//$(form).parent().parent().find('.el-overlay').fadeIn();
+			//overlayLoad();
 			enviaForm(form, urlForm, acaoForm);
 			return false;
 		}

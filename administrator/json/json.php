@@ -51,6 +51,32 @@
 			$json = substr_replace($json, '', -4, 1);
 			echo $json;
 		break;
+		case 'faq':
+			$json = "json({'items':[";
+			$sql = mysql_query("SELECT * FROM faq") or die(mysql_error());
+			while($dados = mysql_fetch_array($sql)){
+				$json .= "{'id':'".$dados["id"]."',";
+				$json .= "'pergunta':'".$dados["pergunta"]."',";
+				$json .= "'resposta':'".$dados["resposta"]."',";
+				$json .= "'ativo':'".$dados["ativo"]."'},";
+			}
+			$json .= "]})";
+			$json = substr_replace($json, '', -4, 1);
+			echo $json;
+		break;
+		case 'socials':
+			$json = "json({'items':[";
+			$sql = mysql_query("SELECT * FROM redes_sociais") or die(mysql_error());
+			while($dados = mysql_fetch_array($sql)){
+				$json .= "{'id':'".$dados["id"]."',";
+				$json .= "'nome':'".$dados["nome"]."',";
+				$json .= "'link':'".$dados["link"]."',";
+				$json .= "'ativo':'".$dados["ativo"]."'},";
+			}
+			$json .= "]})";
+			$json = substr_replace($json, '', -4, 1);
+			echo $json;
+		break;
 		default:
 			# code...
 			break;

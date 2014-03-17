@@ -14,6 +14,12 @@
 	$arquivo	= $_REQUEST['arquivo'];
 	$destaque 	= anti_injection($_REQUEST['destaque']) == '' ? 0 : 1;
 	$ativo 		= anti_injection($_REQUEST['ativo']) == '' ? 0 : 1;
+
+	$pergunta	= anti_injection($_REQUEST['pergunta']);
+	$resposta	= anti_injection($_REQUEST['resposta']);
+
+	$link	= anti_injection($_REQUEST['link']);
+
 	switch($acao){
 		case 'addUser':
 			array_push($arrayCampos, 'nome');
@@ -86,6 +92,94 @@
 			break;
 		case 'excluirEmpresa':
 			if(deletadb('empresas', $id)){
+				echo "success";
+			} else {
+				echo "error";
+			}
+			break;
+		case 'addFaq':
+			array_push($arrayCampos, 'pergunta');
+			array_push($arrayCampos, 'resposta');
+			array_push($arrayCampos, 'ativo');
+
+			array_push($arrayRequest, $pergunta);
+			array_push($arrayRequest, $resposta);
+			array_push($arrayRequest, $ativo);
+
+			$campos = join($arrayCampos, '|');
+			$dados	= join($arrayRequest, '|');
+			if(gravanobd('faq',$campos,$dados)){
+				echo "success";
+			} else {
+				echo "error";
+			}
+			$arrayRequest 	= array();
+			$arrayCampos 	= array();
+			break;
+		case 'editaFaq':
+			array_push($arrayCampos, 'pergunta');
+			array_push($arrayCampos, 'resposta');
+			array_push($arrayCampos, 'ativo');
+
+			array_push($arrayRequest, $pergunta);
+			array_push($arrayRequest, $resposta);
+			array_push($arrayRequest, $resposta);
+
+			$campos = join($arrayCampos, '|');
+			$dados	= join($arrayRequest, '|');
+
+			if(editanobd("faq",$campos,$dados,$id)){
+				echo "success";
+			} else {
+				echo "error";
+			}
+			break;
+		case 'excluirFaq':
+			if(deletadb('faq', $id)){
+				echo "success";
+			} else {
+				echo "error";
+			}
+			break;
+		case 'addSocials':
+			array_push($arrayCampos, 'nome');
+			array_push($arrayCampos, 'link');
+			array_push($arrayCampos, 'ativo');
+
+			array_push($arrayRequest, $nome);
+			array_push($arrayRequest, $link);
+			array_push($arrayRequest, $ativo);
+
+			$campos = join($arrayCampos, '|');
+			$dados	= join($arrayRequest, '|');
+			if(gravanobd('redes_sociais',$campos,$dados)){
+				echo "success";
+			} else {
+				echo "error";
+			}
+			$arrayRequest 	= array();
+			$arrayCampos 	= array();
+			break;
+		case 'editaSocials':
+			array_push($arrayCampos, 'nome');
+			array_push($arrayCampos, 'link');
+			array_push($arrayCampos, 'ativo');
+
+			array_push($arrayRequest, $nome);
+			array_push($arrayRequest, $link);
+			array_push($arrayRequest, $ativo);
+
+			$campos = join($arrayCampos, '|');
+			$dados	= join($arrayRequest, '|');
+
+			if(editanobd("redes_sociais",$campos,$dados,$id)){
+				echo "success";
+			} else {
+				echo "error";
+			}
+			break;
+		case 'excluirSocials':
+			if(deletadb('redes_sociais', $id)){
 				echo "success";
 			} else {
 				echo "error";
