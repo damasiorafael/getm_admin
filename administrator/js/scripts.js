@@ -21,6 +21,14 @@ if(checkClass('body', 'socials')){
 	chamaAjax(thisUrl.origin+'/administrator/json/json.php', 'socials');
 }
 
+if(checkClass('body', 'contato')){
+	chamaAjax(thisUrl.origin+'/administrator/json/json.php', 'contato');
+}
+
+if(checkClass('body', 'videos')){
+	chamaAjax(thisUrl.origin+'/getm_admin/administrator/json/json.php', 'videos');
+}
+
 if(checkClass('body', 'table-sorter')){
 	incScript('head', 'js/tablesorter/jquery.tablesorter.js');
 	incScript('head', 'js/tablesorter/tables.js');
@@ -259,6 +267,19 @@ $('.btn-ajax-add-socials').on('click', function(e){
 	$('.col-add-edit').fadeIn();
 });
 
+$('.btn-ajax-add-videos').on('click', function(e){
+	e.preventDefault();
+	e.stopPropagation();
+	$('.col-add-edit > h2').text('Adicionar Vídeo')
+	$('#formEditSocials input#acao').val('addVideos');
+	$('#formEditSocials input#id').val('');
+	$('#formEditSocials input#titulo').val('');
+	$('#formEditSocials textarea#resumo').val('');
+	$('#formEditSocials textarea#link').val('');
+	$('#formEditSocials input#ativo').attr('checked', 'checked');
+	$('.col-add-edit').fadeIn();
+});
+
 $('.btn-ajax-trash').on('click', function(e){
 	e.preventDefault();
 	e.stopPropagation();
@@ -380,6 +401,12 @@ $('.form-validate').validate({
 		},
 		link: {
 			required: true
+		},
+		titulo: {
+			required: true
+		},
+		resumo: {
+			required: true
 		}
 	},
 	messages: {
@@ -416,11 +443,17 @@ $('.form-validate').validate({
 		},
 		link: {
 			required: "Campo não pode ser vazio"
+		},
+		titulo: {
+			required: "Campo não pode ser vazio"
+		},
+		resumo: {
+			required: "Campo não pode ser vazio"
 		}
 	},
 	submitHandler: function(form){
 		var acao = $('#acao').val();
-		if(acao == 'addUser' || acao == 'editaUser' || acao == 'addFaq' || acao == 'editaFaq' || acao == 'addSocials' || acao == 'editaSocials'){
+		if(acao == 'addUser' || acao == 'editaUser' || acao == 'addFaq' || acao == 'editaFaq' || acao == 'addSocials' || acao == 'editaSocials' || acao == 'addVideos' || acao == 'editaVideos'){
 			if($('#senha').val() == '' && acao != 'editaUser'){
 				alert('Preencha o campo senha!');
 				return false;

@@ -3,7 +3,7 @@
 <html lang="en">
   <?php include('inc/head.php'); ?>
 
-  <body class="table-sorter">
+  <body class="table-sorter contato">
 
     <div id="wrapper">
 
@@ -17,17 +17,19 @@
               <li><i class="fa fa-home"></i> Home</li>
               <li class="active"><i class="fa fa-envelope"></i> contatos</li>
             </ol>
-            <div class="col-lg-8">
+            <div class="col-lg-12">
               <h2>Contatos</h2>
               <div class="table-responsive table-users-relative">
                 <table class="table table-bordered table-hover table-striped tablesorter table-users">
                   <thead>
                     <tr>
                       <th class="al-center">ID <i class="fa"></i></th>
-                      <th>Usuário <i class="fa"></i></th>
-                      <th>Username <i class="fa"></i></th>
+                      <th>Nome <i class="fa"></i></th>
                       <th>E-mail <i class="fa"></i></th>
-                      <th>Ações <i class="fa"></i></th>
+                      <th>Departamento <i class="fa"></i></th>
+                      <th>Mensagem <i class="fa"></i></th>
+                      <th>Lido <i class="fa"></i></th>
+                      <th>Respondido <i class="fa"></i></th>
                     </tr>
                   </thead>
                   <!-- <tbody>
@@ -43,45 +45,6 @@
                     </tr>
                   </tbody> -->
                 </table>
-              </div>
-            </div>
-            <div class="col-lg-4 col-add-edit">
-              <div class="el-overlay overlay-load">
-                <div class="progress progress-striped active progress-bar-form">
-                  <div class="progress-bar"></div>
-                </div>
-              </div>
-              <h2>Editar Usuário</h2>
-              <div class="form-responsivo">
-                <form role="form" id="formEditUser" class="form form-validate">
-                  <div class="form-group">
-                    <label for="usuario">Usuário</label>
-                    <input type="hidden" class="form-control" id="url" name="url" value="form-envia.php" />
-                    <input type="hidden" class="form-control" id="acao" name="acao" value="" />
-                    <input type="hidden" class="form-control" id="id" name="id" value="" />
-                    <input class="form-control" id="usuario" name="usuario" value="" />
-                  </div>
-                  <div class="form-group">
-                    <label for="username">Username</label>
-                    <input class="form-control" id="username" name="username" value="" />
-                  </div>
-                  <div class="form-group">
-                    <label for="email">E-mail</label>
-                    <input class="form-control" id="email" name="email" value="" />
-                  </div>
-                  <div class="form-group">
-                    <label for="senha">Senha</label>
-                    <input class="form-control" id="senha" type="password" name="senha" value="" />
-                  </div>
-                  <div class="form-group">
-                    <label for="confirmaSenha">Confirmar senha</label>
-                    <input class="form-control" id="confirmaSenha" type="password" name="confirmaSenha" value="" />
-                  </div>
-                  <div class="form-group pull-right">
-                    <button type="submit" class="btn btn-default btn-success btn-salva-user"><span class="fa fa-check"></span> Salvar</button>
-                    <button type="reset" class="btn btn-default btn-danger btn-cancela-user"><span class="fa fa-times"></span> Cancelar</button>
-                  </div>
-                </form>
               </div>
             </div>
           </div><!-- /.row -->

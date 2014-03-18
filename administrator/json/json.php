@@ -77,6 +77,37 @@
 			$json = substr_replace($json, '', -4, 1);
 			echo $json;
 		break;
+		case 'contato':
+			$json = "json({'items':[";
+			$sql = mysql_query("SELECT * FROM contato") or die(mysql_error());
+			while($dados = mysql_fetch_array($sql)){
+				$json .= "{'id':'".$dados["id"]."',";
+				$json .= "'nome':'".$dados["nome"]."',";
+				$json .= "'email':'".$dados["email"]."',";
+				$json .= "'departamento':'".$dados["departamento"]."'},";
+				$json .= "'mensagem':'".$dados["mensagem"]."'},";
+				$json .= "'lido':'".$dados["lido"]."'},";
+				$json .= "'respondido':'".$dados["respondido"]."'},";
+			}
+			$json .= "]})";
+			$json = substr_replace($json, '', -4, 1);
+			echo $json;
+		break;
+		case 'videos':
+			$json = "json({'items':[";
+			$sql = mysql_query("SELECT * FROM videos") or die(mysql_error());
+			//echo "SELECT * FROM videos";
+			while($dados = mysql_fetch_array($sql)){
+				$json .= "{'id':'".$dados["id"]."',";
+				$json .= "'titulo':'".$dados["titulo"]."',";
+				$json .= "'resumo':'".$dados["resumo"]."',";
+				$json .= "'link':'".$dados["link"]."'},";
+				$json .= "'ativo':'".$dados["ativo"]."'},";
+			}
+			$json .= "]})";
+			$json = substr_replace($json, '', -4, 1);
+			echo $json;
+		break;
 		default:
 			# code...
 			break;

@@ -18,7 +18,10 @@
 	$pergunta	= anti_injection($_REQUEST['pergunta']);
 	$resposta	= anti_injection($_REQUEST['resposta']);
 
-	$link	= anti_injection($_REQUEST['link']);
+	$titulo		= anti_injection($_REQUEST['titulo']);
+	$resumo		= anti_injection($_REQUEST['resumo']);
+
+	$link		= anti_injection($_REQUEST['link']);
 
 	switch($acao){
 		case 'addUser':
@@ -180,6 +183,54 @@
 			break;
 		case 'excluirSocials':
 			if(deletadb('redes_sociais', $id)){
+				echo "success";
+			} else {
+				echo "error";
+			}
+			break;
+		case 'addVideos':
+			array_push($arrayCampos, 'titulo');
+			array_push($arrayCampos, 'resumo');
+			array_push($arrayCampos, 'link');
+			array_push($arrayCampos, 'ativo');
+
+			array_push($arrayRequest, $titulo);
+			array_push($arrayRequest, $resumo);
+			array_push($arrayRequest, $link);
+			array_push($arrayRequest, $ativo);
+
+			$campos = join($arrayCampos, '|');
+			$dados	= join($arrayRequest, '|');
+			if(gravanobd('videos',$campos,$dados)){
+				echo "success";
+			} else {
+				echo "error";
+			}
+			$arrayRequest 	= array();
+			$arrayCampos 	= array();
+			break;
+		case 'editaVideos':
+			array_push($arrayCampos, 'titulo');
+			array_push($arrayCampos, 'resumo');
+			array_push($arrayCampos, 'link');
+			array_push($arrayCampos, 'ativo');
+
+			array_push($arrayRequest, $titulo);
+			array_push($arrayRequest, $resumo);
+			array_push($arrayRequest, $link);
+			array_push($arrayRequest, $ativo);
+
+			$campos = join($arrayCampos, '|');
+			$dados	= join($arrayRequest, '|');
+
+			if(editanobd("videos",$campos,$dados,$id)){
+				echo "success";
+			} else {
+				echo "error";
+			}
+			break;
+		case 'excluirVideos':
+			if(deletadb('videos', $id)){
 				echo "success";
 			} else {
 				echo "error";
