@@ -4,19 +4,17 @@
 	//error_reporting(E_ALL ^ E_NOTICE);
 	error_reporting(1);
 	//VARIAVEIS DE AMBIENTE
-
+	session_start();
 	if($_SERVER['SERVER_NAME'] == "localhost"){
 		$host 	= "localhost";
 		$user 	= "root";
-		$pass 	= "damasio";
+		$pass 	= "damasio";//i7O51H&v9p_C
 		$dbname	= "getm_admin";
 	} else {
-		//admin
-		//Mkt#2014
 		$host 	= "localhost";
-		$user 	= "admin";
-		$pass 	= "Mkt#2014";
-		$dbname	= "tutor";
+		$user 	= "getmcom_admin";
+		$pass 	= "i7O51H&v9p_C";//i7O51H&v9p_C
+		$dbname	= "getmcom_admin";
 	}
 
 	//CONEXAO COM BANCO DE DADOS
@@ -123,5 +121,20 @@
 		} else {
 			return false;
 		}	
+	}
+
+	// FUNÇÃO PARA SELECT NO DB
+    function logaBanco($tabela,$user,$senha){
+        $checa = "SELECT username, nome FROM users WHERE username = '$user' AND senha = '$senha'";
+        //CHECA NO BANCO DE DADOS
+		$checar = mysql_query($checa);
+		$dados = mysql_fetch_array($checar);
+		//print_r($dados);
+		if(mysql_num_rows($checar) >= 1){
+			$_SESSION['user_logado'] = $dados["nome"];
+			return true;
+		} else {
+			return false;
+		}
 	}
 ?>

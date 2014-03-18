@@ -1,9 +1,9 @@
+<?php include('inc/checa_login.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
   <?php include('inc/head.php'); ?>
 
   <body>
-
     <div id="wrapper">
 
       <?php include('inc/navbar.php'); ?>
@@ -16,7 +16,7 @@
               <li class="active"><i class="fa fa-home"></i> Home</li>
             </ol>
             <ul class="nav navbar-nav">
-              <li class="active"><a href="users.html"><i class="fa fa-home"></i> Home</a></li>
+              <li class="active"><a href="index.php"><i class="fa fa-home"></i> Home</a></li>
               <li><a href="imagens.php"><i class="fa fa-camera"></i> Imagens</a></li>
               <li><a href="empresas.php"><i class="fa fa-suitcase"></i> Empresas</a></li>
               <li><a href="faq.php"><i class="fa fa-question-circle"></i> FAQ</a></li>

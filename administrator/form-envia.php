@@ -31,7 +31,7 @@
 			array_push($arrayRequest, $nome);
 			array_push($arrayRequest, $username);
 			array_push($arrayRequest, $email);
-			array_push($arrayRequest, $senha);
+			array_push($arrayRequest, SHA1($senha));
 			array_push($arrayRequest, $lojista);
 
 			$campos = join($arrayCampos, '|');

@@ -1,3 +1,4 @@
+<?php include('inc/checa_login.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
   <?php include('inc/head.php'); ?>

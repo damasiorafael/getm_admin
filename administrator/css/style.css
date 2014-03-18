@@ -30,3 +30,6 @@ span.error { color: #F00;}
 /* MENSAGEM DE SAIDA OCULTADA EM PRODUCAO */
 /*#output { display: none;}*/
 #output { color: red;}
+
+/* PAGINA DE LOGIN */
+body.pag-login { background: #00B2C4;}

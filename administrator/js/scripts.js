@@ -2,23 +2,23 @@
 var thisUrl = window.location;
 
 if(checkClass('body', 'users')){
-	chamaAjax(thisUrl.origin+'/getm_admin/administrator/json/json.php', 'users');
+	chamaAjax(thisUrl.origin+'/administrator/json/json.php', 'users');
 }
 
 if(checkClass('body', 'imagens')){
-	chamaAjax(thisUrl.origin+'/getm_admin/administrator/json/json.php', 'imagens');
+	chamaAjax(thisUrl.origin+'/administrator/json/json.php', 'imagens');
 }
 
 if(checkClass('body', 'empresas')){
-	chamaAjax(thisUrl.origin+'/getm_admin/administrator/json/json.php', 'empresas');
+	chamaAjax(thisUrl.origin+'/administrator/json/json.php', 'empresas');
 }
 
 if(checkClass('body', 'faq')){
-	chamaAjax(thisUrl.origin+'/getm_admin/administrator/json/json.php', 'faq');
+	chamaAjax(thisUrl.origin+'/administrator/json/json.php', 'faq');
 }
 
 if(checkClass('body', 'socials')){
-	chamaAjax(thisUrl.origin+'/getm_admin/administrator/json/json.php', 'socials');
+	chamaAjax(thisUrl.origin+'/administrator/json/json.php', 'socials');
 }
 
 if(checkClass('body', 'table-sorter')){

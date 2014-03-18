@@ -121,7 +121,8 @@ montaImagens = function(url, type){
 			$('.table-users thead').after(divItens.join(''));
 		},
 		error: function(jqXHR, textStatus, ex) {
-        	//console.log(textStatus + "," + ex + "," + jqXHR.responseText);
+        	console.log(textStatus + "," + ex + "," + jqXHR.responseText);
+        	console.log(json);
         	var divItens = [];
         	divItens.push('<tbody><tr><td colspan="6" class="al-center fa-2x">Nenhuma imagem cadastrada!</td></tr></tbody>');
         	$('.table-users thead').after(divItens.join(''));
