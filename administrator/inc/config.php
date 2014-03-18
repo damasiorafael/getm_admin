@@ -8,7 +8,7 @@
 	if($_SERVER['SERVER_NAME'] == "localhost"){
 		$host 	= "localhost";
 		$user 	= "root";
-		$pass 	= "damasio";//i7O51H&v9p_C
+		$pass 	= "komeia";//i7O51H&v9p_C
 		$dbname	= "getm_admin";
 	} else {
 		$host 	= "localhost";
