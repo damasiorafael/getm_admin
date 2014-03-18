@@ -2,10 +2,6 @@
 	include("includes/config.php");
 	$sql 	= "SELECT `id`, `arquivo` FROM `imagens` WHERE `destaque` = 1 AND `ativo` = 1 ORDER BY RAND() LIMIT 3";
 	$query 	= mysql_query($sql);
-	$dados 	= mysql_fetch_array($query);
-	echo "<pre>";
-	print_r($dados);
-	echo "</pre>";
 ?>
 
 <div class="banner" >
@@ -15,30 +11,43 @@
 				while($dados = mysql_fetch_array($query)){
 			?>
 					<li>
-						<img src="administrator/uploads/images/<?php echo $dados["arquivo"]; ?>" alt="" width="168" height="94">
+						<img src="administrator/uploads/images/<?php echo $dados["arquivo"]; ?>" alt="" width="168" height="94" rel="<?php echo $dados["id"] ?>">
 					</li>
 			<?php
-				}/*
-			<li>
-				<img src="images/banner2.jpg" alt="">
-			</li>
-			<li>
-				<img src="images/banner3.jpg" alt="">
-			</li>
-			<li> 
-				<img src="images/banner4.jpg" alt="">
-			</li>
-			*/ ?>
+				}
+			?>
 		</ul>
 	</div>
 	<div class="wrapper-banner">
 		<ul>
-			<li id="foto1" class="">
-				<img src="images/banner1.jpg" alt="" />
+			<li class="">
+				<img src="" alt="" />
 			</li>
 		</ul>
 	</div>
 </div>
+
+<script type="text/javascript">
+	$(window).ready(function(){
+		function altBanner(newImgAtiva){
+			$('.wrapper-banner ul li img').attr('src', newImgAtiva.attr('src'));
+		}
+		imgAtiva = $('.wrapper-thumb ul li:nth-child(1) img');
+		altBanner(imgAtiva);
+
+		$('.wrapper-thumb ul li img').on('click', function(e){
+			e.preventDefault();
+			e.stopPropagation();
+			var $this = $(this);
+			$('.wrapper-banner ul li img').fadeOut("normal", function(){
+				$('.wrapper-banner ul li img').remove();
+				$('.wrapper-banner ul li').append('<img src="" alt="" style="display: none;" />');
+				altBanner($this);
+				$('.wrapper-banner ul li img').fadeIn("fast");
+			});
+		});
+	});
+</script>
 
 
 
