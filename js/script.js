@@ -90,12 +90,12 @@ $(document).ready(function(){
 	$('.carrosel-videos ul ').width(($('.carrosel-videos ul li').width() + 15) * $('.carrosel-videos ul li').size());
 
 	/*SETAR ALTURA E LARGURA DIV PÁGINA MÍDIA E CONTATO*/
-	$('.lightbox').height($('body').height());
+	$('.lightbox').height($(document).height());
 	$('.lightbox').width($(document).width());
 	$('.mensagens-formulario').height($('body').height());
 	$('.mensagens-formulario').width($(document).width());
 	$(window).resize(function(){
-		$('.lightbox').height($('body').height());
+		$('.lightbox').height($(document).height());
 		$('.lightbox').width($(document).width());
 		$('.mensagens-formulario').height($('body').height());
 		$('.mensagens-formulario').width($(document).width());

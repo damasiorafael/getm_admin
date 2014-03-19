@@ -31,7 +31,7 @@ header {height: 150px; position: relative;}
 .logo img {position: absolute;}
 .user-logado {display: inline-block; float: right; background: #a2d0da; text-align: center; width: 240px; height: 50px; border-radius: 3px; line-height: 52px; margin-left: -100px; margin-top: 37px; }
 .user {color: #006ab4;}
-.painel-login {width: 375px; height: 100px; border-radius: 3px; background: #ededed; float: right; margin-top: 10px;}
+.painel-login {width: 375px; height: 100px; border-radius: 3px; background: #ededed; float: right; margin-top: 10px; display: none;}
 .siga {float: left; width: 90px; height: 100px; background: #d5e0e8; border-radius: 3px 0 0 3px; border-right: dashed 2px #ccc;}
 .siga span {display: block; text-align: center; margin-top: 10px; font-size: 14px;}
 .siga p {margin: 15px 0 0 24px;}

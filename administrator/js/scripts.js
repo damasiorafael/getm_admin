@@ -1,32 +1,34 @@
 //VARIAVEIS GLOBAIS
 var thisUrl = window.location;
+//console.log(thisUrl);
+var subFolder = (thisUrl.origin.match('localhost')) ? "/getm_admin" : "";
 
 if(checkClass('body', 'users')){
-	chamaAjax(thisUrl.origin+'/administrator/json/json.php', 'users');
+	chamaAjax(thisUrl.origin+subFolder+'/administrator/json/json.php', 'users');
 }
 
 if(checkClass('body', 'imagens')){
-	chamaAjax(thisUrl.origin+'/administrator/json/json.php', 'imagens');
+	chamaAjax(thisUrl.origin+subFolder+'/administrator/json/json.php', 'imagens');
 }
 
 if(checkClass('body', 'empresas')){
-	chamaAjax(thisUrl.origin+'/administrator/json/json.php', 'empresas');
+	chamaAjax(thisUrl.origin+subFolder+'/administrator/json/json.php', 'empresas');
 }
 
 if(checkClass('body', 'faq')){
-	chamaAjax(thisUrl.origin+'/administrator/json/json.php', 'faq');
+	chamaAjax(thisUrl.origin+subFolder+'/administrator/json/json.php', 'faq');
 }
 
 if(checkClass('body', 'socials')){
-	chamaAjax(thisUrl.origin+'/administrator/json/json.php', 'socials');
+	chamaAjax(thisUrl.origin+subFolder+'/administrator/json/json.php', 'socials');
 }
 
 if(checkClass('body', 'contato')){
-	chamaAjax(thisUrl.origin+'/administrator/json/json.php', 'contato');
+	chamaAjax(thisUrl.origin+subFolder+'/administrator/json/json.php', 'contato');
 }
 
 if(checkClass('body', 'videos')){
-	chamaAjax(thisUrl.origin+'/getm_admin/administrator/json/json.php', 'videos');
+	chamaAjax(thisUrl.origin+subFolder+'/administrator/json/json.php', 'videos');
 }
 
 if(checkClass('body', 'table-sorter')){
@@ -359,7 +361,7 @@ function showResponse(responseText, statusText, xhr, $form){
 		window.location = window.location;
 	} else {
 		alert(responseText);
-		console.log(responseText);
+		//console.log(responseText);
 		$($form).parent().parent().find('.el-overlay').fadeOut();
 	}
 	//alert('status: ' + statusText + '\n\nresponseText: \n' + responseText + '\n\nThe output div should have already been updated with the responseText.');
@@ -458,7 +460,7 @@ $('.form-validate').validate({
 				alert('Preencha o campo senha!');
 				return false;
 			}
-			console.log(acao);
+			//console.log(acao);
 			urlForm = $(form).find('#url').val();
 			acaoForm = $(form).find('#acao').val();
 			//$(form).parent().parent().find('.el-overlay').fadeIn();

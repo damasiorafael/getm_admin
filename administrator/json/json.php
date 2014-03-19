@@ -84,10 +84,10 @@
 				$json .= "{'id':'".$dados["id"]."',";
 				$json .= "'nome':'".$dados["nome"]."',";
 				$json .= "'email':'".$dados["email"]."',";
-				$json .= "'departamento':'".$dados["departamento"]."'},";
+				$json .= "'departamento':'".$dados["departamento"]."',";
 				$json .= "'mensagem':'".$dados["mensagem"]."'},";
-				$json .= "'lido':'".$dados["lido"]."'},";
-				$json .= "'respondido':'".$dados["respondido"]."'},";
+				//$json .= "'lido':'".$dados["lido"]."',";
+				//$json .= "'respondido':'".$dados["respondido"]."'},";
 			}
 			$json .= "]})";
 			$json = substr_replace($json, '', -4, 1);
@@ -101,7 +101,7 @@
 				$json .= "{'id':'".$dados["id"]."',";
 				$json .= "'titulo':'".$dados["titulo"]."',";
 				$json .= "'resumo':'".$dados["resumo"]."',";
-				$json .= "'link':'".$dados["link"]."'},";
+				$json .= "'link':'".$dados["link"]."',";
 				$json .= "'ativo':'".$dados["ativo"]."'},";
 			}
 			$json .= "]})";

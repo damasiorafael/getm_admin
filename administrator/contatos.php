@@ -28,8 +28,8 @@
                       <th>E-mail <i class="fa"></i></th>
                       <th>Departamento <i class="fa"></i></th>
                       <th>Mensagem <i class="fa"></i></th>
-                      <th>Lido <i class="fa"></i></th>
-                      <th>Respondido <i class="fa"></i></th>
+                      <?php /*<th>Lido <i class="fa"></i></th>
+                      <th>Respondido <i class="fa"></i></th>*/ ?>
                     </tr>
                   </thead>
                   <!-- <tbody>
@@ -45,6 +45,71 @@
                     </tr>
                   </tbody> -->
                 </table>
+              </div>
+            </div>
+            <div class="col-lg-4 col-add-edit" style="display: none;">
+              <div class="el-overlay overlay-load">
+                <div class="progress progress-striped active progress-bar-form">
+                  <div class="progress-bar"></div>
+                </div>
+              </div>
+              <h2>Editar Empresa</h2>
+              <div class="form-responsivo">
+                <form role="form" id="formEditEmpresa" class="form form-validate" enctype="multipart/form-data" action="uploadImage.php" method="post">
+                  <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="hidden" class="form-control" id="url" name="url" value="form-envia.php" />
+                    <input type="hidden" class="form-control" id="acao" name="acao" value="" />
+                    <input type="hidden" class="form-control" id="id" name="id" value="" />
+                    <input class="form-control" id="nome" name="nome" value="" />
+                  </div>
+                  <div class="form-group">
+                    <label for="endereco">Endereço</label>
+                    <input class="form-control" id="endereco" name="endereco" value="" />
+                  </div>
+                  <div class="form-group">
+                    <label for="fone">Telefone</label>
+                    <input class="form-control" id="fone" name="fone" value="" />
+                  </div>
+                  <div class="form-group">
+                    <label for="site">Site</label>
+                    <input class="form-control" id="site" name="site" value="" />
+                  </div>
+                  <div class="form-group">
+                    <label for="ramo_atividade">Ramo de Atividade</label>
+                    <input class="form-control" id="ramo_atividade" name="ramo_atividade" value="" />
+                  </div>
+                  <div class="form-group">
+                    <label for="arquivo">Imagem (Tamanho máximo 1MB)</label>
+                    <input class="form-control" type="file" id="arquivo" name="arquivo" value="" />
+                    <div id="envImg"></div>
+                    <div class="form-group form-group-edit-imagem">
+                      <label for="editarArquivo">Editar Arquivo</label>
+                      <label>
+                        <input type="checkbox" id="editarArquivo" name="editarArquivo" value="1" />
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="latitude">Latitude</label>
+                    <input class="form-control" id="latitude" name="latitude" value="" />
+                  </div>
+                  <div class="form-group">
+                    <label for="longitude">Longitude</label>
+                    <input class="form-control" id="longitude" name="longitude" value="" />
+                  </div>
+                  <div class="form-group">
+                    <label for="ativo">Ativo</label>
+                    <label>
+                      <input type="checkbox" id="ativo" name="ativo" value="1" checked="checked" />
+                    </label>
+                  </div>
+                  <div class="form-group pull-right">
+                    <button type="submit" class="btn btn-default btn-success btn-salva-user"><span class="fa fa-check"></span> Salvar</button>
+                    <button type="reset" class="btn btn-default btn-danger btn-cancela"><span class="fa fa-times"></span> Cancelar</button>
+                  </div>
+                </form>
+                <div id="output"></div>
               </div>
             </div>
           </div><!-- /.row -->

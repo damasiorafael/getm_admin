@@ -1,6 +1,6 @@
-<!-- <p class="user-logado">Site de: <a href="#" class="user "><?php echo $_POST["id"]; ?></a ></p> -->
+<!-- <p class="user-logado">Site de: <a href="#" class="user "><?php //echo $_POST["id"]; ?></a ></p> -->
 <?php
-if ($id == null) {
+//if ($id == null) {
     ?>
 	<div class="painel-login">
 		<div class="siga">
@@ -25,11 +25,11 @@ if ($id == null) {
 		</form>
 	</div> 
 <?php
-} else {
+//} else {
 ?>
-    <p class="user-logado">Site de: <a href="#" class="user "><?php echo $_POST["id"]; ?></a ></p>
+    <!-- <p class="user-logado">Site de: <a href="#" class="user "><?php //echo $_POST["id"]; ?></a ></p>-->
 <?php
-	}
+	//}
 ?>
 
 <!-- <div class="painel-login">

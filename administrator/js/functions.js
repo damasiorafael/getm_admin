@@ -121,8 +121,8 @@ montaImagens = function(url, type){
 			$('.table-users thead').after(divItens.join(''));
 		},
 		error: function(jqXHR, textStatus, ex) {
-        	console.log(textStatus + "," + ex + "," + jqXHR.responseText);
-        	console.log(json);
+        	//console.log(textStatus + "," + ex + "," + jqXHR.responseText);
+        	//console.log(json);
         	var divItens = [];
         	divItens.push('<tbody><tr><td colspan="6" class="al-center fa-2x">Nenhuma imagem cadastrada!</td></tr></tbody>');
         	$('.table-users thead').after(divItens.join(''));
@@ -175,7 +175,7 @@ montaEmpresas = function(url, type){
 			$('.table-users thead').after(divItens.join(''));
 		},
 		error: function(jqXHR, textStatus, ex) {
-        	console.log(textStatus + "," + ex + "," + jqXHR.responseText);
+        	//console.log(textStatus + "," + ex + "," + jqXHR.responseText);
         	var divItens = [];
         	divItens.push('<tbody><tr><td colspan="11" class="al-center fa-2x">Nenhuma empresa cadastrada!</td></tr></tbody>');
         	$('.table-users thead').after(divItens.join(''));
@@ -222,7 +222,7 @@ montaFaq = function(url, type){
 			$('.table-users thead').after(divItens.join(''));
 		},
 		error: function(jqXHR, textStatus, ex) {
-        	console.log(textStatus + "," + ex + "," + jqXHR.responseText);
+        	//console.log(textStatus + "," + ex + "," + jqXHR.responseText);
         	var divItens = [];
         	divItens.push('<tbody><tr><td colspan="11" class="al-center fa-2x">Nenhuma pergunta cadastrada!</td></tr></tbody>');
         	$('.table-users thead').after(divItens.join(''));
@@ -301,7 +301,7 @@ montaContato = function(url, type){
 					divItens.push('<td>'+json.items[i].email+'</td>');
 					divItens.push('<td>'+json.items[i].departamento+'</td>');
 					divItens.push('<td>'+json.items[i].mensagem+'</td>');
-	                var lido;
+	                /*var lido;
 	                if(json.items[i].lido == "1"){
 	                	lido = '<i class="fa fa-check fa-1x icon-lojista-green"></i>'
 	                } else {
@@ -314,7 +314,7 @@ montaContato = function(url, type){
 	                } else {
 	                	respondido = '<i class="fa fa-times fa-1x icon-lojista-red"></i>'
 	                }
-	                divItens.push('<td class="al-center">'+respondido+'</td>');
+	                divItens.push('<td class="al-center">'+respondido+'</td>');*/
 	                divItens.push('</tr>');
 				}
 				divItens.push('</tbody>');
@@ -370,7 +370,7 @@ montaVideos = function(url, type){
 			$('.table-users thead').after(divItens.join(''));
 		},
 		error: function(jqXHR, textStatus, ex) {
-        	console.log(textStatus + "," + ex + "," + jqXHR.responseText);
+        	//console.log(textStatus + "," + ex + "," + jqXHR.responseText);
         	var divItens = [];
         	divItens.push('<tbody><tr><td colspan="11" class="al-center fa-2x">Nenhum vídeo cadastrado!</td></tr></tbody>');
         	$('.table-users thead').after(divItens.join(''));
@@ -401,7 +401,7 @@ enviaForm = function(el, url, acao){
 			return false;
 		},
 		error: function(jqXHR, textStatus, ex){
-        	console.log(textStatus + "," + ex + "," + jqXHR.responseText);
+        	//console.log(textStatus + "," + ex + "," + jqXHR.responseText);
     	}
 	});
 	return false;
