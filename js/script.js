@@ -1,3 +1,31 @@
+function showResponse(form){
+	dados = $(form).serialize();
+	$.ajax({
+		url: "contato-envia.php",
+		type: "post",
+		data: dados,
+		beforeSend: function(){
+			$('.contato form input[type="submit"]').fadeOut();
+			$('.ajax-loader-gif').fadeIn();
+		},
+		success: function(txt){
+			if(txt == "success"){
+				alert("Contato enviado com sucesso!");
+				document.getElementById("form-contato").reset();
+				$('.reload').trigger('click');
+			} else {
+				alert("Ocorreu um erro, por favor tente novamente!");
+			}
+		},
+		error: function(jqXHR, textStatus, ex){
+			console.log(textStatus + "," + ex + "," + jqXHR.responseText);
+		},
+		complete: function(){
+			$('.ajax-loader-gif').fadeOut();
+			$('.contato form input[type="submit"]').fadeIn();
+		}
+	});
+}
 $(document).ready(function(){ 
 	
 	/*FORMULÁRIO CONTATO*/
@@ -29,18 +57,18 @@ $(document).ready(function(){
 				url: "captcha-validate.php",
 				type: "post",
 				data: 'captchaAnswer='+$('#captchaAnswer').val(),
-				success: function (txt) {
+				success: function(txt){
 					if(txt == "Success"){
-						setTimeout(function(){
-							form.submit();
-						},3000)
-						
-						$('.mensagens-formulario').show();
-						$('.sucesso').show();
-					} else { 
-						$('.mensagens-formulario').show();
-						$('.erro').show();
+						showResponse(form);
+						return true;
+					} else {
+						alert('Digite o captcha corretamente');
+						$('.reload').trigger('click');
+						return false;
 					}
+				},
+				error: function(jqXHR, textStatus, ex){
+	        		console.log(textStatus + "," + ex + "," + jqXHR.responseText);
 				}
 			});
 		}

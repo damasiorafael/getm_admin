@@ -2,17 +2,13 @@
 	$pag = "contato";
 ?>
 <?php
-session_start();
-$id = $_POST['id'];
-$senha = $_POST['senha'];
-
-$_SESSION['id'] = $id;
-$_SESSION['senha'] = $senha;
+    session_start();
+    //$_SESSION["erro_seguranca"];
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-<?php include("includes/head.php"); ?>
+<?php include("includes/head.php"); ?>\\
 </html>
 <body>
     <div class="mensagens-formulario"></div>
@@ -40,7 +36,7 @@ $_SESSION['senha'] = $senha;
                             Antes de enviar o e-mail confira se sua pergunta já foi respondida no FAQ. <br>
                             <a href="faq.php">Ir para o FAQ</a>
                         </p>
-                        <form name="form-contato" class="contato" id="form-contato" method="POST" >
+                        <form name="form-contato" class="contato" id="form-contato" method="post" action="contato-envia.php" >
                             <p>
                                 <label for="nome">Nome Completo</label>
                                 <input type="text" name="nome" id="nome">
@@ -53,14 +49,15 @@ $_SESSION['senha'] = $senha;
                                 <label for="departamento">Departamento</label>
                                 <select name="departamento" id="departamento">
                                     <option value="">Selecione o departamento</option>
-                                    <option value="contato">Contato - contato@getm.com</option>
-                                    <option value="financeiro">Financeiro - financeiro@getm.com</option>
-                                    <option value="marketing">Marketing - marketing@getm.com</option>
+                                    <option value="Contato - contato@getm.com">Contato - contato@getm.com</option>
+                                    <option value="Financeiro - financeiro@getm.com">Financeiro - financeiro@getm.com</option>
+                                    <option value="Marketing - marketing@getm.com">Marketing - marketing@getm.com</option>
                                 </select>
                             </p>
                             <p>
-                                <label for="msg">Mensagem</label>
-                                <textarea name="msg" id="msg" cols="30" rows="10" ></textarea>
+                                <label for="mensagem">Mensagem</label>
+                                <textarea name="mensagem" id="mensagem" cols="30" rows="10" ></textarea>
+                                <input name="seguranca" id="seguranca" type="hidden" value="" />
                             </p>
                             <p>
                                 <label for="codigo">Código</label>
@@ -70,7 +67,8 @@ $_SESSION['senha'] = $senha;
                             </p>
                             <p>
                                 <label for="btn-contato">&nbsp;</label>
-                                <input type="submit" class="" value="ENVIAR" name="btn-contato" id="btn-contato">
+                                <input type="submit" class="" value="ENVIAR" name="btn-contato" id="btn-contato" />
+                                <span class="ajax-loader-gif"></span>
                             </p>
                         </form>
                     </div>

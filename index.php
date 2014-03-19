@@ -34,7 +34,7 @@
             <header>
                 <?php include("includes/header-logo.php"); ?>
 
-                <?php include("includes/header-login.php"); ?>
+                <?php //include("includes/header-login.php"); ?>
                 
                 <?php include("includes/header-menu.php"); ?>
             </header>

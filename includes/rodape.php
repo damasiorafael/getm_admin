@@ -49,5 +49,6 @@
 <script src="js/html5shiv.js"></script>
 <script src="js/jquery.validate.js"></script>
 <script src="js/jquery.maskedinput.min.js"></script>
+<script src="js/jquery.form.js" type="text/javascript"></script>
 <script src="js/script.js"></script>
 <!-- <script src="js/jCarousel.js"></script> -->
