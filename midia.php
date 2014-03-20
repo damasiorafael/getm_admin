@@ -22,6 +22,7 @@ function youtubeImage($url, $size = 'small'){
     $url = explode('v=',$url);
     $url = explode('&',$url[1]);
     $url = $size == 'small' ? ('http://i1.ytimg.com/vi/' . $url[0] . '/mqdefault.jpg') : ('http://img.youtube.com/vi/' . $url[0] . '/0.jpg');
+	//i1.ytimg.com/vi/rXOBNsBmAps/mqdefault.jpg
     return $url; }
 ?>
 <!DOCTYPE html>
@@ -51,50 +52,8 @@ function youtubeImage($url, $size = 'small'){
                     <div class="lateral">
                         <ul>
                             <li>
-                                <a href="" class="thumb-video" >
-                                    <img alt="" src="<?php echo youtubeImage('https://www.youtube.com/watch?v=ZBcUxu2d9QM');?>" />
-                                </a>
-                                <a href="" class="titulo-video">Titulo Video</a>
-                                <span class="descricao-video">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </span>
-                            </li>
-                            <li>
-                                <a href="" class="thumb-video" >
-                                    <img alt="" src="<?php echo youtubeImage('https://www.youtube.com/watch?v=ZBcUxu2d9QM');?>" />
-                                </a>
-                                <a href="" class="titulo-video">Titulo Video</a>
-                                <span class="descricao-video">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </span>
-                            </li>
-                            <li>
-                                <a href="" class="thumb-video" >
-                                    <img alt="" src="<?php echo youtubeImage('https://www.youtube.com/watch?v=ZBcUxu2d9QM');?>" />
-                                </a>
-                                <a href="" class="titulo-video">Titulo Video</a>
-                                <span class="descricao-video">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </span>
-                            </li>
-                            <li>
-                                <a href="" class="thumb-video" >
-                                    <img alt="" src="<?php echo youtubeImage('https://www.youtube.com/watch?v=ZBcUxu2d9QM');?>" />
-                                </a>
-                                <a href="" class="titulo-video">Titulo Video</a>
-                                <span class="descricao-video">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </span>
-                            </li>
-                            <li>
-                                <a href="" class="thumb-video" >
-                                    <img alt="" src="<?php echo youtubeImage('https://www.youtube.com/watch?v=ZBcUxu2d9QM');?>" />
-                                </a>
-                                <a href="" class="titulo-video">Titulo Video</a>
-                                <span class="descricao-video">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </span>
-                            </li>
-                            <li>
-                                <a href="" class="thumb-video" >
-                                    <img alt="" src="<?php echo youtubeImage('https://www.youtube.com/watch?v=ZBcUxu2d9QM');?>" />
-                                </a>
-                                <a href="" class="titulo-video">Titulo Video</a>
-                                <span class="descricao-video">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </span>
-                            </li>
-                            <li>
-                                <a href="" class="thumb-video" >
-                                    <img alt="" src="<?php echo youtubeImage('https://www.youtube.com/watch?v=ZBcUxu2d9QM');?>" />
+                                <a href="https://www.youtube.com/watch?v=2prkMviG_NI" class="thumb-video">
+                                    <img width="184" height="106" alt="" src="<?php echo youtubeImage('https://www.youtube.com/watch?v=rXOBNsBmAps');?>" /> 
                                 </a>
                                 <a href="" class="titulo-video">Titulo Video</a>
                                 <span class="descricao-video">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </span>
@@ -108,7 +67,7 @@ function youtubeImage($url, $size = 'small'){
                         <div class="carrosel-videos">
                             <ul>
                                 <li>
-                                    <a href="" class="thumb-video" >
+                                    <a href="" class="thumb-video">
                                         <img alt="" src="<?php echo youtubeImage('https://www.youtube.com/watch?v=ZBcUxu2d9QM');?>" />
                                     </a>
                                     <a href="" class="titulo-video">Titulo Video Titulo Video Titulo Video</a>

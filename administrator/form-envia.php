@@ -188,7 +188,7 @@
 				echo "error";
 			}
 			break;
-		case 'addVideos':
+		case 'addVideo':
 			array_push($arrayCampos, 'titulo');
 			array_push($arrayCampos, 'resumo');
 			array_push($arrayCampos, 'link');
@@ -209,7 +209,7 @@
 			$arrayRequest 	= array();
 			$arrayCampos 	= array();
 			break;
-		case 'editaVideos':
+		case 'editaVideo':
 			array_push($arrayCampos, 'titulo');
 			array_push($arrayCampos, 'resumo');
 			array_push($arrayCampos, 'link');
@@ -229,8 +229,56 @@
 				echo "error";
 			}
 			break;
-		case 'excluirVideos':
+		case 'excluirVideo':
 			if(deletadb('videos', $id)){
+				echo "success";
+			} else {
+				echo "error";
+			}
+			break;
+		case 'addVideoLinha':
+			array_push($arrayCampos, 'titulo');
+			array_push($arrayCampos, 'resumo');
+			array_push($arrayCampos, 'link');
+			array_push($arrayCampos, 'ativo');
+
+			array_push($arrayRequest, $titulo);
+			array_push($arrayRequest, $resumo);
+			array_push($arrayRequest, $link);
+			array_push($arrayRequest, $ativo);
+
+			$campos = join($arrayCampos, '|');
+			$dados	= join($arrayRequest, '|');
+			if(gravanobd('videos_linha',$campos,$dados)){
+				echo "success";
+			} else {
+				echo "error";
+			}
+			$arrayRequest 	= array();
+			$arrayCampos 	= array();
+			break;
+		case 'editaVideoLinha':
+			array_push($arrayCampos, 'titulo');
+			array_push($arrayCampos, 'resumo');
+			array_push($arrayCampos, 'link');
+			array_push($arrayCampos, 'ativo');
+
+			array_push($arrayRequest, $titulo);
+			array_push($arrayRequest, $resumo);
+			array_push($arrayRequest, $link);
+			array_push($arrayRequest, $ativo);
+
+			$campos = join($arrayCampos, '|');
+			$dados	= join($arrayRequest, '|');
+
+			if(editanobd("videos_linha",$campos,$dados,$id)){
+				echo "success";
+			} else {
+				echo "error";
+			}
+			break;
+		case 'excluirVideoLinha':
+			if(deletadb('videos_linha', $id)){
 				echo "success";
 			} else {
 				echo "error";

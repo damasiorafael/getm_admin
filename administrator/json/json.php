@@ -108,6 +108,21 @@
 			$json = substr_replace($json, '', -4, 1);
 			echo $json;
 		break;
+		case 'videos_linha':
+			$json = "json({'items':[";
+			$sql = mysql_query("SELECT * FROM videos_linha") or die(mysql_error());
+			//echo "SELECT * FROM videos";
+			while($dados = mysql_fetch_array($sql)){
+				$json .= "{'id':'".$dados["id"]."',";
+				$json .= "'titulo':'".$dados["titulo"]."',";
+				$json .= "'resumo':'".$dados["resumo"]."',";
+				$json .= "'link':'".$dados["link"]."',";
+				$json .= "'ativo':'".$dados["ativo"]."'},";
+			}
+			$json .= "]})";
+			$json = substr_replace($json, '', -4, 1);
+			echo $json;
+		break;
 		default:
 			# code...
 			break;

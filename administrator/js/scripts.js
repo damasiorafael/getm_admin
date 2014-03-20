@@ -31,6 +31,10 @@ if(checkClass('body', 'videos')){
 	chamaAjax(thisUrl.origin+subFolder+'/administrator/json/json.php', 'videos');
 }
 
+if(checkClass('body', 'videos_linha')){
+	chamaAjax(thisUrl.origin+subFolder+'/administrator/json/json.php', 'videos_linha');
+}
+
 if(checkClass('body', 'table-sorter')){
 	incScript('head', 'js/tablesorter/jquery.tablesorter.js');
 	incScript('head', 'js/tablesorter/tables.js');
@@ -214,6 +218,36 @@ $('.btn-ajax-edit-socials').on('click', function(e){
 	$('.col-add-edit').fadeIn();
 });
 
+$('.btn-ajax-edit-videos').on('click', function(e){
+	e.preventDefault();
+	e.stopPropagation();
+	var $this = $(this);
+	idSeleciona 		= $this.attr('class').split(' ')[4].split('-')[2];
+	editaVideoId		= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(1)').text();
+	editaTitulo 		= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(2)').text();
+	editaResumo 		= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(3)').text();
+	editaLink 			= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(4)').text();
+	editaVideoAtivo		= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(5)').html();
+	
+	$('.col-add-edit > h2').text('Editar Vídeos');
+	
+	varAcao = ($('body').hasClass('videos_linha')) ? "editaVideoLinha" : "editaVideo";
+	
+	$('#formEditVideos input#acao').val(varAcao);
+
+	$('#formEditVideos input#id').val(idSeleciona);
+	$('#formEditVideos input#titulo').val(editaTitulo);
+	$('#formEditVideos input#resumo').val(editaResumo);
+	$('#formEditVideos input#link').val(editaLink);
+	
+	if($(editaVideoAtivo).hasClass('icon-lojista-green')){
+		$('#formEditVideos input#ativo').attr('checked', 'checked');
+	} else {
+		$('#formEditVideos input#ativo').removeAttr('checked');
+	}
+	$('.col-add-edit').fadeIn();
+});
+
 $('.btn-ajax-add-imagem').on('click', function(e){
 	e.preventDefault();
 	e.stopPropagation();
@@ -272,13 +306,14 @@ $('.btn-ajax-add-socials').on('click', function(e){
 $('.btn-ajax-add-videos').on('click', function(e){
 	e.preventDefault();
 	e.stopPropagation();
+	varAcao = ($('body').hasClass('videos_linha')) ? "addVideoLinha" : "addVideo";
 	$('.col-add-edit > h2').text('Adicionar Vídeo')
-	$('#formEditSocials input#acao').val('addVideos');
-	$('#formEditSocials input#id').val('');
-	$('#formEditSocials input#titulo').val('');
-	$('#formEditSocials textarea#resumo').val('');
-	$('#formEditSocials textarea#link').val('');
-	$('#formEditSocials input#ativo').attr('checked', 'checked');
+	$('#formEditVideos input#acao').val(varAcao);
+	$('#formEditVideos input#id').val('');
+	$('#formEditVideos input#titulo').val('');
+	$('#formEditVideos textarea#resumo').val('');
+	$('#formEditVideos textarea#link').val('');
+	$('#formEditVideos input#ativo').attr('checked', 'checked');
 	$('.col-add-edit').fadeIn();
 });
 
@@ -455,7 +490,7 @@ $('.form-validate').validate({
 	},
 	submitHandler: function(form){
 		var acao = $('#acao').val();
-		if(acao == 'addUser' || acao == 'editaUser' || acao == 'addFaq' || acao == 'editaFaq' || acao == 'addSocials' || acao == 'editaSocials' || acao == 'addVideos' || acao == 'editaVideos'){
+		if(acao == 'addUser' || acao == 'editaUser' || acao == 'addFaq' || acao == 'editaFaq' || acao == 'addSocials' || acao == 'editaSocials' || acao == 'addVideo' || acao == 'editaVideo' || acao == 'addVideoLinha' || acao == 'editaVideoLinha'){
 			if($('#senha').val() == '' && acao != 'editaUser'){
 				alert('Preencha o campo senha!');
 				return false;
@@ -463,8 +498,8 @@ $('.form-validate').validate({
 			//console.log(acao);
 			urlForm = $(form).find('#url').val();
 			acaoForm = $(form).find('#acao').val();
-			//$(form).parent().parent().find('.el-overlay').fadeIn();
-			//overlayLoad();
+			$(form).parent().parent().find('.el-overlay').fadeIn();
+			overlayLoad();
 			enviaForm(form, urlForm, acaoForm);
 			return false;
 		}

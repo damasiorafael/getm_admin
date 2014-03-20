@@ -332,6 +332,7 @@ montaContato = function(url, type){
 
 //AJAX PARA MONTAR TABELA DE VIDEOS
 montaVideos = function(url, type){
+	varAcao = ($('body').hasClass('videos_linha')) ? "excluirVideoLinha" : "excluirVideo";
 	$.ajax({
 		url: url,//?product_id='+$this.attr('rel'),
 		data: { key : type},
@@ -362,7 +363,7 @@ montaVideos = function(url, type){
 	                divItens.push('<td class="al-center">'+ativo+'</td>');
 	                divItens.push('<td class="al-center">');
 	                divItens.push('<a href="#" class="btn btn-default btn-success btn-ajax-edit-videos ajax-edit-'+json.items[i].id+'"><span class="fa fa-edit"></span> Editar</a>');
-	                divItens.push('<a href="#" class="btn btn-default btn-danger btn-ajax-trash ajax-trash-'+json.items[i].id+'" rel="excluirSocials"><span class="fa fa-trash-o"></span> Excluir</a>');
+	                divItens.push('<a href="#" class="btn btn-default btn-danger btn-ajax-trash ajax-trash-'+json.items[i].id+'" rel="'+varAcao+'"><span class="fa fa-trash-o"></span> Excluir</a>');
 	                divItens.push('</td></tr>');
 				}
 				divItens.push('</tbody>');
@@ -431,6 +432,9 @@ chamaAjax = function(url, type){
 			montaContato(u, t);
 			break;
 		case "videos":
+			montaVideos(u, t);
+			break;
+		case "videos_linha":
 			montaVideos(u, t);
 			break;
 	}

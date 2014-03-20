@@ -3,7 +3,7 @@
 <html lang="en">
   <?php include('inc/head.php'); ?>
 
-  <body class="table-sorter videos">
+  <body class="table-sorter videos_linha">
 
     <div id="wrapper">
 
@@ -15,13 +15,13 @@
             <h1>Painel Administrativo <small></small></h1>
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i> Home</li>
-              <li class="active"><i class="fa fa-video-camera"></i> vídeos</li>
+              <li class="active"><i class="fa fa-video-camera"></i> vídeos - linha do tempo</li>
             </ol>
             <div class="col-lg-8">
               <div class="cont-button-add-user">
                 <a href="#" class="btn btn-default btn-success btn-ajax-add-videos"><span class="fa fa-check"></span> Adicionar</a>
               </div>
-              <h2>Vídeos</h2>
+              <h2>Vídeos - Linha do Tempo</h2>
               <div class="table-responsive table-users-relative">
                 <table class="table table-bordered table-hover table-striped tablesorter table-users">
                   <thead>

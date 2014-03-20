@@ -20,6 +20,7 @@
       <li><a href="faq.php"><i class="fa fa-question-circle"></i> FAQ</a></li>
       <li><a href="socials.php"><i class="fa fa-share-square"></i> Redes Sociais</a></li>
       <li><a href="videos.php"><i class="fa fa-video-camera"></i> Vídeos</a></li>
+      <li><a href="videos-linha.php"><i class="fa fa-video-camera"></i> Vídeos Linha do Tempo</a></li>
       <li><a href="contatos.php"><i class="fa fa-envelope"></i> Contatos</a></li>
       <?php /*<li><a href="users.php"><i class="fa fa-user"></i> Users</a></li>*/ ?>
       <!-- <li class="dropdown">
