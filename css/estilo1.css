@@ -31,16 +31,17 @@ header {height: 150px; position: relative;}
 .logo img {position: absolute;}
 .user-logado {display: inline-block; float: right; background: #a2d0da; text-align: center; width: 240px; height: 50px; border-radius: 3px; line-height: 52px; margin-left: -100px; margin-top: 37px; }
 .user {color: #006ab4;}
-.painel-login {width: 375px; height: 100px; border-radius: 3px; background: #ededed; float: right; margin-top: 10px; display: none;}
+.painel-login {width: 375px; height: 100px; border-radius: 3px; background: #ededed; float: right; margin-top: 10px; display: block;}
 .siga {float: left; width: 90px; height: 100px; background: #d5e0e8; border-radius: 3px 0 0 3px; border-right: dashed 2px #ccc;}
 .siga span {display: block; text-align: center; margin-top: 10px; font-size: 14px;}
 .siga p {margin: 15px 0 0 24px;}
 .siga a {float: left; width: 23px; height: 24px; display: inline-block;}
 .siga .siga-face {background: url(../images/icon-face1.png) no-repeat; width: 17px; margin-right: 7px;}
+.siga .siga-facebook {background: url(../images/icon-face1.png) no-repeat; width: 17px; margin-right: 7px;}
 .siga .siga-youtube {background: url(../images/icon-youtube1.png) no-repeat;}
 form#form-login {font-size: 14px;}
 form#form-login span {text-align: center; display: block; margin: 10px 0 5px 0;}
-form#form-login p {margin: 0 0 3px 12px; display: inline-block;}
+form#form-login p {margin: 10px 0 3px 12px; display: inline-block;}
 form#form-login input[type="text"], form#form-login input[type="password"] {border: solid 1px #ced8db; width: 70px; height: 26px; border-radius: 3px; box-shadow: inset 0px 0px 16px #E4E4E4; padding: 0px 10px;}
 form#form-login input[type="submit"] {width: 60px; height: 28px; }
 form#form-login a {font-size: 11px; margin-left: 108px;}
@@ -172,9 +173,9 @@ footer .borda {border-top: solid 1px #c5e3ee; border-bottom: solid 22px #222222;
 .carrosel-videos ul li .thumb-video {float: none; margin-bottom: 5px;}
 .carrosel-videos ul li .titulo-video {float: none;}
 .lightbox {position: absolute; width: 100%; background: rgba(0,0,0,0.8); z-index: 9998; }
-.wrapper-lightbox {position: relative; width: 1056px; height: 590px; left: 50%; top: 50%; margin-top: -452px; margin-left: -502px; }
-.container-lightbox {width: 1000px; height: 563px; position: absolute; top: 50%; left: 50%; background: #fff; margin-top: -281px; margin-left: -526px; z-index: 9999; padding: 7px; border-radius: 5px;}
-.btn-fechar {width: 20px; height: 20px; background: url(../images/close-white-small.png); position: absolute; right: 15px; z-index: 10000; display: inline-block; cursor: pointer;}
+.wrapper-lightbox {position: relative; width: 696px; height: 503px; left: 50%; top: 50%; margin-top: -251px; margin-left: -348px;}
+.container-lightbox {width: 640px; height: 480px; position: fixed; top: 50%; left: 50%; background: #fff; margin-top: -240px; margin-left: -320px; z-index: 9999; padding: 7px; border-radius: 5px;}
+.btn-fechar {width: 20px; height: 20px; background: url(../images/close-white-small.png); position: absolute; right: -20px; top: -20px; z-index: 10000; display: inline-block; cursor: pointer;}
 
 /* saf3+, chrome1+ */
 @media screen and (-webkit-min-device-pixel-ratio:0) {

@@ -25,11 +25,21 @@
 				</div>
 				<div class="redes-sociais ">
 					<h3 class=" ">COMPARTILHE</h3>
-					<a href="" class="google " title="Siga-nos no Google+"></a>
+                    <?php linkRedeSocial("google"); ?>
+					<!-- <a href="" class="google " title="Siga-nos no Google+"></a> -->
 					<ul>
-						<li class=""><a href="" class="twitter " title="Siga-nos no Twitter"></a></li>
-						<li class=""><a href="" class="youtube " title="Siga-nos no Youtube"></a></li>
-						<li class=""><a href="" class="facebook " title="Siga-nos no Facebook"></a></li>
+						<li class="">
+                        	<?php linkRedeSocial("twitter"); ?>
+                        	<!-- <a href="" class="twitter " title="Siga-nos no Twitter"></a> -->
+                        </li>
+						<li class="">
+                        	<?php linkRedeSocial("youtube"); ?>
+                        	<!-- <a href="" class="youtube " title="Siga-nos no Youtube"></a> -->
+                        </li>
+						<li class="">
+                        	<?php linkRedeSocial("facebook"); ?>
+                        	<!-- <a href="" class="facebook " title="Siga-nos no Facebook"></a> -->
+                       	</li>
 					</ul>
 				</div>
 			</div>

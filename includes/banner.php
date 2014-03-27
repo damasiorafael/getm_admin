@@ -1,5 +1,4 @@
 <?php
-	include("includes/config.php");
 	$sql 			= "SELECT `id`, `arquivo` FROM `imagens` WHERE `destaque` = 1 AND `ativo` = 1 ORDER BY RAND() LIMIT 3";
 	$query 			= mysql_query($sql);
 	$num_rows_img	= mysql_num_rows($query);

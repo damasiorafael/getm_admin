@@ -1,28 +1,6 @@
 <?php
 	$pag = "home";
-?>
-<?php
-	session_start();
-	if(isset($_POST['id'])){
-		$id = $_POST['id'];
-	} else {
-		$id = "";
-	}
-	
-	if(isset($_POST['senha'])){
-		$senha = $_POST['senha'];
-	} else {
-		$senha = "";
-	}
-	
-	$_SESSION['id'] = $id;
-	$_SESSION['senha'] = $senha;
-	if($id != ""){
-		//echo "Você está logado como: $id";
-		//header('location:http://localhost/GETM/index.php');
-	} else {
-		//echo 'Você não está logado' // Não logado
-	}
+	include("includes/config.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +12,7 @@
             <header>
                 <?php include("includes/header-logo.php"); ?>
 
-                <?php //include("includes/header-login.php"); ?>
+                <?php include("includes/header-login.php"); ?>
                 
                 <?php include("includes/header-menu.php"); ?>
             </header>

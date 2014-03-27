@@ -33,9 +33,14 @@ function youtubeImage($url, $size = 'small'){
     <div class="lightbox"> 
         <div class="wrapper-lightbox"> 
             <div class="container-lightbox">
-                <object width="1000" height="563"><param name="movie" value="//www.youtube.com/v/vgyJd75ibPA"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="//www.youtube.com/v/vgyJd75ibPA?autoplay=1" type="application/x-shockwave-flash" width="1000" height="563" allowscriptaccess="always" allowfullscreen="true"></embed></object>
+                <?php /*?>'<object width="1000" height="563">
+'                	<param name="movie" value="//www.youtube.com/v/vgyJd75ibPA"></param>
+'                    <param name="allowFullScreen" value="true"></param>
+'                    <param name="allowscriptaccess" value="always"></param>
+'                    <embed src="//www.youtube.com/v/vgyJd75ibPA?autoplay=1" type="application/x-shockwave-flash" width="1000" height="563" allowscriptaccess="always" allowfullscreen="true"></embed>
+'               	</object><?php */?>
+					<?php /*?><iframe width="640" height="480" src="//www.youtube.com/embed/ZpDQJnI4OhU" frameborder="0" allowfullscreen></iframe><?php */?>
             </div>
-            <span class="btn-fechar"></span>
         </div>
     </div>
     <div class="container">
@@ -52,7 +57,7 @@ function youtubeImage($url, $size = 'small'){
                     <div class="lateral">
                         <ul>
                             <li>
-                                <a href="https://www.youtube.com/watch?v=2prkMviG_NI" class="thumb-video">
+                                <a href="https://www.youtube.com/watch?v=rXOBNsBmAps" class="thumb-video" rel="iframe">
                                     <img width="184" height="106" alt="" src="<?php echo youtubeImage('https://www.youtube.com/watch?v=rXOBNsBmAps');?>" /> 
                                 </a>
                                 <a href="" class="titulo-video">Titulo Video</a>
@@ -67,7 +72,7 @@ function youtubeImage($url, $size = 'small'){
                         <div class="carrosel-videos">
                             <ul>
                                 <li>
-                                    <a href="" class="thumb-video">
+                                    <a href="" class="thumb-video" rel="div">
                                         <img alt="" src="<?php echo youtubeImage('https://www.youtube.com/watch?v=ZBcUxu2d9QM');?>" />
                                     </a>
                                     <a href="" class="titulo-video">Titulo Video Titulo Video Titulo Video</a>

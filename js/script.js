@@ -26,8 +26,38 @@ function showResponse(form){
 		}
 	});
 }
+
+function splitLinkVideo(urlVideo){
+	video = urlVideo.split('v=');
+	video = video[1].split('&');
+	video = video[0];
+    return video;
+}
+
+function abreVideoFrame(urlVideo, typeOpen){
+	if(typeOpen == "iframe"){
+		//console.log(splitLinkVideo(urlVideo));
+		var myFrame = document.createElement("iframe");
+		myFrame.width = 640;
+		myFrame.height = 480;
+		myFrame.src = "//www.youtube.com/embed/"+splitLinkVideo(urlVideo);
+		myFrame.frameborder = 0;
+		myFrame.allowfullscreen = true;
+		
+		var spanFecha = document.createElement('span');
+		spanFecha.class = "btn-fechar";
+		
+		console.log(spanFecha);
+		
+		$('.container-lightbox').html('')
+		$('.container-lightbox').append(myFrame);
+		$('.container-lightbox').append(spanFecha);
+		//console.log(myFrame);
+		//<iframe width="640" height="480" src="//www.youtube.com/embed/ZpDQJnI4OhU" frameborder="0" allowfullscreen></iframe>
+	}
+}
+
 $(document).ready(function(){ 
-	
 	/*FORMULÁRIO CONTATO*/
 	$('#form-contato').validate({
 		errorElement: "span",
@@ -102,10 +132,21 @@ $(document).ready(function(){
 	});
 
 	/*LIGHTBOX*/
+	$('.thumb-video').on('click', function(e){
+		e.preventDefault();
+		e.stopPropagation();
+		var $this = $(this),
+		typeOpen = $this.attr('rel'),
+		urlVideo = $this.attr('href');
+		
+		abreVideoFrame(urlVideo, typeOpen);
+		
+		$('.lightbox').fadeIn("slow");
+	});
 	$('.lightbox').hide();
 	$('.lateral ul li a').click(function(e){
 		e.preventDefault();
-		$('.lightbox').fadeIn("slow");
+		//$('.lightbox').fadeIn("slow");
 	});
 
 	$('.lightbox').click(function(){
