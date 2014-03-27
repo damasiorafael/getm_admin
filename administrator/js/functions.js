@@ -184,49 +184,44 @@ montaEmpresas = function(url, type){
 }
 
 //AJAX PARA MONTAR TABELA DE FAQ
+//EDITADA PARA FUNCIONAR SEM JSONP
 montaFaq = function(url, type){
+	//console.log(url+"?key="+type);
 	$.ajax({
 		url: url,//?product_id='+$this.attr('rel'),
 		data: { key : type},
-		dataType: 'jsonp',
-		crossDomain: false,
-		jsonp: false,
-		jsonpCallback: 'json',
-		cache: true,
-		success: function(json){
+		dataType: 'json',
+		success: function(data){
+			//console.log(data.length);
 			var divItens = [],
 			i,
-			l = json.items.length;
+			//l = json.items.length;
+			l = data.length;
+			//alert(l);
 			if(l < 1){
 				divItens.push('<tbody><tr><td colspan="11">Nenhuma pergunta cadastrada!</td></tr></tbody>');
 			} else {
 				divItens.push('<tbody>');
 				for(i = 0; i < l; i++){
-					divItens.push('<tr class="'+json.items[i].id+'"><td class="al-center">'+json.items[i].id+'</td>');
-					divItens.push('<td>'+json.items[i].pergunta+'</td>');
-					divItens.push('<td>'+json.items[i].resposta+'</td>');
+					divItens.push('<tr class="'+data[i].id+'"><td class="al-center">'+data[i].id+'</td>');
+					divItens.push('<td>'+data[i].pergunta+'</td>');
+					divItens.push('<td>'+data[i].resposta+'</td>');
 	                var ativo;
-	                if(json.items[i].ativo == "1"){
+	                if(data[i].ativo == "1"){
 	                	ativo = '<i class="fa fa-check fa-1x icon-lojista-green"></i>'
 	                } else {
 	                	ativo = '<i class="fa fa-times fa-1x icon-lojista-red"></i>'
 	                }
 	                divItens.push('<td class="al-center">'+ativo+'</td>');
 	                divItens.push('<td class="al-center">');
-	                divItens.push('<a href="#" class="btn btn-default btn-success btn-ajax-edit-faq ajax-edit-'+json.items[i].id+'"><span class="fa fa-edit"></span> Editar</a>');
-	                divItens.push('<a href="#" class="btn btn-default btn-danger btn-ajax-trash ajax-trash-'+json.items[i].id+'" rel="excluirFaq"><span class="fa fa-trash-o"></span> Excluir</a>');
+	                divItens.push('<a href="#" class="btn btn-default btn-success btn-ajax-edit-faq ajax-edit-'+data[i].id+'"><span class="fa fa-edit"></span> Editar</a>');
+	                divItens.push('<a href="#" class="btn btn-default btn-danger btn-ajax-trash ajax-trash-'+data[i].id+'" rel="excluirFaq"><span class="fa fa-trash-o"></span> Excluir</a>');
 	                divItens.push('</td></tr>');
 				}
 				divItens.push('</tbody>');
 			}
 			$('.table-users thead').after(divItens.join(''));
-		},
-		error: function(jqXHR, textStatus, ex) {
-        	//console.log(textStatus + "," + ex + "," + jqXHR.responseText);
-        	var divItens = [];
-        	divItens.push('<tbody><tr><td colspan="11" class="al-center fa-2x">Nenhuma pergunta cadastrada!</td></tr></tbody>');
-        	$('.table-users thead').after(divItens.join(''));
-    	}
+		}
 	});
 }
 

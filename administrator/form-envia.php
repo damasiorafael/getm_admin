@@ -126,7 +126,7 @@
 
 			array_push($arrayRequest, $pergunta);
 			array_push($arrayRequest, $resposta);
-			array_push($arrayRequest, $resposta);
+			array_push($arrayRequest, $ativo);
 
 			$campos = join($arrayCampos, '|');
 			$dados	= join($arrayRequest, '|');

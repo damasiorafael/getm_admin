@@ -52,17 +52,17 @@
 			echo $json;
 		break;
 		case 'faq':
-			$json = "json({'items':[";
+			$json = Array();
 			$sql = mysql_query("SELECT * FROM faq") or die(mysql_error());
+			$i = 0;
 			while($dados = mysql_fetch_array($sql)){
-				$json .= "{'id':'".$dados["id"]."',";
-				$json .= "'pergunta':'".$dados["pergunta"]."',";
-				$json .= "'resposta':'".$dados["resposta"]."',";
-				$json .= "'ativo':'".$dados["ativo"]."'},";
+				$json[$i]["id"] = $dados["id"];
+				$json[$i]["pergunta"] = $dados["pergunta"];
+				$json[$i]["resposta"] = $dados["resposta"];
+				$json[$i]["ativo"] = $dados["ativo"];
+				$i++;
 			}
-			$json .= "]})";
-			$json = substr_replace($json, '', -4, 1);
-			echo $json;
+			print_r(json_encode($json));
 		break;
 		case 'socials':
 			$json = "json({'items':[";
