@@ -1,21 +1,6 @@
 <?php
 	$pag = "faq";
 ?>
-<?php
-session_start();
-//$id = $_POST['id'];
-//$senha = $_POST['senha'];
-
-//$_SESSION['id'] = $id;
-//$_SESSION['senha'] = $senha;
-if(isset($id)){
-   //echo "Você está logado como: $id";
-   //header('location:http://localhost/GETM/index.php');
-}
-else
- // echo 'Você não está logado' // Não logado
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
@@ -31,6 +16,8 @@ else
         <div class=" container-conteudo">
             <header>
                 <?php include("includes/header-logo.php"); ?>
+                
+                <?php include("includes/header-login.php"); ?>
                 
                 <?php include("includes/header-menu.php"); ?>
             </header>
