@@ -28,6 +28,9 @@
                     <tr>
                       <th class="al-center">ID <i class="fa"></i></th>
                       <th>Nome <i class="fa"></i></th>
+                      <th>País <i class="fa"></i></th>
+                      <th>Estado <i class="fa"></i></th>
+                      <th>Cidade <i class="fa"></i></th>
                       <th>Endereço <i class="fa"></i></th>
                       <th>Telefone <i class="fa"></i></th>
                       <th>Site <i class="fa"></i></th>
@@ -69,6 +72,26 @@
                     <input type="hidden" class="form-control" id="acao" name="acao" value="" />
                     <input type="hidden" class="form-control" id="id" name="id" value="" />
                     <input class="form-control" id="nome" name="nome" value="" />
+                  </div>
+                  <div class="form-group">
+                    <label for="pais">País</label>
+                    <input class="form-control" id="pais" name="pais" value="" />
+                  </div>
+                  <div class="form-group">
+                    <label for="estado">Estado</label>
+                    <select class="form-control" id="estado" name="estado">
+                        <option value="">-- Estado --</option>
+                        <option value="1">1</option>
+                        <option value="3">3</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="cidade">Cidade</label>
+                    <select class="form-control" id="cidade" name="cidade">
+                        <option value="">-- Cidade --</option>
+                        <option value="1">1</option>
+                        <option value="3">3</option>
+                    </select>
                   </div>
                   <div class="form-group">
                     <label for="endereco">Endereço</label>

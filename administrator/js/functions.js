@@ -151,6 +151,9 @@ montaEmpresas = function(url, type){
 				for(i = 0; i < l; i++){
 					divItens.push('<tr class="'+json.items[i].id+'"><td class="al-center">'+json.items[i].id+'</td>');
 					divItens.push('<td>'+json.items[i].nome+'</td>');
+					divItens.push('<td>'+json.items[i].pais+'</td>');
+					divItens.push('<td rel="'+json.items[i].idEstado+'">'+json.items[i].estado+'</td>');
+					divItens.push('<td rel="'+json.items[i].idCidade+'">'+json.items[i].cidade+'</td>');
 					divItens.push('<td>'+json.items[i].endereco+'</td>');
 					divItens.push('<td>'+json.items[i].fone+'</td>');
 					divItens.push('<td>'+json.items[i].site+'</td>');

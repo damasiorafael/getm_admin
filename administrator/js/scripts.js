@@ -13,6 +13,7 @@ if(checkClass('body', 'imagens')){
 
 if(checkClass('body', 'empresas')){
 	chamaAjax(thisUrl.origin+subFolder+'/administrator/json/json.php', 'empresas');
+	incScript('head', 'js/jquery.geo.js');
 }
 
 if(checkClass('body', 'faq')){
@@ -531,3 +532,23 @@ $('.form-validate').validate({
 		return false;
 	}
 });
+
+$('#estado').change(function(e){
+	var estado = $("option:selected", this).val();
+	$('#cidade').geo({
+		'estado': estado,
+		'json' : 'json/json_estados.php' 
+	});
+});
+
+$('body.empresas .table-users tr th:nth-child(8)').hide();
+$('body.empresas .table-users tr td:nth-child(8)').hide();
+
+$('body.empresas .table-users tr th:nth-child(9)').hide();
+$('body.empresas .table-users tr td:nth-child(9)').hide();
+
+$('body.empresas .table-users tr th:nth-child(11)').hide();
+$('body.empresas .table-users tr td:nth-child(11)').hide();
+
+$('body.empresas .table-users tr th:nth-child(12)').hide();
+$('body.empresas .table-users tr td:nth-child(12)').hide();
