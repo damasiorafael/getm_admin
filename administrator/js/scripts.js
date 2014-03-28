@@ -533,7 +533,9 @@ $('.form-validate').validate({
 	}
 });
 
-$('#estado').change(function(e){
+$('#estado').geo();
+
+$('#estado').on('change', function(e){
 	var estado = $("option:selected", this).val();
 	$('#cidade').geo({
 		'estado': estado,

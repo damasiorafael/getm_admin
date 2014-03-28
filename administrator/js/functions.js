@@ -169,7 +169,7 @@ montaEmpresas = function(url, type){
 	                }
 	                divItens.push('<td class="al-center">'+ativo+'</td>');
 	                divItens.push('<td class="al-center">');
-	                divItens.push('<a href="#" class="btn btn-default btn-success btn-ajax-edit-empresa ajax-edit-'+json.items[i].id+'"><span class="fa fa-edit"></span> Editar</a>');
+	                //divItens.push('<a href="#" class="btn btn-default btn-success btn-ajax-edit-empresa ajax-edit-'+json.items[i].id+'"><span class="fa fa-edit"></span> Editar</a>');
 	                divItens.push('<a href="#" class="btn btn-default btn-danger btn-ajax-trash ajax-trash-'+json.items[i].id+'" rel="excluirEmpresa"><span class="fa fa-trash-o"></span> Excluir</a>');
 	                divItens.push('</td></tr>');
 				}

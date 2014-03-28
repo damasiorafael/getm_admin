@@ -1,5 +1,19 @@
 <?php
 	include('../inc/config.php');
+	
+	function filtraEstado($id){
+		$sqlEstado 		= "SELECT nome FROM `tb_estados` WHERE `id` = $id";
+		$queryEstado	= mysql_query($sqlEstado);
+		$estado 		= mysql_fetch_array($queryEstado);
+		return $estado["nome"];
+	}
+	
+	function filtraCidade($id){
+		$sqlCidade 		= "SELECT nome FROM `tb_cidades` WHERE `id` = $id";
+		$queryCidade	= mysql_query($sqlCidade);
+		$cidade 		= mysql_fetch_array($queryCidade);
+		return $cidade["nome"];
+	}
 
 	$key = anti_injection($_REQUEST["key"]);
 	//$json = "json({'items':[{'id':'1','usuario':'Rafael Damasio','username':'damasiorafael','email':'damasio_damasio@hotmail.com','lojista':'1'},{'id':'2','usuario':'Fernando Damasio','username':'damasiofernando','email':'kakaminhao_super@hotmail.com','lojista':'0'},{'id':'3','usuario':'Leonam Rodrigues','username':'rodriguesleonam','email':'leonan_aquariano@hotmail.com','lojista':'1'}]})";
@@ -38,6 +52,11 @@
 			while($dados = mysql_fetch_array($sql)){
 				$json .= "{'id':'".$dados["id"]."',";
 				$json .= "'nome':'".$dados["nome"]."',";
+				$json .= "'pais':'".$dados["pais"]."',";
+				$json .= "'estado':'".utf8_encode(filtraEstado($dados["estado"]))."',"; //$dados["estado"]."',";
+				//$json .= "'estado':'".$dados["estado"]."',";
+				$json .= "'cidade':'".utf8_encode(filtraCidade($dados["cidade"]))."',";
+				//$json .= "'cidade':'".$dados["cidade"]."',";
 				$json .= "'endereco':'".$dados["endereco"]."',";
 				$json .= "'fone':'".$dados["fone"]."',";
 				$json .= "'site':'".$dados["site"]."',";

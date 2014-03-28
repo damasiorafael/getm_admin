@@ -75,22 +75,20 @@
                   </div>
                   <div class="form-group">
                     <label for="pais">País</label>
-                    <input class="form-control" id="pais" name="pais" value="" />
+                    <select class="form-control" id="pais" name="pais">
+                        <option value="Brasil">Brasil</option>
+                    </select>
                   </div>
                   <div class="form-group">
                     <label for="estado">Estado</label>
                     <select class="form-control" id="estado" name="estado">
                         <option value="">-- Estado --</option>
-                        <option value="1">1</option>
-                        <option value="3">3</option>
                     </select>
                   </div>
                   <div class="form-group">
                     <label for="cidade">Cidade</label>
                     <select class="form-control" id="cidade" name="cidade">
-                        <option value="">-- Cidade --</option>
-                        <option value="1">1</option>
-                        <option value="3">3</option>
+                        <option value="">-- Selecione o estado --</option>
                     </select>
                   </div>
                   <div class="form-group">

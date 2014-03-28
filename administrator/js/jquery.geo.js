@@ -19,22 +19,18 @@
 			$.ajax({
 				url: config.json,//?product_id='+$this.attr('rel'),
 				data: { key : config.estado},
-				dataType: 'jsonp',
-				crossDomain: false,
-				jsonp: false,
-				jsonpCallback: 'json',
-				cache: true,
+				dataType: 'json',
 				success: function(json){
 					//code case success
 					var optionCities = [], //CRIA UM ARRAY PRA CONTROLE DO JSON
 					i, //VARIAVEL DE CONTROLE PRA ITERACAO
-					l = json.items.length; //TAMANHO DO JSON RETORNADO
+					l = json.length; //TAMANHO DO JSON RETORNADO
 					if(l < 1){ //SE O JSON VIER COM 0(ZERO) RESGISTRO
 						optionCities.push('<option value=""> -- Erro - Tente novamente! -- </option>');
 					} else { //SE O JSON VIER COM 1(UM) OU MAIS REGISTROS
-						optionCities.push('<option value=""> -- Selecione a cidade! -- </option>');
+						optionCities.push('<option value=""> -- Selecione -- </option>');
 						for(i = 0; i < l; i++){
-							optionCities.push('<option value="'+json.items[i].id+'">'+json.items[i].uf+' - '+json.items[i].nome+'</option>');
+							optionCities.push('<option value="'+json[i].id+'">'+json[i].nome+' - '+json[i].uf+'</option>');
 						}
 					}
 					insertOptions.html(optionCities.join(''));

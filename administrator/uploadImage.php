@@ -14,8 +14,11 @@
         $ativo          = (anti_injection($_POST['ativo']) == "") ? 0 : 1;
         $editarArquivo  = (anti_injection($_POST['editarArquivo']) == "") ? 0 : 1;
         $acao           = anti_injection($_POST['acao']);
-
-        $endereco       = anti_injection($_POST['endereco']);
+		
+		$pais       	= anti_injection($_POST['pais']);
+		$estado       	= anti_injection($_POST['estado']);
+		$cidade       	= anti_injection($_POST['cidade']);
+		$endereco       = anti_injection($_POST['endereco']);
         $fone           = anti_injection($_POST['fone']);
         $site           = anti_injection($_POST['site']);
         $ramo_atividade = anti_injection($_POST['ramo_atividade']);
@@ -130,6 +133,9 @@
             array_push($arrayCampos, 'arquivo');
         }
         if($acao == "addEmpresa" || $acao == "editaEmpresa"){
+			array_push($arrayCampos, 'pais');
+			array_push($arrayCampos, 'estado');
+			array_push($arrayCampos, 'cidade');
             array_push($arrayCampos, 'endereco');
             array_push($arrayCampos, 'fone');
             array_push($arrayCampos, 'site');
@@ -151,6 +157,9 @@
             array_push($arrayRequest, $arquivo);
         }
         if($acao == "addEmpresa" || $acao == "editaEmpresa"){
+			array_push($arrayRequest, $pais);
+			array_push($arrayRequest, $estado);
+			array_push($arrayRequest, $cidade);
             array_push($arrayRequest, $endereco);
             array_push($arrayRequest, $fone);
             array_push($arrayRequest, $site);
