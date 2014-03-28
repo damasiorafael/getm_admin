@@ -34,6 +34,19 @@ function splitLinkVideo(urlVideo){
     return video;
 }
 
+function capturaPrimeiroVideo(){
+	linkVideo = $('.carrosel-videos ul li:nth-child(1) a').attr('href');
+	console.log(linkVideo);
+	var myFrame = document.createElement("iframe");
+	myFrame.width = 573;
+	myFrame.height = 410;
+	myFrame.src = "//www.youtube.com/embed/"+splitLinkVideo(linkVideo);
+	myFrame.frameborder = 0;
+	myFrame.allowfullscreen = true;
+	
+	$('.iframe-video').html(myFrame);
+}
+
 function abreVideoFrame(urlVideo, typeOpen){
 	if(typeOpen == "iframe"){
 		//console.log(splitLinkVideo(urlVideo));
@@ -44,16 +57,21 @@ function abreVideoFrame(urlVideo, typeOpen){
 		myFrame.frameborder = 0;
 		myFrame.allowfullscreen = true;
 		
-		var spanFecha = document.createElement('span');
-		spanFecha.class = "btn-fechar";
-		
-		console.log(spanFecha);
-		
 		$('.container-lightbox').html('')
 		$('.container-lightbox').append(myFrame);
-		$('.container-lightbox').append(spanFecha);
-		//console.log(myFrame);
-		//<iframe width="640" height="480" src="//www.youtube.com/embed/ZpDQJnI4OhU" frameborder="0" allowfullscreen></iframe>
+		
+		$('.lightbox').fadeIn("slow");
+	} else if(typeOpen == "div"){
+		$('.iframe-video').html('<div class="load-video"></div>');
+		var myFrame = document.createElement("iframe");
+		myFrame.width = 573;
+		myFrame.height = 410;
+		myFrame.src = "//www.youtube.com/embed/"+splitLinkVideo(urlVideo);
+		myFrame.frameborder = 0;
+		myFrame.allowfullscreen = true;
+		setTimeout(function(){
+			$('.iframe-video').html(myFrame);
+		}, 500);
 	}
 }
 
@@ -140,8 +158,6 @@ $(document).ready(function(){
 		urlVideo = $this.attr('href');
 		
 		abreVideoFrame(urlVideo, typeOpen);
-		
-		$('.lightbox').fadeIn("slow");
 	});
 	$('.lightbox').hide();
 	$('.lateral ul li a').click(function(e){
@@ -156,5 +172,7 @@ $(document).ready(function(){
 	$('.btn-fechar').click(function(){
 		$('.lightbox').fadeOut("slow");
 	});
+	
+	capturaPrimeiroVideo();
 });
 

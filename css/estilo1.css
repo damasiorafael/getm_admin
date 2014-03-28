@@ -166,7 +166,9 @@ footer .borda {border-top: solid 1px #c5e3ee; border-bottom: solid 22px #222222;
 /*.lateral ul li */.titulo-video {color: #0683C0; float: left; font-size: 14px; font-weight: bold; margin-bottom: 5px;}
 .lateral ul li .descricao-video {display: inline-block; width: 220px; line-height: 17px; color: #555; }
 .play-video {width: 574px; float: left;}
-.iframe-video {width: 573px; height: 410px; background: #000; margin-bottom: 23px;}
+.iframe-video {width: 573px; height: 410px; background: #000; margin-bottom: 23px; position: relative;}
+.iframe-video .load-video { position: absolute; width: 128px; height: 128px; top: 50%; left: 50%; margin-top: -64px; margin-left: -64px; background: url("../images/ajax-loader-2.GIF") no-repeat 0 0;}
+
 .carrosel-videos {/*max-width: 574px;*/ overflow: auto;}
 .carrosel-videos ul {/*width: 3000px;*/ min-width: 574px; float: left; overflow-x: scroll;}
 .carrosel-videos ul li {width: 184px; float: left; margin-right: 15px;}

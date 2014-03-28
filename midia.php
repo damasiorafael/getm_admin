@@ -1,29 +1,13 @@
 <?php
+	include("includes/config.php");
 	$pag = "midia";
-?>
-<?php
-session_start();
-/*$id = $_POST['id'];
-$senha = $_POST['senha'];
-
-$_SESSION['id'] = $id;
-$_SESSION['senha'] = $senha;
-if(isset($id)){
-   //echo "Você está logado como: $id";
-   //header('location:http://localhost/GETM/index.php');
-}
-else
- // echo 'Você não está logado' // Não logado*/
-
-?>
-
-<?php
-function youtubeImage($url, $size = 'small'){
-    $url = explode('v=',$url);
-    $url = explode('&',$url[1]);
-    $url = $size == 'small' ? ('http://i1.ytimg.com/vi/' . $url[0] . '/mqdefault.jpg') : ('http://img.youtube.com/vi/' . $url[0] . '/0.jpg');
-	//i1.ytimg.com/vi/rXOBNsBmAps/mqdefault.jpg
-    return $url; }
+	function youtubeImage($url, $size = 'small'){
+		$url = explode('v=',$url);
+		$url = explode('&',$url[1]);
+		$url = $size == 'small' ? ('http://i1.ytimg.com/vi/' . $url[0] . '/mqdefault.jpg') : ('http://img.youtube.com/vi/' . $url[0] . '/0.jpg');
+		//i1.ytimg.com/vi/rXOBNsBmAps/mqdefault.jpg
+		return $url;
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,13 +40,25 @@ function youtubeImage($url, $size = 'small'){
                 <section class="conteudo midia">
                     <div class="lateral">
                         <ul>
-                            <li>
-                                <a href="https://www.youtube.com/watch?v=rXOBNsBmAps" class="thumb-video" rel="iframe">
-                                    <img width="184" height="106" alt="" src="<?php echo youtubeImage('https://www.youtube.com/watch?v=rXOBNsBmAps');?>" /> 
-                                </a>
-                                <a href="" class="titulo-video">Titulo Video</a>
-                                <span class="descricao-video">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </span>
-                            </li>
+                        	<?php
+								$sqlVideosLinha 	= "SELECT `titulo`, `resumo`, `link` FROM `videos_linha` WHERE `ativo` = 1 ORDER BY id ASC";
+								$queryVideosLinha   = mysql_query($sqlVideosLinha);
+								$numRowsVideosLinha	= mysql_num_rows($queryVideosLinha);
+								if($numRowsVideosLinha > 1){
+									//for($i = 0; $i < 12; $i++){
+									while($videosLinha = mysql_fetch_array($queryVideosLinha)){
+							?>
+                                        <li>
+                                            <a href="<?php echo $videosLinha["link"]; ?>" class="thumb-video" rel="iframe">
+                                                <img width="184" height="106" alt="" src="<?php echo youtubeImage($videosLinha["link"]);?>" /> 
+                                            </a>
+                                            <a href="" class="titulo-video"><?php echo substr_replace(substr($videosLinha["titulo"],0,26), ' (...)', -1, 1); ?></a>
+                                            <span class="descricao-video"><?php echo substr_replace(substr($videosLinha["resumo"],0,110), ' (...)', -1, 1); ?></span>
+                                        </li>
+                            <?php
+									}
+								}
+							?>
                         </ul>
                     </div>
                     <div class="play-video">
@@ -71,92 +67,24 @@ function youtubeImage($url, $size = 'small'){
                         </div>
                         <div class="carrosel-videos">
                             <ul>
-                                <li>
-                                    <a href="" class="thumb-video" rel="div">
-                                        <img alt="" src="<?php echo youtubeImage('https://www.youtube.com/watch?v=ZBcUxu2d9QM');?>" />
-                                    </a>
-                                    <a href="" class="titulo-video">Titulo Video Titulo Video Titulo Video</a>
-                                </li>
-
-                                <li>
-                                    <a href="" class="thumb-video" >
-                                        <img alt="" src="<?php echo youtubeImage('https://www.youtube.com/watch?v=ZBcUxu2d9QM');?>" />
-                                    </a>
-                                    <a href="" class="titulo-video">Titulo Video Titulo Video Titulo Video</a>
-                                </li>
-
-                                <li>
-                                    <a href="" class="thumb-video" >
-                                        <img alt="" src="<?php echo youtubeImage('https://www.youtube.com/watch?v=ZBcUxu2d9QM');?>" />
-                                    </a>
-                                    <a href="" class="titulo-video">Titulo Video Titulo Video Titulo Video</a>
-                                </li>
-                                <li>
-                                    <a href="" class="thumb-video" >
-                                        <img alt="" src="<?php echo youtubeImage('https://www.youtube.com/watch?v=ZBcUxu2d9QM');?>" />
-                                    </a>
-                                    <a href="" class="titulo-video">Titulo Video Titulo Video Titulo Video</a>
-                                </li>
-                                <li>
-                                    <a href="" class="thumb-video" >
-                                        <img alt="" src="<?php echo youtubeImage('https://www.youtube.com/watch?v=ZBcUxu2d9QM');?>" />
-                                    </a>
-                                    <a href="" class="titulo-video">Titulo Video Titulo Video Titulo Video</a>
-                                </li>
-                                <li>
-                                    <a href="" class="thumb-video" >
-                                        <img alt="" src="<?php echo youtubeImage('https://www.youtube.com/watch?v=ZBcUxu2d9QM');?>" />
-                                    </a>
-                                    <a href="" class="titulo-video">Titulo Video Titulo Video Titulo Video</a>
-                                </li>
-                                <li>
-                                    <a href="" class="thumb-video" >
-                                        <img alt="" src="<?php echo youtubeImage('https://www.youtube.com/watch?v=ZBcUxu2d9QM');?>" />
-                                    </a>
-                                    <a href="" class="titulo-video">Titulo Video Titulo Video Titulo Video</a>
-                                </li>
-                                <li>
-                                    <a href="" class="thumb-video" >
-                                        <img alt="" src="<?php echo youtubeImage('https://www.youtube.com/watch?v=ZBcUxu2d9QM');?>" />
-                                    </a>
-                                    <a href="" class="titulo-video">Titulo Video Titulo Video Titulo Video</a>
-                                </li>
-                                <li>
-                                    <a href="" class="thumb-video" >
-                                        <img alt="" src="<?php echo youtubeImage('https://www.youtube.com/watch?v=ZBcUxu2d9QM');?>" />
-                                    </a>
-                                    <a href="" class="titulo-video">Titulo Video Titulo Video Titulo Video</a>
-                                </li>
-                                <li>
-                                    <a href="" class="thumb-video" >
-                                        <img alt="" src="<?php echo youtubeImage('https://www.youtube.com/watch?v=ZBcUxu2d9QM');?>" />
-                                    </a>
-                                    <a href="" class="titulo-video">Titulo Video Titulo Video Titulo Video</a>
-                                </li>
-                                <li>
-                                    <a href="" class="thumb-video" >
-                                        <img alt="" src="<?php echo youtubeImage('https://www.youtube.com/watch?v=ZBcUxu2d9QM');?>" />
-                                    </a>
-                                    <a href="" class="titulo-video">Titulo Video Titulo Video Titulo Video</a>
-                                </li>
-                                <li>
-                                    <a href="" class="thumb-video" >
-                                        <img alt="" src="<?php echo youtubeImage('https://www.youtube.com/watch?v=ZBcUxu2d9QM');?>" />
-                                    </a>
-                                    <a href="" class="titulo-video">Titulo Video Titulo Video Titulo Video</a>
-                                </li>
-                                <li>
-                                    <a href="" class="thumb-video" >
-                                        <img alt="" src="<?php echo youtubeImage('https://www.youtube.com/watch?v=ZBcUxu2d9QM');?>" />
-                                    </a>
-                                    <a href="" class="titulo-video">Titulo Video Titulo Video Titulo Video</a>
-                                </li>
-                                <li>
-                                    <a href="" class="thumb-video" >
-                                        <img alt="" src="<?php echo youtubeImage('https://www.youtube.com/watch?v=ZBcUxu2d9QM');?>" />
-                                    </a>
-                                    <a href="" class="titulo-video">Titulo Video Titulo Video Titulo Video</a>
-                                </li>
+                            	<?php
+									$sqlVideos 		= "SELECT `titulo`, `resumo`, `link` FROM `videos_linha` WHERE `ativo` = 1 ORDER BY id ASC";
+									$queryVideos   	= mysql_query($sqlVideos);
+									$numRowsVideos	= mysql_num_rows($queryVideos);
+									if($numRowsVideos > 1){
+										//for($i = 0; $i < 12; $i++){
+										while($videos = mysql_fetch_array($queryVideos)){
+								?>
+                                            <li>
+                                                <a href="<?php echo $videos["link"]; ?>" class="thumb-video" rel="div">
+                                                    <img alt="" src="<?php echo youtubeImage($videos["link"]); ?>" />
+                                                </a>
+                                                <span class="titulo-video"><?php echo substr_replace(substr($videos["titulo"],0,22), ' (...)', -1, 1); ?></span>
+                                            </li>
+                                <?php
+										}
+									}
+								?>
                             </ul>
                         </div>
                     </div>
