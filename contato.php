@@ -1,9 +1,6 @@
 <?php
 	$pag = "contato";
-?>
-<?php
-    session_start();
-    //$_SESSION["erro_seguranca"];
+	include("includes/config.php");
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +21,8 @@
         <div class=" container-conteudo">
             <header>
                 <?php include("includes/header-logo.php"); ?>
+                
+                <?php include("includes/header-login.php"); ?>
                 
                 <?php include("includes/header-menu.php"); ?>
             </header>

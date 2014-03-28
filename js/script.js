@@ -36,7 +36,7 @@ function splitLinkVideo(urlVideo){
 
 function capturaPrimeiroVideo(){
 	linkVideo = $('.carrosel-videos ul li:nth-child(1) a').attr('href');
-	console.log(linkVideo);
+	//console.log(linkVideo);
 	var myFrame = document.createElement("iframe");
 	myFrame.width = 573;
 	myFrame.height = 410;
@@ -76,6 +76,21 @@ function abreVideoFrame(urlVideo, typeOpen){
 }
 
 $(document).ready(function(){ 
+	/*$('#form-busca-empresa').validate({
+		submitHandler: function(form) {
+			$.ajax({
+				url: "json/json_empresas.php",
+				type: "post",
+				data: form.serialize(),
+				success: function(json){
+					//
+				},
+				error: function(jqXHR, textStatus, ex){
+					console.log(textStatus + "," + ex + "," + jqXHR.responseText);
+				}
+			});
+		}
+	});*/
 	/*FORMULÁRIO CONTATO*/
 	$('#form-contato').validate({
 		errorElement: "span",
@@ -174,5 +189,28 @@ $(document).ready(function(){
 	});
 	
 	capturaPrimeiroVideo();
+	
+	function mapaGoogle(lat, long, el){
+		var map;
+		var latlng = new google.maps.LatLng(lat, long);
+		var options = {
+			zoom: 5,
+			center: latlng,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		map = new google.maps.Map(el, options);
+		return map;
+	}
 });
 
+$('#selEstado').geo({
+	'json' : 'administrator/json/json_estados.php'
+});
+
+$('#selEstado').on('change', function(e){
+	var estado = $("option:selected", this).val();
+	$('#selCidade').geo({
+		'estado': estado,
+		'json' : 'administrator/json/json_estados.php' 
+	});
+});
