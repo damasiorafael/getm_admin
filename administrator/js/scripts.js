@@ -542,15 +542,3 @@ $('#estado').on('change', function(e){
 		'json' : 'json/json_estados.php' 
 	});
 });
-
-$('body.empresas .table-users tr th:nth-child(8)').hide();
-$('body.empresas .table-users tr td:nth-child(8)').hide();
-
-$('body.empresas .table-users tr th:nth-child(9)').hide();
-$('body.empresas .table-users tr td:nth-child(9)').hide();
-
-$('body.empresas .table-users tr th:nth-child(11)').hide();
-$('body.empresas .table-users tr td:nth-child(11)').hide();
-
-$('body.empresas .table-users tr th:nth-child(12)').hide();
-$('body.empresas .table-users tr td:nth-child(12)').hide();

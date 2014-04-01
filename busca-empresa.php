@@ -1,4 +1,5 @@
 <?php
+	header ('Content-type: text/html; charset=UTF-8');
 	$pag = "busca-empresa";
 	include("includes/config.php");
 	
@@ -55,7 +56,7 @@
 			$json[$i]["endereco"] = $dados["endereco"];
 			$json[$i]["fone"] = $dados["fone"];
 			$json[$i]["site"] = $dados["site"];
-			$json[$i]["ramo_atividade"] = $dados["ramo_atividade"];
+			$json[$i]["ramo_atividade"] = utf8_decode($dados["ramo_atividade"]);
 			$json[$i]["arquivo"] = $dados["arquivo"];
 			$json[$i]["latitude"] = $dados["latitude"];
 			$json[$i]["longitude"] = $dados["longitude"];
@@ -69,6 +70,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php include("includes/head.php"); ?>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfVpzxaQRLeD6z-r-RaEzNbRfD-c6aWmo&sensor=true"></script>
 </html>
 <body>
     <div class="container container-conteudo ">
@@ -121,24 +123,73 @@
                                     <li>
                                         <div class="foto-endereco">
                                             <div class="foto-empresa">
-                                                <img src="administrator/uploads/images/<?php echo $json[$i]["arquivo"]; ?>" alt="">
+                                                <img src="administrator/uploads/images/<?php echo $json[$i]["arquivo"]; ?>" alt="" width="410">
                                             </div>
-                    
-                                            <div class="endereco-empresa">
-                                                <h3><?php echo $json[$i]["nome"]; ?></h3>
-                                                <p class="sublinhado endereco"><?php echo $json[$i]["endereco"]; ?> - <?php echo $json[$i]["cidade"]; ?> - <?php echo $json[$i]["estado"]; ?></p>
-                                                <p class="telefone"><?php echo $json[$i]["fone"]; ?></p>
-                                                <?php if($json[$i]["site"] != ""){ ?>
-                                                    <a href="<?php echo $json[$i]["site"]; ?>" target="blank" class="sublinhado site"><?php echo $json[$i]["site"]; ?></a>
-                                                <?php } ?>
-                                                <?php if($json[$i]["ramo_atividade"] != ""){ ?>
-                                                    <p class="tipo-estabelecimento"><?php echo $json[$i]["ramo_atividade"]; ?></p>
-                                                <?php } ?>
+                                            <div id="map-canvas-<?php echo $json[$i]["id"]; ?>" class="mapa"></div>
+											<script type="text/javascript">
+                                                function initialize() {
+                                                    <?php
+                                                        if($json[$i]["latitude"] != '' && $json[$i]["latitude"] != ''){
+                                                    ?>
+                                                            var myLatlng = new google.maps.LatLng(<?php echo $json[$i]["latitude"]; ?>, <?php echo $json[$i]["longitude"]; ?>);
+                                                    <?php
+                                                        } else {
+                                                    ?>
+                                                            var myLatlng = new google.maps.LatLng(-14.2400732, -53.1805017);
+                                                    <?php
+                                                        }
+                                                    ?>
+                                                    var mapOptions = {
+                                                        center: myLatlng,
+                                                        zoom: 13
+                                                    };
+                                                    var map = new google.maps.Map(document.getElementById("map-canvas-<?php echo $json[$i]["id"]; ?>"), mapOptions);
+                                                    <?php
+                                                        if($json[$i]["latitude"] != '' && $json[$i]["latitude"] != ''){
+                                                    ?>
+                                                            var contentString = ''+
+                                                                '<div id="content-<?php echo $json[$i]["id"]; ?>" class="content-maps">'+
+                                                                    '<h1 id="firstHeading-<?php echo $json[$i]["id"]; ?>" class="firstHeading"><?php echo $json[$i]["nome"]; ?></h1>'+
+                                                                    '<div id="bodyContent-<?php echo $json[$i]["id"]; ?>">'+
+                                                                        '<p><?php echo $json[$i]["endereco"]; ?>. <?php echo $json[$i]["cidade"]; ?> - <?php echo $json[$i]["estado"]; ?></p>'+
+                                                                        '<p></p>'+
+                                                                        '<p><?php echo $json[$i]["fone"]; ?></p>'+
+                                                                    '</div>'+
+                                                                '</div>';
+                                                    <?php
+                                                        } else {
+                                                    ?>
+                                                            var contentString = ''+
+                                                                '<div id="content-<?php echo $json[$i]["id"]; ?>" class="content-maps">'+
+                                                                    '<h1 id="firstHeading-<?php echo $json[$i]["id"]; ?>" class="firstHeading">Informações não encontradas!</h1>'+
+                                                                '</div>';
+                                                    <?php
+                                                        }
+                                                    ?>
+                                                    var infowindow = new google.maps.InfoWindow({
+                                                        content: contentString
+                                                    });
+                                                    var marker = new google.maps.Marker({
+                                                        position: myLatlng,
+                                                        map: map,
+                                                        title: '<?php echo $json[$i]["nome"]; ?>'
+                                                    });
+                                                    infowindow.open(map,marker);
+                                                }
+                                                google.maps.event.addDomListener(window, 'load', initialize);
+                                            </script>
                                             </div>
+                                        <div class="endereco-empresa">
+                                            <h3><?php echo $json[$i]["nome"]; ?></h3>
+                                            <p class="sublinhado endereco"><?php echo $json[$i]["endereco"]; ?> - <?php echo $json[$i]["cidade"]; ?> - <?php echo $json[$i]["estado"]; ?></p>
+                                            <p class="telefone"><?php echo $json[$i]["fone"]; ?></p>
+                                            <?php if($json[$i]["site"] != ""){ ?>
+                                                <a href="<?php echo $json[$i]["site"]; ?>" target="blank" class="sublinhado site"><?php echo $json[$i]["site"]; ?></a>
+                                            <?php } ?>
+                                            <?php if($json[$i]["ramo_atividade"] != ""){ ?>
+                                                <p class="tipo-estabelecimento"><?php echo $json[$i]["ramo_atividade"]; ?></p>
+                                            <?php } ?>
                                         </div>
-                                        <?php /*?><div id="mapa" class="mapa">
-                                            <?php /*?><iframe width="598" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=pt&amp;geocode=&amp;q=Av.Boa+Viagem,+9+Pina,+Recife+-+PE&amp;aq=t&amp;sll=37.0625,-95.677068&amp;sspn=35.494074,83.935547&amp;ie=UTF8&amp;hq=&amp;hnear=Avenida+Boa+Viagem,+9+-+Boa+Viagem,+Pernambuco,+Brasil&amp;t=h&amp;ll=-8.077416,-34.8773&amp;spn=0.038241,0.051241&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe><?php * /?>
-                                        </div><?php */?>
                                     </li>
                         <?php
 								}
@@ -149,7 +200,7 @@
 							}
 						?>
                     </ul>
-				</div>
+                    <?php /*?><iframe width="598" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=pt&amp;geocode=&amp;q=Av.Boa+Viagem,+9+Pina,+Recife+-+PE&amp;aq=t&amp;sll=37.0625,-95.677068&amp;sspn=35.494074,83.935547&amp;ie=UTF8&amp;hq=&amp;hnear=Avenida+Boa+Viagem,+9+-+Boa+Viagem,+Pernambuco,+Brasil&amp;t=h&amp;ll=-8.077416,-34.8773&amp;spn=0.038241,0.051241&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe><?php */?>
 			</section>
 		</div>
     </div>

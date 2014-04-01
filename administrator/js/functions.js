@@ -176,6 +176,17 @@ montaEmpresas = function(url, type){
 				divItens.push('</tbody>');
 			}
 			$('.table-users thead').after(divItens.join(''));
+			$('body.empresas .table-users tr th:nth-child(8)').hide();
+			$('body.empresas .table-users tr td:nth-child(8)').hide();
+			
+			$('body.empresas .table-users tr th:nth-child(9)').hide();
+			$('body.empresas .table-users tr td:nth-child(9)').hide();
+			
+			$('body.empresas .table-users tr th:nth-child(11)').hide();
+			$('body.empresas .table-users tr td:nth-child(11)').hide();
+			
+			$('body.empresas .table-users tr th:nth-child(12)').hide();
+			$('body.empresas .table-users tr td:nth-child(12)').hide();
 		},
 		error: function(jqXHR, textStatus, ex) {
         	//console.log(textStatus + "," + ex + "," + jqXHR.responseText);

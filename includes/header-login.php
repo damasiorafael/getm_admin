@@ -7,7 +7,7 @@
                 <?php linkRedeSocial("youtube"); ?>
 			</p>
 		</div>
-		<form action="http://getm.gmrkomeia.com.br/session" id="form-login" method="post">
+		<form action="http://www2.getm.com.br/session" id="form-login" method="post">
 			<span class="color-azul">Acesse sua conta</span>
 			<?php /*?><p>
 				<input type="radio" name="tipo-user" value="cliente" required="required">Cliente
