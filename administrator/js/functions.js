@@ -242,7 +242,7 @@ montaFaq = function(url, type){
 //AJAX PARA MONTAR TABELA DE REDES SOCIAIS
 montaSocials = function(url, type){
 	$.ajax({
-		url: url,//?product_id='+$this.attr('rel'),
+		url: url,
 		data: { key : type},
 		dataType: 'jsonp',
 		crossDomain: false,
@@ -289,49 +289,31 @@ montaSocials = function(url, type){
 //AJAX PARA MONTAR TABELA DE CONTATO
 montaContato = function(url, type){
 	$.ajax({
-		url: url,//?product_id='+$this.attr('rel'),
+		url: url,
 		data: { key : type},
-		dataType: 'jsonp',
-		crossDomain: false,
-		jsonp: false,
-		jsonpCallback: 'json',
-		cache: true,
+		dataType: 'json',
 		success: function(json){
 			var divItens = [],
 			i,
-			l = json.items.length;
+			l = json.length;
 			if(l < 1){
-				divItens.push('<tbody><tr><td colspan="11">Nenhum contato encontrado!</td></tr></tbody>');
+				divItens.push('<tbody><tr><td colspan="11">Nenhuma pergunta cadastrada!</td></tr></tbody>');
 			} else {
 				divItens.push('<tbody>');
 				for(i = 0; i < l; i++){
-					divItens.push('<tr class="'+json.items[i].id+'"><td class="al-center">'+json.items[i].id+'</td>');
-					divItens.push('<td>'+json.items[i].nome+'</td>');
-					divItens.push('<td>'+json.items[i].email+'</td>');
-					divItens.push('<td>'+json.items[i].departamento+'</td>');
-					divItens.push('<td>'+json.items[i].mensagem+'</td>');
-	                /*var lido;
-	                if(json.items[i].lido == "1"){
-	                	lido = '<i class="fa fa-check fa-1x icon-lojista-green"></i>'
-	                } else {
-	                	lido = '<i class="fa fa-times fa-1x icon-lojista-red"></i>'
-	                }
-	                divItens.push('<td class="al-center">'+lido+'</td>');
-	                var respondido;
-	                if(json.items[i].respondido == "1"){
-	                	respondido = '<i class="fa fa-check fa-1x icon-lojista-green"></i>'
-	                } else {
-	                	respondido = '<i class="fa fa-times fa-1x icon-lojista-red"></i>'
-	                }
-	                divItens.push('<td class="al-center">'+respondido+'</td>');*/
-	                divItens.push('</tr>');
+					divItens.push('<tr class="'+json[i].id+'"><td class="al-center">'+json[i].id+'</td>');
+					divItens.push('<td>'+json[i].nome+'</td>');
+					divItens.push('<td>'+json[i].email+'</td>');
+					divItens.push('<td>'+json[i].departamento+'</td>');
+					divItens.push('<td>'+json[i].mensagem+'</td>');
+					divItens.push('</tr>');
 				}
 				divItens.push('</tbody>');
 			}
 			$('.table-users thead').after(divItens.join(''));
 		},
 		error: function(jqXHR, textStatus, ex) {
-        	//console.log(textStatus + "," + ex + "," + jqXHR.responseText);
+        	console.log(textStatus + "," + ex + "," + jqXHR.responseText);
         	var divItens = [];
         	divItens.push('<tbody><tr><td colspan="11" class="al-center fa-2x">Nenhum contato encontrado!</td></tr></tbody>');
         	$('.table-users thead').after(divItens.join(''));

@@ -48,7 +48,7 @@
                                 <label for="departamento">Departamento</label>
                                 <select name="departamento" id="departamento">
                                     <option value="">Selecione o departamento</option>
-                                    <option value="Contato - contato@getm.com">Contato - contato@getm.com</option>
+                                    <option value="Suporte - suporte@getm.com">Suporte - suporte@getm.com</option>
                                     <option value="Financeiro - financeiro@getm.com">Financeiro - financeiro@getm.com</option>
                                     <option value="Marketing - marketing@getm.com">Marketing - marketing@getm.com</option>
                                 </select>

@@ -243,6 +243,9 @@ $('.btn-ajax-edit-faq').on('click', function(e){
 	} else {
 		$('#formEditFaq input#ativo').removeAttr('checked');
 	}
+	$('body,html').scrollTop(function(){
+		$('body,html').animate({scrollTop:0},600);
+	});
 	$('.col-add-edit').fadeIn();
 });
 

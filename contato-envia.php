@@ -58,7 +58,7 @@
 	$mailer->SMTPSecure = "tls";
 	$mailer->Port = "587"; //  Indica a porta de conexao para a saida de e-mails
 	$mailer->Host = "smtp.live.com";
-	$mailer->Username = "suporte@getm.com.br"; //Informe o e-mai o completo
+	$mailer->Username = "suporte@getm.com.br"; //Informe o e-mail o completo
 	$mailer->Password = "6mRDe7iy"; //Senha da conta de email
 	$mailer->FromName = "GETM - Contato"; //Nome que sera exibido para o destinatario
 	$mailer->From = "suporte@getm.com.br"; //Obrigatorio ser a mesma caixa postal indicada em "Username"

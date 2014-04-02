@@ -97,20 +97,18 @@
 			echo $json;
 		break;
 		case 'contato':
-			$json = "json({'items':[";
+			$json = Array();
 			$sql = mysql_query("SELECT * FROM contato") or die(mysql_error());
+			$i = 0;
 			while($dados = mysql_fetch_array($sql)){
-				$json .= "{'id':'".$dados["id"]."',";
-				$json .= "'nome':'".$dados["nome"]."',";
-				$json .= "'email':'".$dados["email"]."',";
-				$json .= "'departamento':'".$dados["departamento"]."',";
-				$json .= "'mensagem':'".$dados["mensagem"]."'},";
-				//$json .= "'lido':'".$dados["lido"]."',";
-				//$json .= "'respondido':'".$dados["respondido"]."'},";
+				$json[$i]["id"] = $dados["id"];
+				$json[$i]["nome"] = $dados["nome"];
+				$json[$i]["email"] = $dados["email"];
+				$json[$i]["departamento"] = $dados["departamento"];
+				$json[$i]["mensagem"] = $dados["mensagem"];
+				$i++;
 			}
-			$json .= "]})";
-			$json = substr_replace($json, '', -4, 1);
-			echo $json;
+			print_r(json_encode($json));
 		break;
 		case 'videos':
 			$json = "json({'items':[";
