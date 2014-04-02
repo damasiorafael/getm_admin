@@ -6,7 +6,7 @@
 .table-users td a.btn { margin-right: 6px;}
 
 /* ELEMENTOS GERAIS */
-.col-add-edit { position: relative; display: none;}
+.col-add-edit { position: relative; display: block;}
 .el-overlay { position: absolute; top: 0; left: 0; width: 100%; background: #FFF; opacity: .90; display: none;}
 .overlay-load {}
 .progress-bar-form { margin: auto; width: 50%; top: 50%; left: 50%; margin-top: -10px; position: absolute;}
@@ -14,6 +14,8 @@
 
 .table-users-relative { position: relative;}
 .cont-button-add-user { position: absolute; top: 0; right: 15px;}
+
+.col-lista-users { display: none;}
 
 .icon-lojista-green { color: #5CB85C;}
 .icon-lojista-red { color: #D9534F;}

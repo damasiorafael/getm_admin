@@ -95,7 +95,6 @@
         $totaldecampos2 = count($campos);
         //Trata os valores para o BD
         $valores = explode("|",$valores);
-        //$totaldevalores = count($valores);
         $grava = "UPDATE $tabela SET ";
         for ($i=0;$i<$totaldecampos;$i++){
         	$grava .= $campos[$i]."='";
@@ -127,13 +126,13 @@
 
 	// FUNÇÃO PARA SELECT NO DB
     function logaBanco($tabela,$user,$senha){
-        $checa = "SELECT username, nome FROM users WHERE username = '$user' AND senha = '$senha'";
+        $checa = "SELECT id, username, nome FROM users WHERE username = '$user' AND senha = '$senha'";
         //CHECA NO BANCO DE DADOS
 		$checar = mysql_query($checa);
 		$dados = mysql_fetch_array($checar);
-		//print_r($dados);
 		if(mysql_num_rows($checar) >= 1){
-			$_SESSION['user_logado'] = $dados["nome"];
+			$_SESSION['user_logado'] 	= $dados["nome"];
+			$_SESSION['id_logado'] 		= $dados["id"];
 			return true;
 		} else {
 			return false;

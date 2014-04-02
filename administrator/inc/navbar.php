@@ -37,8 +37,8 @@
       <li class="dropdown user-dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION['user_logado'];//Rafael Damasio ?> <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <!-- <li><a href="#"><i class="fa fa-user"></i> Perfil</a></li> -->
-          <!-- <li class="divider"></li> -->
+          <li><a href="users.php?idUser=<?php echo $_SESSION['id_logado']; ?>"><i class="fa fa-edit"></i> Alterar senha</a></li>
+          <li class="divider"></li>
           <li><a href="logout.php"><i class="fa fa-power-off"></i> Sair</a></li>
         </ul>
       </li>

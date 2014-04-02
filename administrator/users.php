@@ -17,7 +17,7 @@
               <li><i class="fa fa-home"></i> Home</li>
               <li class="active"><i class="fa fa-user"></i> users</li>
             </ol>
-            <div class="col-lg-8">
+            <div class="col-lg-8 col-lista-users">
               <div class="cont-button-add-user">
                 <a href="#" class="btn btn-default btn-success btn-ajax-add"><span class="fa fa-check"></span> Adicionar</a>
               </div>
@@ -56,7 +56,7 @@
                   <div class="progress-bar"></div>
                 </div>
               </div>
-              <h2>Editar Usuário</h2>
+              <h2>Dados Usuário</h2>
               <div class="form-responsivo">
                 <form role="form" id="formEditUser" class="form form-validate">
                   <div class="form-group">
@@ -81,15 +81,6 @@
                   <div class="form-group">
                     <label for="confirmaSenha">Confirmar senha</label>
                     <input class="form-control" id="confirmaSenha" type="password" name="confirmaSenha" value="" />
-                  </div>
-                  <div class="form-group form-group-lojista">
-                    <label for="confirmaSenha">Lojista: </label>
-                    <label class="radio-inline">
-                      <input id="lojista" type="radio" checked="" value="1" name="lojista">Sim
-                    </label>
-                    <label class="radio-inline">
-                      <input id="lojista" type="radio" checked="" value="0" name="lojista">Não
-                    </label>
                   </div>
                   <div class="form-group pull-right">
                     <button type="submit" class="btn btn-default btn-success btn-salva-user"><span class="fa fa-check"></span> Salvar</button>
