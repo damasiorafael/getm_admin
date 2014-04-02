@@ -60,7 +60,8 @@ footer .borda {border-top: solid 1px #c5e3ee; border-bottom: solid 22px #222222;
 .redes-sociais {width: 230px;}
 .redes-sociais ul {width: 105px; height: 28px; float: left; border-left: dotted 1px #46757f; border-right: dotted 1px #46757f; padding-left: 10px; margin-left: 10px;}
 .redes-sociais a {display: inline-block; float: left; margin-right: 10px;}
-.google {background: url(../images/icon-google.png) no-repeat; width: 90px; height: 25px;}
+.google {background: url(../images/google_plus.png) no-repeat; background-size: 95%; width: 25px; height: 25px;}
+.linkedin {background: url(../images/linkedin.png) no-repeat; background-size: 100%; width: 25px; height: 25px;}
 .twitter {background: url(../images/icon-twitter.png)no-repeat; width: 25px; height: 25px; }
 .facebook {background: url(../images/icon-facebook.png) no-repeat; width: 25px; height: 25px;}
 .youtube {background: url(../images/icon-youtube.png)no-repeat; width: 25px; height: 25px;}
@@ -177,8 +178,8 @@ footer .borda {border-top: solid 1px #c5e3ee; border-bottom: solid 22px #222222;
 
 .carrosel-videos {/*max-width: 574px;*/ overflow: auto;}
 .carrosel-videos ul {/*width: 3000px;*/ min-width: 574px; float: left; overflow-x: scroll;}
-.carrosel-videos ul li {width: 184px; float: left; margin-right: 15px;}
-.carrosel-videos ul li .thumb-video {float: none; margin-bottom: 5px;}
+.carrosel-videos ul li {width: 164px; float: left; margin-right: 15px;}
+.carrosel-videos ul li .thumb-video {float: none; margin-bottom: 5px; width: 164px;}
 .carrosel-videos ul li .titulo-video {float: none;}
 .lightbox {position: absolute; width: 100%; background: rgba(0,0,0,0.8); z-index: 9998; }
 .wrapper-lightbox {position: relative; width: 696px; height: 503px; left: 50%; top: 50%; margin-top: -251px; margin-left: -348px;}

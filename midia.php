@@ -41,7 +41,7 @@
                     <div class="lateral">
                         <ul>
                         	<?php
-								$sqlVideosLinha 	= "SELECT `titulo`, `resumo`, `link` FROM `videos_linha` WHERE `ativo` = 1 ORDER BY id ASC";
+								$sqlVideosLinha 	= "SELECT `titulo`, `resumo`, `link` FROM `videos_linha` WHERE `ativo` = 1 ORDER BY id DESC";
 								$queryVideosLinha   = mysql_query($sqlVideosLinha);
 								$numRowsVideosLinha	= mysql_num_rows($queryVideosLinha);
 								if($numRowsVideosLinha > 1){
@@ -68,7 +68,7 @@
                         <div class="carrosel-videos">
                             <ul>
                             	<?php
-									$sqlVideos 		= "SELECT `titulo`, `resumo`, `link` FROM `videos_linha` WHERE `ativo` = 1 ORDER BY id ASC";
+									$sqlVideos 		= "SELECT `titulo`, `resumo`, `link` FROM `videos` WHERE `ativo` = 1 ORDER BY id DESC";
 									$queryVideos   	= mysql_query($sqlVideos);
 									$numRowsVideos	= mysql_num_rows($queryVideos);
 									if($numRowsVideos > 1){
@@ -76,8 +76,8 @@
 										while($videos = mysql_fetch_array($queryVideos)){
 								?>
                                             <li>
-                                                <a href="<?php echo $videos["link"]; ?>" class="thumb-video" rel="div">
-                                                    <img alt="" src="<?php echo youtubeImage($videos["link"]); ?>" />
+                                                <a href="<?php echo $videos["link"]; ?>" class="thumb-video thumb-video-2" rel="div">
+                                                    <img alt="" src="<?php echo youtubeImage($videos["link"]); ?>" width="164" />
                                                 </a>
                                                 <span class="titulo-video"><?php echo substr_replace(substr($videos["titulo"],0,22), ' (...)', -1, 1); ?></span>
                                             </li>

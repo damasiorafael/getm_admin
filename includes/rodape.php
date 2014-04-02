@@ -27,6 +27,7 @@
 					<h3 class=" ">COMPARTILHE</h3>
                     <?php linkRedeSocial("google"); ?>
 					<!-- <a href="" class="google " title="Siga-nos no Google+"></a> -->
+                    <?php linkRedeSocial("linkedin"); ?>
 					<ul>
 						<li class="">
                         	<?php linkRedeSocial("twitter"); ?>
@@ -49,7 +50,7 @@
 						<img src="images/logo-rodape.png" height="57" width="162" alt="">
 					</a>
 				</h2>
-				<p class="">GETM LTDA 2014. Todos os direitos reservados.</p>
+				<p class="">GETM &copy; Copyright 2014 - Todos os direitos reservados.</p>
 			</div>
 		</div>
 	</div>
