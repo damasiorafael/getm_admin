@@ -5,6 +5,8 @@
 	error_reporting(1);
 	//VARIAVEIS DE AMBIENTE
 	session_start();
+	//echo $_SERVER['SERVER_NAME'];
+	
 	if($_SERVER['SERVER_NAME'] == "localhost"){
 		$host 	= "localhost";
 		$user 	= "root";

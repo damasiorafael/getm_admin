@@ -139,19 +139,71 @@ $('.btn-ajax-edit-empresa').on('click', function(e){
 	idSeleciona 			= $this.attr('class').split(' ')[4].split('-')[2];
 	editaEmpresaId 			= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(1)').text();
 	editaNomeEmpresa 		= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(2)').text();
-	editaEnderecoEmpresa 	= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(3)').text();
-	editaFoneEmpresa 		= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(4)').text();
-	editaSiteEmpresa 		= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(5)').text();
-	editaRamoEmpresa 		= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(6)').text();
-	editaLatitudeEmpresa 	= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(8)').text();
-	editaLongitudeEmpresa	= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(9)').text();
-	editaEmpresaAtivo		= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(10)').html();
+	
+	editaPaisEmpresa 		= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(3)').text();
+	editaEstadoEmpresa 		= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(4)').text();
+	editaCidadeEmpresa 		= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(5)').text();
+	
+	editaEnderecoEmpresa 	= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(6)').text();
+	editaFoneEmpresa 		= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(7)').text();
+	editaSiteEmpresa 		= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(8)').text();
+	editaRamoEmpresa 		= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(9)').text();
+	editaLatitudeEmpresa 	= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(11)').text();
+	editaLongitudeEmpresa	= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(12)').text();
+	editaEmpresaAtivo		= $('.table-users').find('tr.'+idSeleciona).find('td:nth-child(13)').html();
+	
+	if(editaEstadoEmpresa != ''){
+		$.ajax({
+			url: "json/json_estados.php",
+			data: { estado : editaEstadoEmpresa},
+			dataType: 'json',
+			success: function(data){
+				var divItens = [],
+				i,
+				l = data.length;
+				for(i = 0; i < l; i++){
+					$('#estado').find('option[value="'+data[i].id+'"]').attr('selected',true);
+					$('#cidade').geo({
+						'estado': data[i].id,
+						'json' : 'json/json_estados.php' 
+					});
+					if(editaCidadeEmpresa != ''){
+						$.ajax({
+							url: "json/json_estados.php",
+							data: { cidade : editaCidadeEmpresa, estado : data[i].id},
+							dataType: 'json',
+							success: function(json){
+								l = json.length;
+								for(i = 0; i < l; i++){
+									idCity = json[i].id;
+									document.addEventListener('DOMAttrModified', function(){
+										$('#cidade').find('option[value="'+idCity+'"]').attr('selected',true);
+									});
+								}
+							},
+							error: function(jqXHR, textStatus, ex){
+								//console.log(textStatus + "," + ex + "," + jqXHR.responseText);
+							}
+						});
+					}
+				}
+			},
+			error: function(jqXHR, textStatus, ex){
+				//console.log(textStatus + "," + ex + "," + jqXHR.responseText);
+			}
+		});
+	}
 	
 	$('.col-add-edit > h2').text('Editar Empresa')
 	$('#formEditEmpresa input#acao').val('editaEmpresa');
 
 	$('#formEditEmpresa input#id').val(editaEmpresaId);
 	$('#formEditEmpresa input#nome').val(editaNomeEmpresa);
+	
+	$('#formEditEmpresa input#pais').val(editaPaisEmpresa);
+	$('#formEditEmpresa input#estado').val(editaEstadoEmpresa);
+	$('#formEditEmpresa input#cidade').val(editaCidadeEmpresa);
+	
 	$('#formEditEmpresa input#endereco').val(editaEnderecoEmpresa);
 	$('#formEditEmpresa input#fone').val(editaFoneEmpresa);
 	$('#formEditEmpresa input#site').val(editaSiteEmpresa);
