@@ -382,12 +382,12 @@ enviaForm = function(el, url, acao){
 		success: function(txt){
 			if(txt == 'success'){
 				alert('Dados salvos com sucesso!');
-				//console.log(txt);
 				window.location=window.location;
 			} else if(txt == 'error'){
 				alert('Ocorreu um erro, por favor tente novamente!');
 			} else {
 				alert(txt);
+				$('.el-overlay').hide();
 			}
 			$(el).parent().parent().fadeOut();
 			return false;

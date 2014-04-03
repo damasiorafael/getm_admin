@@ -22,7 +22,6 @@
       <li><a href="videos.php"><i class="fa fa-video-camera"></i> Vídeos</a></li>
       <li><a href="videos-linha.php"><i class="fa fa-video-camera"></i> Vídeos Linha do Tempo</a></li>
       <li><a href="contatos.php"><i class="fa fa-envelope"></i> Contatos</a></li>
-      <?php /*<li><a href="users.php"><i class="fa fa-user"></i> Users</a></li>*/ ?>
       <!-- <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> Região <b class="caret"></b></a>
         <ul class="dropdown-menu">
@@ -32,12 +31,11 @@
         </ul>
       </li> -->
     </ul>
-
     <ul class="nav navbar-nav navbar-right navbar-user">
       <li class="dropdown user-dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION['user_logado'];//Rafael Damasio ?> <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="users.php?idUser=<?php echo $_SESSION['id_logado']; ?>"><i class="fa fa-edit"></i> Alterar senha</a></li>
+          <li><a href="users.php?idUser=<?php echo $_SESSION['id_logado']; ?>" class="envFormAltSenha"><i class="fa fa-edit"></i> Alterar senha</a></li>
           <li class="divider"></li>
           <li><a href="logout.php"><i class="fa fa-power-off"></i> Sair</a></li>
         </ul>

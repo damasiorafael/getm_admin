@@ -6,11 +6,15 @@
 .table-users td a.btn { margin-right: 6px;}
 
 /* ELEMENTOS GERAIS */
-.col-add-edit { position: relative; display: block;}
+.col-add-edit { position: relative; display: none;}
 .el-overlay { position: absolute; top: 0; left: 0; width: 100%; background: #FFF; opacity: .90; display: none;}
 .overlay-load {}
+.overlay-load-users { width: 100%; display: none; height: inherit;}
 .progress-bar-form { margin: auto; width: 50%; top: 50%; left: 50%; margin-top: -10px; position: absolute;}
 .progress-bar-form .progress-bar { position: absolute; height: 20px; top: 50%; left: 50%; margin-top: -10px; border-radius: 4px; width: 100%;}
+
+.overlay-load-users .progress-bar-form { left: 25%;}
+.overlay-load-users .progress-bar-form .progress-bar { left: 0; width: 100%!important; margin-left: 0!important;}
 
 .table-users-relative { position: relative;}
 .cont-button-add-user { position: absolute; top: 0; right: 15px;}
@@ -35,3 +39,6 @@ span.error { color: #F00;}
 
 /* PAGINA DE LOGIN */
 body.pag-login { background: #00B2C4;}
+
+/* FORMULARIO DE ENVIO PARA TROCAR SENHA - DEVE FICAR INVISÍVEL PARA NÃO INFLUENCIAR NA USABILIDADE */
+#envTrocaSenha { display: none!important;}

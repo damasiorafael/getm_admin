@@ -10,6 +10,8 @@
 	$username	= anti_injection($_REQUEST['username']);
 	$email 		= anti_injection($_REQUEST['email']);
 	$senha 		= anti_injection($_REQUEST['senha']);
+	$senhaatual	= anti_injection($_REQUEST['senhaatual']);
+	$novasenha	= anti_injection($_REQUEST['novasenha']);
 	$lojista	= anti_injection($_REQUEST['lojista']);
 	$arquivo	= $_REQUEST['arquivo'];
 	$destaque 	= anti_injection($_REQUEST['destaque']) == '' ? 0 : 1;
@@ -56,27 +58,21 @@
 			$arrayCampos 	= array();
 			break;
 		case 'editaUser':
-			array_push($arrayCampos, 'nome');
-			array_push($arrayCampos, 'username');
-			array_push($arrayCampos, 'email');
-			if($senha != ""){
+			if(checaUserAlterSenha('users',$id,$senhaatual)){
 				array_push($arrayCampos, 'senha');
-			}
-
-			array_push($arrayRequest, $nome);
-			array_push($arrayRequest, $username);
-			array_push($arrayRequest, $email);
-			if($senha != ""){
-				array_push($arrayRequest, $senha);
-			}
-
-			$campos = join($arrayCampos, '|');
-			$dados	= join($arrayRequest, '|');
-
-			if(editanobd("users",$campos,$dados,$id)){
-				echo "success";
+				
+				array_push($arrayRequest, SHA1($novasenha));
+	
+				$campos = join($arrayCampos, '|');
+				$dados	= join($arrayRequest, '|');
+	
+				if(editanobd("users",$campos,$dados,$id)){
+					echo "success";
+				} else {
+					echo "error";
+				}
 			} else {
-				echo "error";
+				echo "Senha não confere, tente novamente!";
 			}
 			break;
 		case 'excluirUser':

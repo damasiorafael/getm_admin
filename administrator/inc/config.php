@@ -51,6 +51,21 @@
 			//echo "Já existe um cadastro utilizando esse CPF.";
 		}
 	}
+	
+	function checaUserAlterSenha($tabela,$id,$senha){
+		
+		//FAZ A PESQUSA NO BANCO
+		$senha = SHA1($senha);
+        $checa = "SELECT * FROM $tabela WHERE id = '$id' AND senha = '$senha'";
+
+        //CHECA NO BANCO DE DADOS
+		$checar = mysql_query($checa);
+		if(mysql_num_rows($checar) == 1){
+			return mysql_num_rows($checar);
+		} else {
+			//echo "Já existe um cadastro utilizando esse CPF.";
+		}
+	}
 
 	// FUNÇÃO PARA GRAVAR NO BD
     function gravanobd($tabela,$campos,$valores){
