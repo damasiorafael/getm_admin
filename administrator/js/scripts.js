@@ -559,27 +559,32 @@ if(checkClass('form', 'form-validate')){
 		submitHandler: function(form){
 			var acao = $('#acao').val();
 			if(acao == 'addUser' || acao == 'editaUser' || acao == 'addFaq' || acao == 'editaFaq' || acao == 'addSocials' || acao == 'editaSocials' || acao == 'addVideo' || acao == 'editaVideo' || acao == 'addVideoLinha' || acao == 'editaVideoLinha'){
-				if($('#senhaatual').val() == '' && acao == 'editaUser'){
-					alert('Informa sua senha atual!');
-					return false;
-				} else if($('#novasenha').val() == '' && acao == 'editaUser'){
-					alert('Informe sua nova senha!');
-					return false;
-				} else if($('#novasenha').val() != ''){
-					var nSenha = $('#novasenha').val();
-					if(nSenha.length < 8){
-						alert('Sua senha deve conter no mínimo 8 caracteres!')
+				if($('#senha')[0] || $('#senhaatual')[0]){
+					if($('#senhaatual').val() == '' && acao == 'editaUser'){
+						alert('Informe sua senha atual!');
 						return false;
+					} else if($('#novasenha').val() == '' && acao == 'editaUser'){
+						alert('Informe sua nova senha!');
+						return false;
+					} else if($('#novasenha').val() != ''){
+						var nSenha = $('#novasenha').val();
+						if(nSenha.length < 8){
+							alert('Sua senha deve conter no mínimo 8 caracteres!')
+							return false;
+						}
 					}
-				} else if($('#senha').val() == '' && acao != 'editaUser'){
-					alert('Digite uma senha!');
-					return false;
+					urlForm = $(form).find('#url').val();
+					acaoForm = $(form).find('#acao').val();
+					overlayLoad();
+					$(form).parent().parent().find('.el-overlay').fadeIn().css('opacity', '.90');
+					enviaForm(form, urlForm, acaoForm);
+				} else {
+					urlForm = $(form).find('#url').val();
+					acaoForm = $(form).find('#acao').val();
+					overlayLoad();
+					$(form).parent().parent().find('.el-overlay').fadeIn().css('opacity', '.90');
+					enviaForm(form, urlForm, acaoForm);
 				}
-				urlForm = $(form).find('#url').val();
-				acaoForm = $(form).find('#acao').val();
-				overlayLoad();
-				$(form).parent().parent().find('.el-overlay').fadeIn().css('opacity', '.90');
-				enviaForm(form, urlForm, acaoForm);
 				return false;
 			}
 			if(acao == 'addImagem' || acao == 'editaImagem' || acao == 'addEmpresa' || acao == 'editaEmpresa'){

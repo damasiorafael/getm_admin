@@ -389,7 +389,7 @@ enviaForm = function(el, url, acao){
 				alert(txt);
 				$('.el-overlay').hide();
 			}
-			$(el).parent().parent().fadeOut();
+			//$(el).parent().parent().fadeOut();
 			return false;
 		},
 		error: function(jqXHR, textStatus, ex){
